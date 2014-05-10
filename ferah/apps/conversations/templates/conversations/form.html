@@ -12,7 +12,7 @@
 
 		</header>
 
-		<form class="clearfix page_form" action="{% url 'conversation_create' %}" method="post">
+		<form id="js-conversation-form" class="clearfix page_form" action="{% url 'conversation_create' %}" method="post">
 
 			{% csrf_token %}
 
@@ -26,5 +26,8 @@
 
 </div>
 
-
 {% endblock content %}
+
+{% block scripts %}
+	<script src="{{ STATIC_URL }}js/conversation_form.js"></script>
+{% endblock scripts %}

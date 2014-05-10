@@ -23,7 +23,7 @@ class ConversationSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Conversation
-		fields = ('title', 'created')
+		fields = ('title', 'created', 'get_absolute_url')
 
 class PaginatedConversationSerializer(PaginationSerializer):
 

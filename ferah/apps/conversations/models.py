@@ -13,7 +13,7 @@ class Conversation(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.created = timezone.now()
-		super(Message, self).save(*args, **kwargs)
+		super(Conversation, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return unicode(self.title)

@@ -66,7 +66,7 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 
 .container {
 	width: 960px;
-	max-width: 980px;
+	max-width: 960px;
 }
 .col-thin {
 	margin-right: 0;

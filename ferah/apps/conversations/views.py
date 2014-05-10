@@ -11,7 +11,7 @@ from apps.utils.http import JSONResponse
 
 from forms import ConversationForm, MessageForm
 from models import Conversation
-from utils.serializers import PaginatedMessageSerializer, MessageSerializer
+from utils.serializers import PaginatedMessageSerializer, MessageSerializer, ConversationSerializer
 
 class ConversationFormView(LoginRequiredMixin, FormView):
 	form_class = ConversationForm
@@ -21,7 +21,15 @@ class ConversationFormView(LoginRequiredMixin, FormView):
 		self.object = form.save(commit=False)
 		self.object.user = self.request.user
 		self.object.save()
+		if self.request.is_ajax():
+			serializer = ConversationSerializer(self.object)
+			return JSONResponse(serializer.data, status=200)
 		return HttpResponseRedirect(self.object.get_absolute_url())
+
+	def form_invalid(self, form):
+		if self.request.is_ajax():
+			return JSONResponse(form.errors, status=400)
+		return super(ConversationFormView, self).form_invalid(form)
 
 class ConversationDeleteView(LoginRequiredMixin, DeleteView):
 	model = Conversation

@@ -37,3 +37,6 @@
 .muted {
 	opacity: 0.75;
 }
+.underline {
+	text-decoration: underline !important;
+}
