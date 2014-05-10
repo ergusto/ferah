@@ -1,0 +1,202 @@
+
+.load-more {
+    margin-bottom: 10px;
+}
+.tag {
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    border: 1px solid #d4d4d4;
+    margin: 0;
+    font-size: 80%;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #fff;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    -o-background-clip: padding-box;
+    /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
+    /* IE hacks */
+    zoom: 1;
+    *display: inline;
+    margin-right: 4px;
+}
+.tag:hover {
+    border-color: #bcbcbc;
+    text-decoration: none; 
+    box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
+}
+.tag:hover a {
+    text-decoration: none;
+}
+.tag .fa {
+    margin-left: 4px;
+    color: rgba(94, 97, 100, 0.8);
+}
+
+
+
+
+.flag {
+    display: table;
+    width: 100%;
+}
+
+.flag__aside, .flag__body, .flag__info {
+    display: table-cell;
+    vertical-align: middle;
+}
+.flag--top {
+    vertical-align: top;
+}
+.flag--bottom {
+    vertical-align: bottom;
+}
+.flag__header {
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 8px 10px;
+}
+.flag__aside {
+    padding-right: 10px;
+    margin-right: 20px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+.flag__info {
+    padding-left: 10px;
+    margin-left: 20px;
+    text-align: center;
+    border-left: 1px solid #ddd;
+}
+.flag__aside > img {
+    display: block;
+    max-width: none;
+    border: 1px solid #ddd;
+}
+.flag__body {
+    width: 100%;
+}
+.flag__details small {
+    margin-bottom: 2px;
+    display: inline-block;
+}
+
+
+
+
+
+
+.panel-body {
+    border-top: 1px solid #ddd;
+    padding: 10px 20px;
+    background: rgba(244, 244, 244, 0.3);
+}
+
+
+.btn {
+    position: relative;
+    overflow: visible;
+    display: inline-block;
+    padding: 0.3em 0.8em;
+    border: 1px solid #d4d4d4;
+    margin: 0;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 1px 1px 0 #fff;
+    font: 11px/normal sans-serif;
+    color: #333;
+    white-space: nowrap;
+    cursor: pointer;
+    outline: none;
+    background-color: #ececec;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+    background-image: -o-linear-gradient(#f4f4f4, #ececec);
+    background-image: linear-gradient(#f4f4f4, #ececec);
+    -webkit-background-clip: padding;
+    -moz-background-clip: padding;
+    -o-background-clip: padding-box;
+    /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
+    -webkit-border-radius: 0.2em;
+    -moz-border-radius: 0.2em;
+    border-radius: 0.2em;
+    /* IE hacks */
+    zoom: 1;
+    *display: inline;
+}
+
+.btn-large {
+    padding: 0.5em 1em;
+    font-size: 100%;
+}
+.btn-large-thin {
+    padding: 0.5em 0.75em 0.5em 0.75em;
+}
+
+.btn-block {
+    display: block;
+}
+
+.btn:hover {
+    border-color: #bcbcbc;
+    text-decoration: none; 
+    box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
+}
+
+.btn:focus,
+.btn:active {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ececec), to(#f4f4f4));
+    background-image: -moz-linear-gradient(#ececec, #f4f4f4);
+    background-image: -o-linear-gradient(#ececec, #f4f4f4);
+    background-image: linear-gradient(#ececec, #f4f4f4);
+}
+
+/* overrides extra padding on button elements in Firefox */
+.btn::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+.conversations_ul {
+}
+.conversations_ul .conversation {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.messages_ul {
+    margin-top: 20px;
+    padding: 0 60px;
+}
+
+.messages_ul .message {
+    padding: 10px;
+}
+
+.message__header {
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+    padding: 2px 8px 4px;
+}
+.message__header .user {
+    float: left;
+}
+.message__header .date {
+    float: right;
+}
+.message__body {
+    padding: 8px;
+}

@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-6 col-xs-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+			<h3>{{ object.title }}</h3>
+		</header>
+
+		<form id="js-message-form" class="clearfix page_form" action="{{ object.get_add_message_url }}" method="post" autocomplete="off">
+
+			{% csrf_token %}
+
+			{% with message_form as page_form %}
+				{% include 'includes/forms/page_form.html' %}
+			{% endwith %}
+			
+		</form>
+
+	</div>
+
+	<ul id="js-messages-list" class="messages_ul">
+	
+		{% if object_list %}
+			
+			{% for message in object_list %}
+
+				<li class="message box">
+						<header class="message__header clearfix">
+							<p class="user">{{ message.user }}</p>
+							<p class="date">{{ message.date }}</p>
+						</header>
+						<div class="message__body">
+							<p>{{ message.text }}</p>
+						</div>
+				</li>
+
+			{% endfor %}
+
+			{% if is_paginated and page_obj.has_next %}
+
+				<li class="load-more">
+					<a href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="js-messages-load btn btn-large btn-block">Load more</a>
+				</li>
+
+			{% endif %}
+
+		{% endif %}
+
+	</ul>
+
+</div>
+
+{% endblock content %}
+
+{% block script_templates %}
+
+{% verbatim %}
+
+<script id="message_list_template" type="text/x-handlebars-template">
+{{#each results}}
+	<li class="message box">
+		<header class="message__header clearfix">
+			<p class="user">{{ user }}</p>
+			<p class="date">{{ date }}</p>
+		</header>
+		<div class="message__body">
+			<p>{{ text }}</p>
+		</div>
+	</li>
+{{/each}}
+{{#if next}}
+<li class="load-more">
+	<a href="{{ next }}" class="js-messages-load btn btn-large btn-block">Load more</a>
+</li>
+{{/if}}
+</script>
+
+<script id="message_item_template" type="text/x-handlebars-template">
+	<li class="message box">
+		<header class="message__header clearfix">
+			<p class="user">{{ user }}</p>
+			<p class="date">{{ date }}</p>
+		</header>
+		<div class="message__body">
+			<p>{{ text }}</p>
+		</div>
+	</li>
+</script>
+
+{% endverbatim %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+	<script src="{{ STATIC_URL }}js/conversation_detail.js"></script>
+{% endblock scripts %}

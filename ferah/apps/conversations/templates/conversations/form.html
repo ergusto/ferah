@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-4 col-xs-offset-4">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>Create Conversation</h3>
+
+		</header>
+
+		<form class="clearfix page_form" action="{% url 'conversation_create' %}" method="post">
+
+			{% csrf_token %}
+
+			{% with form as page_form %}
+				{% include 'includes/forms/page_form.html' %}
+			{% endwith %}
+
+		</form>
+
+	</div>
+
+</div>
+
+
+{% endblock content %}

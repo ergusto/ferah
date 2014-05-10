@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-6 col-xs-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<a href="{% url 'conversation_create' %}" class="h-icon"><i class="fa fa-plus"></i></a>
+
+			<h3>Home</h3>
+
+		</header>
+
+		<div>
+
+			<ul class="conversations_ul">
+
+				{% for conversation in conversations %}
+
+					<li class="conversation">
+
+						<a href="{{ conversation.get_absolute_url }}">{{ conversation }}</a>
+
+					</li>
+
+				{% endfor %}
+
+			</ul>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock content %}

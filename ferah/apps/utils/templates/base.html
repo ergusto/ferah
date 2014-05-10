@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+{% include 'includes/stylesheets.html' %}{% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+
+<body>
+
+    <main class="container">
+
+    	<div class="row">
+
+    		{% block content %}{% endblock content %}
+
+    	</div>
+
+    </main>
+	
+	{% block script_templates %}{% endblock script_templates %}
+
+	{% include 'includes/scripts.html' %}{% block scripts %}{% endblock scripts %}
+       
+</body>
+
+</html>

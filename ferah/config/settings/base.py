@@ -39,6 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'south',
+
+    'apps.conversations',
+    'apps.home',
+    'apps.login',
+    'apps.utils',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,6 +58,8 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'config.urls'
 
 WSGI_APPLICATION = 'config.wsgi.application'
+
+LOGIN_URL = '/login/'
 
 
 # Database
@@ -86,7 +93,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+
+# Date
+DATETIME_FORMAT = '%B %d, %Y, %I:%M, %p'
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+# Vendor
