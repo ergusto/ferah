@@ -40,12 +40,12 @@ INSTALLED_APPS = (
 
     'south',
 
-    #'apps.conversations',
-    #'apps.home',
-    #'apps.login',
-    #'apps.notifications',
-    #'apps.tags',
-    #'apps.utils',
+    'apps.conversations',
+    'apps.home',
+    'apps.login',
+    'apps.notifications',
+    'apps.tags',
+    'apps.utils',
 )
 
 MIDDLEWARE_CLASSES = (
