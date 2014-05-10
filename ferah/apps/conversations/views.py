@@ -1,6 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.views.generic import FormView, DetailView
 from django.views.generic.list import ListView
+from django.views.generic.edit import DeleteView
+from django.core.urlresolvers import reverse_lazy
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from braces.views import LoginRequiredMixin, AjaxResponseMixin
@@ -20,6 +22,16 @@ class ConversationFormView(LoginRequiredMixin, FormView):
 		self.object.user = self.request.user
 		self.object.save()
 		return HttpResponseRedirect(self.object.get_absolute_url())
+
+class ConversationDeleteView(LoginRequiredMixin, DeleteView):
+	model = Conversation
+	success_url = reverse_lazy('home')
+
+	def dispatch(self, request, *args, **kwargs):
+		self.object = self.get_object()
+		if not self.object.user == request.user:
+			return HttpResponseRedirect(reverse_lazy('home'))
+		return super(ConversationDeleteView, self).dispatch(request, *args, **kwargs)
 
 class ConversationDetailView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 	model = Conversation

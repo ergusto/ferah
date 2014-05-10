@@ -10,14 +10,14 @@ from apps.utils.http import JSONResponse
 
 class HomeView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 	template_name = 'home/home.html'
-	paginate_by = 2
+	paginate_by = 10
 
 	def get_queryset(self):
 		return Conversation.objects.all().order_by('-created')
 
 	def get_ajax(self, request, *args, **kwargs):
 		self.object_list = self.get_queryset()
-		paginator = Paginator(self.object_list, 2)
+		paginator = Paginator(self.object_list, 10)
 		page = request.GET.get('page', '')
 		try:
 			queryset = paginator.page(page)

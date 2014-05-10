@@ -20,6 +20,9 @@ urlpatterns = patterns('',
     url(r'^$', HomeView.as_view(), name='home'),
 
     url(r'^login/$', LoginView.as_view(), name='login'),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}, name='logout'),
+
+    
     (r'^conversations/', include('apps.conversations.urls')),
 )
 

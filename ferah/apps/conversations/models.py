@@ -28,6 +28,11 @@ class Conversation(models.Model):
 			'pk': self.id,
 		})
 
+	def get_delete_url(self):
+		return reverse('conversation_delete', kwargs={
+			'pk': self.id,
+		})
+
 	def descending_messages(self):
 		return self.messages.order_by('-date')
 

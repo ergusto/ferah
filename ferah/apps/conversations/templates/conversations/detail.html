@@ -7,6 +7,9 @@
 	<div class="box">
 
 		<header class="box__header">
+			{% if object.user == user %}
+				<p class="pull-right"><a href="{{ object.get_delete_url }}">Delete</a></p>
+			{% endif %}
 			<h3>{{ object.title }}</h3>
 		</header>
 
