@@ -8,6 +8,12 @@ class Conversation(models.Model):
 	user = models.ForeignKey('auth.User', related_name='owned_conversations')
 	participants = models.ManyToManyField('auth.User', related_name='conversations')
 	title = models.CharField(max_length=140)
+	created = models.DateTimeField(null=True, blank=True, editable=False)
+
+	def save(self, *args, **kwargs):
+		if not self.id:
+			self.created = timezone.now()
+		super(Message, self).save(*args, **kwargs)
 
 	def __unicode__(self):
 		return unicode(self.title)

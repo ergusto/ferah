@@ -16,9 +16,9 @@
 
 		<div>
 
-			<ul class="conversations_ul">
+			<ul id="js-conversations-list" class="conversations_ul">
 
-				{% for conversation in conversations %}
+				{% for conversation in object_list %}
 
 					<li class="conversation">
 
@@ -27,6 +27,14 @@
 					</li>
 
 				{% endfor %}
+
+				{% if is_paginated and page_obj.has_next %}
+
+					<li class="load-more">
+						<a href="{% url 'home' %}?page={{ page_obj.next_page_number }}" class="js-conversations-load btn btn-large btn-block">Load more</a>
+					</li>
+
+				{% endif %}
 
 			</ul>
 
@@ -37,3 +45,30 @@
 </div>
 
 {% endblock content %}
+
+{% block script_templates %}
+
+{% verbatim %}
+
+<script id="conversation_item_template" type="text/x-handlebars-template">
+{{#each results}}
+	<li class="conversation">
+
+		<a href="{{ get_absolute_url }}">{{ title }}</a>
+
+	</li>
+{{/each}}
+{{#if next}}
+<li class="load-more">
+	<a href="{{ next }}" class="js-conversations-load btn btn-large btn-block">Load more</a>
+</li>
+{{/if}}
+</script>
+
+{% endverbatim %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+	<script src="{{ STATIC_URL }}js/home.js"></script>
+{% endblock scripts %}

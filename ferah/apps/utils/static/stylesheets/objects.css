@@ -170,11 +170,12 @@
     padding: 0;
     border: 0;
 }
-.conversations_ul {
-}
 .conversations_ul .conversation {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+}
+.conversations_ul .load-more {
+    margin: 10px;
 }
 
 .messages_ul {
