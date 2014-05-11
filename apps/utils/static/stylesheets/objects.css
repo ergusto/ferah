@@ -135,7 +135,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
 
 
 .conversations_ul .conversation {
-    padding: 10px;
+    padding: 10px 14px;
     border-bottom: 1px solid #ddd;
 }
 .conversations_ul .conversation:hover .js-details {
