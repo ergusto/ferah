@@ -15,6 +15,9 @@ from models import Tag
 from forms import SimpleTagForm
 from utils.serializers import TagSerializer
 
+class TagListView(LoginRequiredMixin, ListView):
+	model = Tag
+
 class TagDetailView(LoginRequiredMixin, DetailView):
 	model = Tag
 

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-6 col-xs-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>All Tags</h3>
+
+		</header>
+
+		<div class="box__body">
+
+			{% regroup object_list by first_letter as tag_list %}
+
+			<ul class="grouped_list">
+				{% for letter in tag_list %}
+					<li><h3>{{ letter.grouper }}</h3>
+						<ul class="box tag_ul">
+							{% for tag in letter.list %}
+								<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+							{% endfor %}
+						</ul>
+					</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock content %}

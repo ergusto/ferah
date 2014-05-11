@@ -57,6 +57,24 @@
     border: 0;
 }
 
+
+.grouped_list > li {
+    margin-bottom: 10px;
+}
+.grouped_list > li:last-child {
+    margin-bottom: 0px;
+}
+.grouped_list > li:last-child .tag_ul {
+    margin-bottom: 0px;
+}
+.tag_ul li {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+}
+.tag_ul li:last-child {
+    border-bottom: 0px;
+}
+
 .tag_li {
     margin-bottom: 4px;
     display: inline-block;
