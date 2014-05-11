@@ -22,7 +22,7 @@ class Conversation(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.created = timezone.now()
-			self.slug = slugify(self.title)
+		self.slug = slugify(self.title)
 		super(Conversation, self).save(*args, **kwargs)
 
 	def __unicode__(self):
