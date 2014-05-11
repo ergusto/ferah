@@ -32,6 +32,13 @@
     	</div>
 
     </main>
+
+    <footer class="footer">
+
+    	<a href="{% url 'tags_list' %}"><i class="fa fa-tags"></i> <span>tags</span></a>
+    	<a class="pull-right" href="{% url 'recent_messages' %}"><i class="fa fa-clock-o"></i> <span>recent</span></a>
+
+    </footer>
 	
 	{% block script_templates %}{% endblock script_templates %}
 

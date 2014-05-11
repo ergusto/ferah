@@ -64,13 +64,13 @@
 			{% for message in object_list %}
 
 				<li class="message box">
-						<header class="message__header clearfix">
-							<p class="user">{{ message.user }}</p>
-							<p class="date">{{ message.date }}</p>
-						</header>
-						<div class="message__body">
-							<p>{{ message.text }}</p>
-						</div>
+					<header class="message__header clearfix">
+						<p class="user">{{ message.user }}</p>
+						<p class="date">{{ message.date }}</p>
+					</header>
+					<div class="message__body">
+						<p>{{ message.text }}</p>
+					</div>
 				</li>
 
 			{% endfor %}
