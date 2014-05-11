@@ -57,6 +57,13 @@
     border: 0;
 }
 
+.tag_li {
+    margin-bottom: 4px;
+    display: inline-block;
+}
+.tag_li:last-child {
+    margin-bottom: 0px;
+}
 .tag {
     position: relative;
     overflow: visible;

@@ -53,4 +53,53 @@ $(document).ready(function(){
 		});
 	});
 
+	$(document).on('click', '.js-tag-remove', function(event){
+		event.preventDefault();
+		var anchor = $(this);
+		var title = anchor.parent().text().trim();
+		$.ajax({
+			url: anchor.attr('href'),
+			type: 'POST',
+			data: {'title': title},
+			dataType: 'json',
+			success: function(response) {
+				anchor.closest('.tag_li').remove();
+			},
+			error: function(response, textStatus, jqXHR) {
+				console.log(response);
+			}
+		});
+	});
+
+	$(document).on('submit', '#conversation_tag_form', function(event) {
+		event.preventDefault();
+		var form = $(this);
+		clear_form_errors(form);
+		$.ajax({
+			url: form.attr('action'),
+			type: form.attr('method'),
+			dataType: "json",
+   			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+			data: form.serialize(),
+			success: function(response) {
+				var context = response;
+				var source = $('#tag_template').html();
+				var template = Handlebars.compile(source);
+				$('.tags_ul').append(template(context));
+				form.find('#id_title').val('');
+			},
+			error: function(response, textStatus, jqXHR) {
+				var errors = $.parseJSON(response.responseText);
+				console.log(response);
+				$.each(errors, function(index, value) {
+					if (index === "__all__") {
+						apply_form_error(form, value);
+					} else {
+						apply_form_field_error(index, value);
+					}
+				});
+			}
+		});
+	});
+
 });

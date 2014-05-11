@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-6 col-xs-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>Remove tag for {{ object.title }}</h3>
+
+		</header>
+
+		<form class="clearfix page_form" role="form" action="{{ object.get_remove_tag_url }}" method="post" autocomplete="off">
+
+			{% csrf_token %}
+
+			{% with form as page_form %}
+				{% include 'includes/forms/page_form.html' %}
+			{% endwith %}
+
+		</form>
+
+	</div>
+
+</div>
+
+{% endblock content %}
+
+{% block scripts %}
+	<script src="{{ STATIC_URL }}js/link_form.js"></script>
+{% endblock scripts %}

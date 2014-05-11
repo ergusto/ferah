@@ -42,7 +42,6 @@ class ConversationDeleteView(LoginRequiredMixin, DeleteView):
 		return super(ConversationDeleteView, self).dispatch(request, *args, **kwargs)
 
 class ConversationDetailView(LoginRequiredMixin, AjaxResponseMixin, ListView):
-	model = Conversation
 	template_name = 'conversations/detail.html'
 	paginate_by = 10
 

@@ -149,3 +149,13 @@ header[role=banner] i {
 .auth-a:hover {
 	opacity: 0.6;
 }
+
+#tags-aside {
+	float: right;
+	margin-top: 80px;
+	width: 200px;
+	margin-right: -120px;
+}
+.tags_ul .tag_li:first-child {
+	margin-top: 10px;
+}

@@ -24,6 +24,7 @@ urlpatterns = patterns('',
 
     
     (r'^conversations/', include('apps.conversations.urls')),
+    (r'^tags/', include('apps.tags.urls')),
 )
 
 if settings.DEBUG:

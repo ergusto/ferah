@@ -1,5 +1,40 @@
 {% extends 'base.html' %}
 
+{% block sidebar %}
+
+	<aside id="tags-aside" class="box">
+
+		<header class="box__header">
+			<h3>Tags</h3>
+		</header>
+
+		<div class="box__body">
+
+			<form id="conversation_tag_form" action="{{ object.get_add_tag_url }}" method="post" autocomplete="off">
+
+				{% csrf_token %}
+
+				<div class="form-group">
+					<input id="id_title" maxlength="80" name="title" type="text">
+				</div>
+				<button class="btn btn-large" type="submit">Add tag</button>
+
+			</form>
+
+			<ul class="tags_ul">
+
+				{% for tag in object.tags.all %}
+					<li class="tag_li"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag }} <a class="js-tag-remove" href="{{ object.get_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
+				{% endfor %}
+
+			</ul>
+
+		</div>
+
+	</aside>
+
+{% endblock sidebar %}
+
 {% block content %}
 
 <div class="col-xs-6 col-xs-offset-3">
@@ -92,6 +127,10 @@
 			<p>{{ text }}</p>
 		</div>
 	</li>
+</script>
+
+<script id="tag_template" type="text/x-handlebars-template">
+<li class="tag_li"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag.title }} <a class="js-tag-remove" href="{{ object_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
 </script>
 
 {% endverbatim %}
