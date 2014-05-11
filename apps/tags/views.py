@@ -18,6 +18,9 @@ from utils.serializers import TagSerializer
 class TagDetailView(LoginRequiredMixin, DetailView):
 	model = Tag
 
+	def get_object(self, **kwargs):
+		return Tag.objects.get(slug=self.kwargs['slug'])
+
 class AddTagToConversationFormView(LoginRequiredMixin, FormView):
 	form_class = SimpleTagForm
 	template_name = 'tags/conversation_tag_form.html'

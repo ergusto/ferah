@@ -32,6 +32,9 @@ textarea {
 .page_form .help-text {
 	margin-top: 10px;
 }
+.form-group {
+	margin-bottom: 8px;
+}
 .form-group .error, .form-error {
 	display: block;
 	background: rgb(248, 249, 249);

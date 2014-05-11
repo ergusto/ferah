@@ -14,10 +14,15 @@ class Conversation(models.Model):
 	title = models.CharField(max_length=140)
 	created = models.DateTimeField(null=True, blank=True, editable=False)
 	tags = models.ManyToManyField('tags.Tag', related_name='conversations')
+	slug = models.SlugField(editable=False, null=True, blank=True)
+
+	def __unicode__(self):
+		return unicode(self.title)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.created = timezone.now()
+			self.slug = slugify(self.title)
 		super(Conversation, self).save(*args, **kwargs)
 
 	def __unicode__(self):

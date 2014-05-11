@@ -18,5 +18,5 @@ class Tag(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('tag_detail', kwargs={
-			'pk': self.id,
+			'slug': self.slug,
 		})
