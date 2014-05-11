@@ -67,6 +67,7 @@ $(document).ready(function(){
 			},
 			error: function(response, textStatus, jqXHR) {
 				console.log(response);
+				console.log(response);
 			}
 		});
 	});
