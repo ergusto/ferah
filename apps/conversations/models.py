@@ -13,8 +13,8 @@ class Conversation(models.Model):
 	participants = models.ManyToManyField('auth.User', related_name='conversations', null=True, blank=True)
 	title = models.CharField(max_length=140)
 	created = models.DateTimeField(null=True, blank=True, editable=False)
-	tags = models.ManyToManyField('tags.Tag', related_name='conversations')
-	slug = models.SlugField(editable=False, null=True, blank=True)
+	tags = models.ManyToManyField('tags.Tag', related_name='conversations', null=True, blank=True)
+	slug = models.SlugField(editable=False, max_length=140, null=True, blank=True)
 
 	def __unicode__(self):
 		return unicode(self.title)
