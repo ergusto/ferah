@@ -1,1 +1,1 @@
-web: gunicorn config.wsgi --settings=config.settings.heroku;
+web: gunicorn config.heroku_wsgi --settings=config.settings.heroku;
