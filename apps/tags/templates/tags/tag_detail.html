@@ -2,4 +2,58 @@
 
 {% block content %}
 
+<div class="col-xs-6 col-xs-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>Conversations for '{{ object }}' tag</h3>
+
+		</header>
+
+		<div>
+
+			<ul id="js-conversations-list" class="conversations_ul">
+
+				{% if object.conversations.all %}
+
+					{% for conversation in object.conversations.all %}
+
+						<li class="conversation">
+
+							<a class="pull-right js-details" href="{{ conversation.get_absolute_url }}">Details</a>
+
+							<a href="{{ conversation.get_absolute_url }}">{{ conversation }}</a>
+
+						</li>
+
+					{% endfor %}
+
+					{% if is_paginated and page_obj.has_next %}
+
+						<li class="load-more">
+							<a href="{% url 'home' %}?page={{ page_obj.next_page_number }}" class="js-conversations-load btn btn-large btn-block">Load more</a>
+						</li>
+
+					{% endif %}
+
+				{% else %}
+
+					<li class="conversation">
+
+						<p>No conversations. <a class="underline" href="{% url 'conversation_create' %}">Create one.</a></p>
+
+					</li>
+
+				{% endif %}
+
+			</ul>
+
+		</div>
+
+	</div>
+
+</div>
+
 {% endblock %}
