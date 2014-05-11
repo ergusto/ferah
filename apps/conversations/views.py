@@ -35,6 +35,9 @@ class ConversationDeleteView(LoginRequiredMixin, DeleteView):
 	model = Conversation
 	success_url = reverse_lazy('home')
 
+	def get_object(self, **kwargs):
+		return Conversation.objects.get(slug=self.kwargs['slug'])
+
 	def dispatch(self, request, *args, **kwargs):
 		self.object = self.get_object()
 		if not self.object.user == request.user:
@@ -46,7 +49,7 @@ class ConversationDetailView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 	paginate_by = 10
 
 	def get_object(self, **kwargs):
-		return Conversation.objects.get(id=self.kwargs['pk'])
+		return Conversation.objects.get(slug=self.kwargs['slug'])
 
 	def get_queryset(self):
 		object = self.get_object()
@@ -77,7 +80,7 @@ class ConversationMessageFormView(LoginRequiredMixin, FormView):
 	template_name = 'conversations/message_form.html'
 
 	def get_object(self, **kwargs):
-		return Conversation.objects.get(id=self.kwargs['pk'])
+		return Conversation.objects.get(slug=self.kwargs['slug'])
 
 	def get_success_url(self):
 		object = self.get_object()

@@ -26,7 +26,7 @@ class AddTagToConversationFormView(LoginRequiredMixin, FormView):
 	template_name = 'tags/conversation_tag_form.html'
 
 	def get_object(self, **kwargs):
-		return Conversation.objects.get(id=self.kwargs['pk'])
+		return Conversation.objects.get(slug=self.kwargs['slug'])
 
 	def get_success_url(self):
 		object = self.get_object()
@@ -55,7 +55,7 @@ class RemoveTagFromConversationView(LoginRequiredMixin, FormView):
 	template_name = 'tags/conversation_remove_tag_form.html'
 
 	def get_object(self, **kwargs):
-		return Conversation.objects.get(id=self.kwargs['pk'])
+		return Conversation.objects.get(slug=self.kwargs['slug'])
 
 	def get_success_url(self):
 		self.object = self.get_object()

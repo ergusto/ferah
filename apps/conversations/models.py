@@ -11,7 +11,7 @@ from apps.tags.models import Tag
 class Conversation(models.Model):
 	user = models.ForeignKey('auth.User', related_name='owned_conversations')
 	participants = models.ManyToManyField('auth.User', related_name='conversations', null=True, blank=True)
-	title = models.CharField(max_length=140)
+	title = models.CharField(max_length=140, unique=True)
 	created = models.DateTimeField(null=True, blank=True, editable=False)
 	tags = models.ManyToManyField('tags.Tag', related_name='conversations', null=True, blank=True)
 	slug = models.SlugField(editable=False, max_length=140, null=True, blank=True)
@@ -30,27 +30,27 @@ class Conversation(models.Model):
 
 	def get_absolute_url(self):
 		return reverse('conversation_detail', kwargs={
-			'pk': self.id,
+			'slug': self.slug,
 		})
 
 	def get_add_message_url(self):
 		return reverse('conversation_add_message', kwargs={
-			'pk': self.id,
+			'slug': self.slug,
 		})
 
 	def get_delete_url(self):
 		return reverse('conversation_delete', kwargs={
-			'pk': self.id,
+			'slug': self.slug,
 		})
 
 	def get_add_tag_url(self):
 		return reverse('conversation_add_tag', kwargs={
-			'pk': self.id,
+			'slug': self.slug,
 		})
 
 	def get_remove_tag_url(self):
 		return reverse('conversation_remove_tag', kwargs={
-			'pk': self.id,
+			'slug': self.slug,
 		})
 
 	def descending_messages(self):
