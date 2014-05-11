@@ -118,7 +118,6 @@
 
 .conversations_ul .conversation {
     padding: 10px;
-    padding-right: 80px;
     border-bottom: 1px solid #ddd;
 }
 .conversations_ul .conversation:hover .js-details {
