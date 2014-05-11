@@ -97,7 +97,7 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 #right-aside {
 	float: right;
 	margin-top: 80px;
-	width: 140px;
+	width: 200px;
 	margin-right: -120px;
 }
 .tags_ul .tag_li:first-child {
@@ -105,7 +105,7 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 }
 
 .nav_ul li {
-  padding: 4px 8px;
+  padding: 10px;
   border-bottom: 1px solid #ddd;
 }
 .nav_ul li:last-child {
