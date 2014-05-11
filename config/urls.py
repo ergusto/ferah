@@ -25,7 +25,6 @@ urlpatterns = patterns('',
     url(r'^recent/$', RecentMessgaesListView.as_view(), name='recent_messages'),
     
     (r'^conversations/', include('apps.conversations.urls')),
-    (r'^notes/', include('apps.notes.urls')),
     (r'^tags/', include('apps.tags.urls')),
 )
 
