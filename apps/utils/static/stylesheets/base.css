@@ -68,65 +68,9 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 	width: 960px;
 	max-width: 960px;
 }
-.col-thin {
-	margin-right: 0;
-	margin-left: 0;
-	padding-right: 0;
-	padding-left: 0;
-}
 
-.box__header .h-icon {
-	font-size: 150%;
-	float: right;
-	margin-top: -4px;
-	margin-right: 8px;
-	display: inline-block;
-}
-.box__header .h-icon:hover {
-	opacity: 0.6;
-}
-
-
-header[role=banner] {
-	height: 44px;
-	max-height: 44px;
-	min-width: 1180px;
-	margin: 0 auto;
-	overflow: hidden;
-	position: relative;
-	z-index: 1;
-	border-bottom: 1px solid rgb(175, 181, 192);
-	box-shadow: 0 -1px 10px rgba(98,119,149,0.15) inset, 0 1px 2px rgba(98,119,149,0.15) inset;
-	background-image: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		color-stop(0, rgb(227, 231, 236)),
-		color-stop(1, rgb(216, 222, 230))
-	);
-	background-image: -o-linear-gradient(bottom, rgb(227, 231, 236) 0%, rgb(216, 222, 230) 100%);
-	background-image: -moz-linear-gradient(bottom, rgb(227, 231, 236) 0%, rgb(216, 222, 230) 100%);
-	background-image: -webkit-linear-gradient(bottom, rgb(227, 231, 236) 0%, rgb(216, 222, 230) 100%);
-	background-image: -ms-linear-gradient(bottom, rgb(227, 231, 236) 0%, rgb(216, 222, 230) 100%);
-	background-image: linear-gradient(to bottom, rgb(227, 231, 236) 0%, rgb(216, 222, 230) 100%);
-}
-header[role=banner] a {
-	display: inline-block;
-	float: left;
-	text-align: center;
-	-webkit-font-smoothing: antialiased;
-}
-header[role=banner] a.h-icon {
-	width: 48px;
-	font-size: 120%;
-}
-header[role=banner] a:hover {
-	opacity: 0.5;
-}
-header[role=banner] i {
-	font-size: 130%;
-	padding: 0;
-	line-height: 45px;
+#menu-aside {
+  margin-top: 60px;
 }
 
 
@@ -150,7 +94,7 @@ header[role=banner] i {
 	opacity: 0.6;
 }
 
-#tags-aside {
+#right-aside {
 	float: right;
 	margin-top: 80px;
 	width: 200px;

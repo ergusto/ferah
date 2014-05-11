@@ -18,6 +18,9 @@ from utils.serializers import TagSerializer
 class TagListView(LoginRequiredMixin, ListView):
 	model = Tag
 
+	def get_queryset(self):
+		return Tag.objects.all().order_by('slug')
+
 class TagDetailView(LoginRequiredMixin, DetailView):
 	model = Tag
 

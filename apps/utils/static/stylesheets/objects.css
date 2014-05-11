@@ -1,33 +1,21 @@
 .btn {
-    position: relative;
-    overflow: visible;
-    display: inline-block;
     padding: 0.3em 0.8em;
-    border: 1px solid #d4d4d4;
-    margin: 0;
-    text-align: center;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #fff;
-    font: 11px/normal sans-serif;
-    color: #333;
-    white-space: nowrap;
-    cursor: pointer;
-    outline: none;
-    background-color: #ececec;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
-    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
-    background-image: -o-linear-gradient(#f4f4f4, #ececec);
-    background-image: linear-gradient(#f4f4f4, #ececec);
-    -webkit-background-clip: padding;
-    -moz-background-clip: padding;
-    -o-background-clip: padding-box;
-    /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
-    -webkit-border-radius: 0.2em;
-    -moz-border-radius: 0.2em;
-    border-radius: 0.2em;
-    /* IE hacks */
-    zoom: 1;
-    *display: inline;
+display: block;
+text-align: center;
+cursor: pointer;
+text-shadow: 0 1px rgba(255, 255, 255, 0.19);
+border: 1px solid #dbdbdb;
+/* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .05), 0 -2px 0 0 rgba(0, 0, 0,0.01) inset; */
+border-radius: 2px;
+background: #fefefe;
+background: -moz-linear-gradient(top, #fefefe 0%, #f8f8f8 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#f8f8f8));
+background: -webkit-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
+background: -o-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
+background: -ms-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
+background: linear-gradient(to bottom, #fefefe 0%,#f8f8f8 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f8f8f8',GradientType=0 );
 }
 .btn-large {
     padding: 0.5em 1em;
@@ -58,21 +46,18 @@
 }
 
 
-.grouped_list > li {
-    margin-bottom: 10px;
+.tag_ul h3 {
+    margin-top: 16px;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 8px;
+    padding-left: 10px;
 }
-.grouped_list > li:last-child {
-    margin-bottom: 0px;
-}
-.grouped_list > li:last-child .tag_ul {
-    margin-bottom: 0px;
+.tag_ul h3:first-child {
+    margin-top: 0px;
 }
 .tag_ul li {
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
-}
-.tag_ul li:last-child {
-    border-bottom: 0px;
+    padding-left: 10px;
 }
 
 .tag_li {
@@ -83,42 +68,31 @@
     margin-bottom: 0px;
 }
 .tag {
-    position: relative;
-    overflow: visible;
-    display: inline-block;
     padding: 0.3em 0.8em;
-    border: 1px solid #d4d4d4;
-    margin: 0;
     font-size: 80%;
     text-decoration: none;
-    text-shadow: 1px 1px 0 #fff;
-    color: #333;
-    white-space: nowrap;
-    cursor: pointer;
-    outline: none;
-    background-color: #ececec;
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
-    background-image: -moz-linear-gradient(#f4f4f4, #ececec);
-    background-image: -o-linear-gradient(#f4f4f4, #ececec);
-    background-image: linear-gradient(#f4f4f4, #ececec);
-    -webkit-background-clip: padding;
-    -moz-background-clip: padding;
-    -o-background-clip: padding-box;
-    /*background-clip: padding-box;*/ /* commented out due to Opera 11.10 bug */
-    -webkit-border-radius: 0.2em;
-    -moz-border-radius: 0.2em;
-    border-radius: 0.2em;
-    /* IE hacks */
-    zoom: 1;
-    *display: inline;
+display: block;
+text-align: center;
+cursor: pointer;
+text-shadow: 0 1px rgba(255, 255, 255, 0.19);
+border: 1px solid #dbdbdb;
+/* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .05), 0 -2px 0 0 rgba(0, 0, 0,0.01) inset; */
+border-radius: 2px;
+background: #fefefe;
+background: -moz-linear-gradient(top, #fefefe 0%, #f8f8f8 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fefefe), color-stop(100%,#f8f8f8));
+background: -webkit-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
+background: -o-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
+background: -ms-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
+background: linear-gradient(to bottom, #fefefe 0%,#f8f8f8 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f8f8f8',GradientType=0 );
     margin-right: 4px;
 }
 .tag:hover {
     border-color: #bcbcbc;
-    text-decoration: none; 
     box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
 }
-.tag:hover a {
+.tag a {
     text-decoration: none;
 }
 .tag .fa {
@@ -127,6 +101,32 @@
 }
 .load-more {
     margin-bottom: 10px;
+}
+
+
+
+.flag {
+    display: table;
+    width: 100%;
+}
+
+.flag__aside, .flag__body {
+    display: table-cell;
+    vertical-align: middle;
+}
+.flag__aside {
+    padding-right: 10px;
+    margin-right: 20px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+}
+.flag__aside > img {
+    display: block;
+    max-width: none;
+    border: 1px solid #ddd;
+}
+.flag__body {
+    width: 100%;
 }
 
 
@@ -173,5 +173,5 @@
     float: right;
 }
 .message__body {
-    padding: 8px;
+    padding: 8px 12px;
 }

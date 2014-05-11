@@ -17,8 +17,7 @@ class Tag(models.Model):
 		super(Tag, self).save(*args, **kwargs)
 
 	def first_letter(self):
-		letter = self.title[0]
-		return letter.lower()
+		return self.title.lower()[0]
 
 	def get_absolute_url(self):
 		return reverse('tag_detail', kwargs={

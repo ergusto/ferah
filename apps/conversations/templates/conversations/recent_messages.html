@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-7 col-xs-offset-2">
+
+	<div class="box">
+
+		<header class="box__header">
+			<h3>Recent Messages</h3>
+		</header>
+		<ul class="message-list">
+			{% for message in object_list %}
+
+				<li>
+					<small><a href="#">{{ message.user }}</a> wrote in <a href="{{ message.conversation.get_absolute_url }}">{{ message.conversation }}</a>:</small><br><br>
+					{{ message.text }}
+				</li>
+
+			{% endfor %}
+		</ul>
+
+	</div>
+
+</div>
+
+{% endblock %}

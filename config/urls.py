@@ -5,9 +5,9 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
 
-from apps.login.views import LoginView
-
+from apps.conversations.views import RecentMessgaesListView
 from apps.home.views import HomeView
+from apps.login.views import LoginView
 
 urlpatterns = patterns('',
     # Examples:
@@ -22,6 +22,7 @@ urlpatterns = patterns('',
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}, name='logout'),
 
+    url(r'^recent/$', RecentMessgaesListView.as_view(), name='recent_messages'),
     
     (r'^conversations/', include('apps.conversations.urls')),
     (r'^tags/', include('apps.tags.urls')),

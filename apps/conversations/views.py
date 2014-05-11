@@ -10,7 +10,7 @@ from braces.views import LoginRequiredMixin, AjaxResponseMixin
 from apps.utils.http import JSONResponse
 
 from forms import ConversationForm, MessageForm
-from models import Conversation
+from models import Conversation, Message
 from utils.serializers import PaginatedMessageSerializer, MessageSerializer, ConversationSerializer
 
 class ConversationFormView(LoginRequiredMixin, FormView):
@@ -106,3 +106,24 @@ class ConversationMessageFormView(LoginRequiredMixin, FormView):
 		context = super(ConversationMessageFormView, self).get_context_data(**kwargs)
 		context['object'] = self.get_object()
 		return context
+
+class RecentMessgaesListView(LoginRequiredMixin, AjaxResponseMixin, ListView):
+	template_name = 'conversations/recent_messages.html'
+	paginate_by = 10
+
+	def get_queryset(self):
+		return Message.objects.order_by('-date')
+
+	def get_ajax(self, request, *args, **kwargs):
+		self.object_list = self.get_queryset()
+		paginator = Paginator(self.object_list, 10)
+		page = request.GET.get('page', '')
+		try:
+			queryset = paginator.page(page)
+		except PageNotAnInteger:
+			queryset = paginator.page(1)
+		except EmptyPage:
+			queryset = paginator.page(paginator.num_pages)
+		serializer_context = {'request': request}
+		serializer = PaginatedMessageSerializer(queryset, context=serializer_context)
+		return JSONResponse(serializer.data, status=200)
