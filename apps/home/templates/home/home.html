@@ -3,16 +3,11 @@
 {% block sidebar %}
 
 	<aside id="right-aside" class="box">
-
-		<header class="box__header">
-			<h3>Navigation</h3>
-		</header>
-		<div class="box__body">
-			<ul>
-				<li><a href="{% url 'recent_messages' %}">Recent</a></li>
-				<li><a href="{% url 'tags_list' %}">Tags</a></li>
-			</ul>
-		</div>
+	
+		<ul class="nav_ul">
+			<li><a href="{% url 'recent_messages' %}">Recent</a></li>
+			<li><a href="{% url 'tags_list' %}">Tags</a></li>
+		</ul>
 
 	</aside>
 

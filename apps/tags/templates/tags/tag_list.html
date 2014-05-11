@@ -17,7 +17,7 @@
 			<ul class="tag_ul">
 				{% for tag in object_list %}
 					{% ifchanged tag.first_letter %}
-						<h3>{{ tag.first_letter }}</h3>
+						<h3>{{ tag.first_letter|capfirst }}</h3>
 					{% endifchanged %}
 						<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
 				{% endfor %}

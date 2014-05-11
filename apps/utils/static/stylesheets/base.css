@@ -97,9 +97,17 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 #right-aside {
 	float: right;
 	margin-top: 80px;
-	width: 200px;
+	width: 140px;
 	margin-right: -120px;
 }
 .tags_ul .tag_li:first-child {
 	margin-top: 10px;
+}
+
+.nav_ul li {
+  padding: 4px 8px;
+  border-bottom: 1px solid #ddd;
+}
+.nav_ul li:last-child {
+  border-bottom: 0px;
 }
