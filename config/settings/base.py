@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'apps.conversations',
     'apps.home',
     'apps.login',
-    'apps.notifications',
+    'apps.notes',
     'apps.tags',
     'apps.utils',
 )

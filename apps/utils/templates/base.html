@@ -15,9 +15,6 @@
 
 			<div id="user-dts" class="box">
 
-				{% if user.profile.unread_messages %}
-				<a class="auth-a" href="#"><i class="fa fa-envelope"></i></a>
-				{% endif %}
 				<a class="auth-a" href="{% url 'home' %}"><i class="fa fa-home"></i></a>
 				<a class="auth-a" href="{% url 'conversation_create' %}"><i class="fa fa-plus"></i></a>
 				<a class="auth-a" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i></a>
