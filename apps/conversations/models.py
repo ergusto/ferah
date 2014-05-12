@@ -12,7 +12,6 @@ from apps.tags.models import Tag
 
 class Conversation(models.Model):
 	user = models.ForeignKey('auth.User', related_name='owned_conversations')
-	participants = models.ManyToManyField('auth.User', related_name='conversations', null=True, blank=True)
 	title = models.CharField(max_length=140, unique=True)
 	created = models.DateTimeField(null=True, blank=True, editable=False)
 	tags = models.ManyToManyField('tags.Tag', related_name='conversations', null=True, blank=True)
