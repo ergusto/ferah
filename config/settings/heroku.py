@@ -17,7 +17,7 @@ ALLOWED_HOSTS = ['*']
 # Static asset configuration
 import os
 PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(PROJECT_PATH,'staticfiles/')
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
