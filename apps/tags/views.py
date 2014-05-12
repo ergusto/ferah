@@ -66,7 +66,7 @@ class AddTagToConversationFormView(LoginRequiredMixin, FormView):
 		return super(AddTagToConversationFormView, self).form_invalid(form)
 
 class RemoveTagFromConversationView(LoginRequiredMixin, FormView):
-	form_class = SimpleTagForm
+	form_class = TagForm
 	template_name = 'tags/conversation_remove_tag_form.html'
 
 	def get_object(self, **kwargs):

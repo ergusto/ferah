@@ -34,11 +34,4 @@ class TagForm(forms.ModelForm):
 		slug = slugify(title)
 		if len(slug) == 0:
 			raise forms.ValidationError("Please enter a valid tag title.")
-		try:
-			convo = Conversation.objects.get(slug=slug)
-		except Conversation.DoesNotExist:
-			return title
-		else:
-			if self.instance and convo == self.instance:
-				return title
-			raise forms.ValidationError("A conversation with that title already exists.")
+		return title

@@ -142,13 +142,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', end
     padding: 10px 14px;
     border-bottom: 1px solid #ddd;
 }
-.conversations_ul .conversation:hover .js-details {
-    display: inline;
-}
-.conversations_ul .conversation .js-details {
-    opacity: 0.6;
-    margin-right: -70px;
-    display: none;
+.conversations_ul .conversation:last-child {
+    border-bottom: 0px;
 }
 .conversation a {
     text-decoration: none;
