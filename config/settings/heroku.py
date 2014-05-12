@@ -1,6 +1,6 @@
 from base import *
 
-debug = False
+DEBUG = False
 
 WSGI_APPLICATION = 'config.heroku_wsgi.application'
 
