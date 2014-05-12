@@ -28,4 +28,5 @@ urlpatterns = patterns('',
     (r'^tags/', include('apps.tags.urls')),
 )
 
-urlpatterns += staticfiles_urlpatterns()
+if settings.DEBUG:
+    urlpatterns += staticfiles_urlpatterns()

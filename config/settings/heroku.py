@@ -15,5 +15,3 @@ ALLOWED_HOSTS = ['*']
 # Static asset configuration
 STATIC_ROOT = 'static'
 STATIC_URL = '/static/'
-
-DEBUG = False
