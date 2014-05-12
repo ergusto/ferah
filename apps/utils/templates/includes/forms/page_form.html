@@ -13,7 +13,7 @@
 	</div>
 {% endfor %}
 
-{% if object and object.user == user and object.get_edit_url and object.get_edit_url != request.get_full_path %}
+{% if object and object.user == user and object.get_absolute_url and request.get_full_path == object.get_absolute_url %}
 <a class="btn pull-right" href="{{ object.get_edit_url }}">Edit</a>
 {% elif object and object.user == user and object.get_delete_url and object.get_edit_url and object.get_edit_url == request.get_full_path %}
 <a class="btn pull-right" href="{{ object.get_delete_url }}">Delete</a>

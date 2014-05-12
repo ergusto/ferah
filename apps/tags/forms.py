@@ -1,10 +1,13 @@
-from django.forms import ModelForm
+from django import forms
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from braces.forms import UserKwargModelFormMixin
+from django.template.defaultfilters import slugify
+
+from apps.conversations.models import Conversation
 
 from models import Tag
 
-class SimpleTagForm(ModelForm):
+class SimpleTagForm(forms.ModelForm):
 
 	class Meta:
 		model = Tag
@@ -19,7 +22,7 @@ class SimpleTagForm(ModelForm):
 		title = self.cleaned_data['title']
 		slug = slugify(title)
 		if len(slug) == 0:
-			raise forms.ValidationError("Please enter a valid title.")
+			raise forms.ValidationError("Please enter a valid tag title.")
 		try:
 			convo = Conversation.objects.get(slug=slug)
 		except Conversation.DoesNotExist:

@@ -88,6 +88,7 @@ $(document).ready(function(){
 				var template = Handlebars.compile(source);
 				$('.tags_ul').append(template(context));
 				form.find('#id_title').val('');
+				console.log(response);
 			},
 			error: function(response, textStatus, jqXHR) {
 				var errors = $.parseJSON(response.responseText);
