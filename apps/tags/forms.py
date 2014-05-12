@@ -18,6 +18,17 @@ class SimpleTagForm(forms.ModelForm):
 		self.fields['title'].label = 'Tag text'
 		self.fields['title'].help_text = 'Enter tags separated by a comma.'
 
+class TagForm(forms.ModelForm):
+
+	class Meta:
+		model = Tag
+		fields = ('title',)
+
+	def __init__(self, *args, **kwargs):
+		super(TagForm, self).__init__(*args, **kwargs)
+		self.fields['title'].label = 'Tag text'
+		self.fields['title'].help_text = 'Enter tags separated by a comma.'
+
 	def clean_title(self):
 		title = self.cleaned_data['title']
 		slug = slugify(title)
