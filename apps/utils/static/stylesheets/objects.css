@@ -17,6 +17,10 @@ background: -ms-linear-gradient(top, #fefefe 0%,#f8f8f8 100%);
 background: linear-gradient(to bottom, #fefefe 0%,#f8f8f8 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f8f8f8',GradientType=0 );
 }
+.btn-small {
+    padding: 0.2 0.4;
+    font-size: 85%;
+}
 .btn-large {
     padding: 0.5em 1em;
     font-size: 100%;

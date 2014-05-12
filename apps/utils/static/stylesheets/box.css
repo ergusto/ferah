@@ -23,3 +23,7 @@
 .box__body {
     padding: 10px;
 }
+.box__footer {
+    padding: 6px 10px;
+    background: rgba(248, 248, 249, 0.1);
+}

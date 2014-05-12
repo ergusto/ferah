@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.utils import simplejson as json
 from django.views.generic import View, TemplateView, FormView, DetailView, UpdateView
 from django.views.generic.list import ListView
+from django.views.generic.edit import DeleteView
 from django.contrib.contenttypes.models import ContentType
+from django.core.urlresolvers import reverse_lazy
 
 from braces.views import LoginRequiredMixin, AjaxResponseMixin, JSONResponseMixin
 
@@ -23,6 +25,13 @@ class TagListView(LoginRequiredMixin, ListView):
 
 class TagDetailView(LoginRequiredMixin, DetailView):
 	model = Tag
+
+	def get_object(self, **kwargs):
+		return Tag.objects.get(slug=self.kwargs['slug'])
+
+class TagDeleteView(LoginRequiredMixin, DeleteView):
+	model = Tag
+	success_url = reverse_lazy('tags_list')
 
 	def get_object(self, **kwargs):
 		return Tag.objects.get(slug=self.kwargs['slug'])

@@ -24,5 +24,10 @@ class Tag(models.Model):
 			'slug': self.slug,
 		})
 
+	def get_delete_url(self):
+		return reverse('tag_delete', kwargs={
+			'slug': self.slug,
+		})
+
 	def number_of_conversations(self):
 		return self.conversations.all().count()
