@@ -47,3 +47,10 @@ class MessageForm(ModelForm):
 		widgets = {
           'text': forms.Textarea(attrs={'rows':6}),
         }
+
+	def clean_text(self):
+		text = self.cleaned_data['text']
+		slug = slugify(text)
+		if len(slug) == 0:
+			raise forms.ValidationError("This field is required.")
+		return text

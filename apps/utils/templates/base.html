@@ -37,8 +37,10 @@
 
 	    <footer class="footer">
 
-    		<a href="{% url 'tags_list' %}"><i class="fa fa-tags"></i> <span>tags</span></a>
-    		<a href="{% url 'recent_messages' %}"><i class="fa fa-clock-o"></i> <span>recent</span></a>
+	    	<p class="pull-left">{{ user }}</p>
+
+    		<a class="pull-right" href="{% url 'recent_messages' %}"><i class="fa fa-clock-o"></i> <span>recent</span></a>
+    		<a class="pull-right" href="{% url 'tags_list' %}"><i class="fa fa-tags"></i> <span>tags</span></a>
 
 	    </footer>
 

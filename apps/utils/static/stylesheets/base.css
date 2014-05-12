@@ -48,8 +48,8 @@ body {
   padding-bottom: 38px;
 }
 
-a:focus, a:active, 
-button::-moz-focus-inner,
+.btn:focus, .btn:active, a:focus, a:active, 
+button::-moz-focus-inner, .btn:-moz-focus-inner, 
 input[type="reset"]::-moz-focus-inner,
 input[type="button"]::-moz-focus-inner,
 input[type="submit"]::-moz-focus-inner,
@@ -124,15 +124,17 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
   -webkit-box-shadow: inset 0 2px #fff,0 1px 3px rgba(0,0,0,0.05);
   -moz-box-shadow: inset 0 2px #fff,0 1px 3px rgba(0,0,0,0.05);
   box-shadow: inset 0 2px #fff,0 1px 3px rgba(0,0,0,0.05);
-  text-align: right;
 }
 .footer a {
   text-decoration: none;
   margin-right: 10px;
 }
-.footer a:hover span {
+.footer a span {
   text-decoration: none;
 }
-.footer a span {
+.footer a:hover span {
   text-decoration: underline;
+}
+.footer a span {
+  text-decoration: none;
 }
