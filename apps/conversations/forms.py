@@ -13,9 +13,31 @@ class ConversationForm(ModelForm):
 	def clean_title(self):
 		title = self.cleaned_data['title']
 		slug = slugify(title)
-		if Conversation.objects.filter(slug=slug).exists():
+		try:
+			convo = Conversation.objects.get(slug=slug)
+		except Conversation.DoesNotExist:
+			return title
+		else:
+			if self.instance and convo == self.instance:
+				return title
 			raise forms.ValidationError("A conversation with that title already exists.")
-		return title
+
+class ConversationAdminForm(ModelForm):
+
+	class Meta:
+		model = Conversation
+
+	def clean_title(self):
+		title = self.cleaned_data['title']
+		slug = slugify(title)
+		try:
+			convo = Conversation.objects.get(slug=slug)
+		except Conversation.DoesNotExist:
+			return title
+		else:
+			if self.instance and convo == self.instance:
+				return title
+			raise forms.ValidationError("A conversation with that title already exists.")
 
 class MessageForm(ModelForm):
 

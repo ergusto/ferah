@@ -82,6 +82,18 @@ class ConversationEditView(LoginRequiredMixin, AjaxResponseMixin, UpdateView):
 	def get_object(self, **kwargs):
 		return Conversation.objects.get(slug=self.kwargs['slug'])
 
+	def form_valid(self, form):
+		self.object = form.save()
+		if self.request.is_ajax():
+			serializer = ConversationSerializer(self.object)
+			return JSONResponse(serializer.data, status=200)
+		return HttpResponseRedirect(self.object.get_absolute_url())
+
+	def form_invalid(self, form):
+		if self.request.is_ajax():
+			return JSONResponse(form.errors, status=400)
+		return super(ConversationFormView, self).form_invalid(form)
+
 	def dispatch(self, request, *args, **kwargs):
 		object = self.get_object()
 		if not object.user == request.user:
