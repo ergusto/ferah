@@ -40,6 +40,11 @@ class Conversation(models.Model):
 			'slug': self.slug,
 		})
 
+	def get_edit_url(self):
+		return reverse('conversation_edit', kwargs={
+			'slug': self.slug,
+		})
+
 	def get_delete_url(self):
 		return reverse('conversation_delete', kwargs={
 			'slug': self.slug,

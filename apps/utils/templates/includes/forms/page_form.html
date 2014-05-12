@@ -13,6 +13,10 @@
 	</div>
 {% endfor %}
 
+{% if object and object.user == user and object.get_edit_url %}
+<a class="btn pull-right" href="{{ object.get_edit_url }}">Edit</a>
+{% endif %}
+
 <button class="btn btn-large" type="submit">Submit</button>
 
 {% if form.non_field_errors %}

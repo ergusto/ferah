@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -74,6 +74,21 @@ class ConversationDetailView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 		serializer_context = {'request': request}
 		serializer = PaginatedMessageSerializer(queryset, context=serializer_context)
 		return JSONResponse(serializer.data, status=200)
+
+class ConversationEditView(LoginRequiredMixin, AjaxResponseMixin, UpdateView):
+	form_class = ConversationForm
+	template_name = 'conversations/form.html'
+
+	def get_object(self, **kwargs):
+		return Conversation.objects.get(slug=self.kwargs['slug'])
+
+	def dispatch(self, request, *args, **kwargs):
+		object = self.get_object()
+		if not object.user == request.user:
+			return HttpResponseRedirect(reverse_lazy('home'))
+		return super(ConversationEditView, self).dispatch(request, *args, **kwargs)
+
+
 
 class ConversationMessageFormView(LoginRequiredMixin, FormView):
 	form_class = MessageForm
