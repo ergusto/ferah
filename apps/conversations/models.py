@@ -1,4 +1,6 @@
 from django.db import models
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
@@ -74,6 +76,16 @@ class Conversation(models.Model):
 		if tag in self.tags.all():
 			self.tags.remove(tag)
 			self.save()
+
+@receiver(pre_save, sender=Conversation)
+def slugify_if_title_changed(sender, instance, **kwargs):
+	try:
+		obj = Conversation.objects.get(pk=instance.pk)
+	except Conversation.DoesNotExist:
+		pass
+	else:
+		if not obj.title == instance.title:
+			instance.slug = slugify(instance.title)
 
 class Message(models.Model):
 	user = models.ForeignKey('auth.User', related_name='sent_messages')
