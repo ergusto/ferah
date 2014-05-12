@@ -1,1 +1,1 @@
-web: gunicorn config.heroku_wsgi --settings=config.settings.heroku;
+web: python manage.py collectstatic --noinput; gunicorn config.heroku_wsgi --settings=config.settings.heroku;
