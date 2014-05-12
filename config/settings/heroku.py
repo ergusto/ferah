@@ -1,5 +1,7 @@
 from base import *
 
+debug = False
+
 WSGI_APPLICATION = 'config.heroku_wsgi.application'
 
 # Parse database configuration from $DATABASE_URL
@@ -13,5 +15,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
-STATIC_ROOT = 'static'
+import os
+PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(PROJECT_PATH, 'static'),
+)
