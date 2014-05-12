@@ -128,7 +128,10 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 }
 .footer a {
   text-decoration: none;
-  margin-right: 10px;
+  margin-right: 20px;
+}
+.footer a:first-of-type {
+  margin-right: 0;
 }
 .footer a span {
   text-decoration: none;
