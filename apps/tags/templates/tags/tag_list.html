@@ -19,7 +19,7 @@
 					{% ifchanged tag.first_letter %}
 						<h3>{{ tag.first_letter|capfirst }}</h3>
 					{% endifchanged %}
-						<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></li>
+						<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a> ({{ tag.number_of_conversations }})</li>
 				{% endfor %}
 			</ul>
 

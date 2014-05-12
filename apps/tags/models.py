@@ -23,3 +23,6 @@ class Tag(models.Model):
 		return reverse('tag_detail', kwargs={
 			'slug': self.slug,
 		})
+
+	def number_of_conversations(self):
+		return self.conversations.all().count()
