@@ -14,7 +14,7 @@
 
 				<li class="recent_message">
 					<header>
-						<small><a href="#">{{ message.user }}</a> wrote in <a href="{{ message.conversation.get_absolute_url }}">{{ message.conversation }}</a>:</small>
+						<small><a href="#">{{ message.user }}</a> wrote in <a href="{{ message.conversation.get_absolute_url }}">{{ message.conversation }}</a> on {{ message.date }}:</small>
 					</header>
 					<div class="message__body">
 						{{ message.text }}
@@ -47,7 +47,7 @@
 {{#each results}}
 	<li class="recent_message">
 		<header>
-			<small><a href="#">{{ user }}</a> wrote in <a href="{{ conversation_absolute_url }}">{{ conversation_title }}</a>:</small>
+			<small><a href="#">{{ user }}</a> wrote in <a href="{{ conversation_absolute_url }}">{{ conversation_title }}</a> on {{ date }}:</small>
 		</header>
 		<div class="message__body">
 			{{ text }}

@@ -16,7 +16,7 @@ class Conversation(models.Model):
 	title = models.CharField(max_length=140, unique=True)
 	created = models.DateTimeField(null=True, blank=True, editable=False)
 	tags = models.ManyToManyField('tags.Tag', related_name='conversations', null=True, blank=True)
-	slug = models.SlugField(editable=False, max_length=140, null=True, blank=True)
+	slug = models.SlugField(editable=False, unique=True, max_length=140, null=True, blank=True)
 
 	def __unicode__(self):
 		return unicode(self.title)
@@ -103,3 +103,6 @@ class Message(models.Model):
 		if not self.id:
 			self.date = timezone.now()
 		super(Message, self).save(*args, **kwargs)
+
+	def get_edit_url(self):
+		return ''

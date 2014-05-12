@@ -17,6 +17,7 @@
 			<form action="" method="post">{% csrf_token %}
 			    <p>Are you sure you want to delete "{{ object }}"?</p><br>
 			    <input class="btn btn-large" type="submit" value="Confirm" />
+			    <a class="btn" href="{{ object.get_absolute_url }}">Cancel</a>
 			</form>
 
 		</div>

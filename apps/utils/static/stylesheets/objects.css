@@ -1,7 +1,7 @@
 .btn {
     padding: 0.3em 0.8em;
     text-decoration: none;
-display: block;
+display: inline-block;
 text-align: center;
 cursor: pointer;
 text-shadow: 0 1px rgba(255, 255, 255, 0.19);

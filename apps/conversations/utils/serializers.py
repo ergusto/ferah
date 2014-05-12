@@ -12,7 +12,7 @@ class MessageSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Message
-		fields = ('user', 'text', 'date')
+		fields = ('user', 'text', 'date', 'conversation_absolute_url', 'conversation_title')
 
 class PaginatedMessageSerializer(PaginationSerializer):
 
