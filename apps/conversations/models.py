@@ -68,6 +68,7 @@ class Conversation(models.Model):
 			tag_titles.append(tag.title)
 			tag_titles.append(' ')
 		string = ''.join(tag_titles)
+		string = string.strip()
 		return string
 
 	def add_tag(self, tag_title):
