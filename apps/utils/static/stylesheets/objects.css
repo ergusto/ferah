@@ -218,13 +218,10 @@
 .box-item-list {
     margin-top: 20px;
 }
-.box-item {
-    padding: 10px;
-}
 .box-item__header {
-    margin-bottom: 8px;
+    margin: 0 10px;
     border-bottom: 1px solid #ddd;
-    padding: 2px 8px 4px;
+    padding: 12px 8px 6px;
 }
 .box-item__header .user {
     float: left;
@@ -233,6 +230,11 @@
     float: right;
 }
 .box-item__body {
-    padding: 8px 12px;
+    padding: 18px 24px;
     line-height: 130%;
+}
+.box-item__footer {
+    padding: 8px 18px;
+    background: rgba(248, 248, 249, 0.1);
+    border-top: 1px solid #ddd;
 }
