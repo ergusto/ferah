@@ -62,6 +62,14 @@ class Conversation(models.Model):
 	def descending_messages(self):
 		return self.messages.order_by('-date')
 
+	def tag_titles(self):
+		tag_titles = []
+		for tag in self.tags.all():
+			tag_titles.append(tag.title)
+			tag_titles.append(' ')
+		string = ''.join(tag_titles)
+		return string
+
 	def add_tag(self, tag_title):
 		slug = slugify(tag_title)
 		try:

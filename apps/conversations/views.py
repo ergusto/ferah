@@ -170,7 +170,7 @@ class ConversationExportView(LoginRequiredMixin, View):
 		for conversation in conversations:
 			try:
 				writer.writerow(['User', 'Title', 'Created', 'Tags', 'Slug'])
-				writer.writerow([conversation.user, conversation.title, conversation.created, conversation.tags.all(), conversation.slug])
+				writer.writerow([conversation.user, conversation.title, conversation.created, conversation.tag_titles(), conversation.slug])
 				writer.writerow(['Messages:', '', '', '', ''])
 				writer.writerow(['User', 'date', 'text', '', ''])
 			except:
