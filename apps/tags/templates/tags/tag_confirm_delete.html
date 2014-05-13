@@ -12,15 +12,16 @@
 
 		</header>
 
-		<div class="box__body">
-
-			<form action="" method="post">{% csrf_token %}
-			    <p>Are you sure you want to delete "{{ object }}"?</p><br>
+		<form action="" method="post">
+			{% csrf_token %}
+			<div class="box__body">
+		    	<p>Are you sure you want to delete "{{ object }}"?</p>
+		    </div>
+		    <div class="box__footer">
 			    <input class="btn btn-large" type="submit" value="Confirm" />
 			    <a class="btn" href="{{ object.get_absolute_url }}">Cancel</a>
-			</form>
-
-		</div>
+			</div>
+		</form>
 
 	</div>
 

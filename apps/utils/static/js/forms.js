@@ -42,3 +42,8 @@ function clear_form_errors(form) {
 	div.empty();
 	$('.error', $(form)).remove();
 }
+
+(function($) {
+	var django_forms = django_forms || {};
+	django_forms.forms = {};
+})(jQuery);
