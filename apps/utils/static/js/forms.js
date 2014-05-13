@@ -38,6 +38,7 @@ function apply_form_error(form, error) {
 }
 
 function clear_form_errors(form) {
-	$('#page_form_error').empty();
+	var div = form.find('#page_form_error');
+	div.empty();
 	$('.error', $(form)).remove();
 }

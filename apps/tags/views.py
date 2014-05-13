@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.contrib.contenttypes.models import ContentType
 from django.core.urlresolvers import reverse_lazy
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from braces.views import LoginRequiredMixin, AjaxResponseMixin, JSONResponseMixin
 
@@ -15,7 +16,7 @@ from apps.conversations.models import Conversation
 
 from models import Tag
 from forms import SimpleTagForm, TagForm
-from utils.serializers import TagSerializer
+from utils.serializers import TagSerializer, PaginatedTagSerializer
 
 class TagListView(LoginRequiredMixin, ListView):
 	model = Tag
@@ -23,11 +24,36 @@ class TagListView(LoginRequiredMixin, ListView):
 	def get_queryset(self):
 		return Tag.objects.all().order_by('slug')
 
-class TagDetailView(LoginRequiredMixin, DetailView):
-	model = Tag
+class TagDetailView(LoginRequiredMixin, AjaxResponseMixin, ListView):
+	paginate_by = 10
+	template_name = 'tags/tag_detail.html'
 
 	def get_object(self, **kwargs):
 		return Tag.objects.get(slug=self.kwargs['slug'])
+
+	def get_queryset(self):
+		object = self.get_object()
+		return object.conversations.all()
+
+	def get_context_data(self, **kwargs):
+		context = super(TagDetailView, self).get_context_data(**kwargs)
+		context['object'] = self.get_object()
+		return context
+
+	def get_ajax(self, request, *args, **kwargs):
+		self.object_list = self.get_queryset()
+		paginator = Paginator(self.object_list, 10)
+		page = request.GET.get('page', '')
+		try:
+			queryset = paginator.page(page)
+		except PageNotAnInteger:
+			queryset = paginator.page(1)
+		except EmptyPage:
+			queryset = paginator.page(paginator.num_pages)
+		serializer_context = {'request': request}
+		serializer = PaginatedTagSerializer(queryset, context=serializer_context)
+		return JSONResponse(serializer.data, status=200)
+
 
 class TagDeleteView(LoginRequiredMixin, DeleteView):
 	model = Tag

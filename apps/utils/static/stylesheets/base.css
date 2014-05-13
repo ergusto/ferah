@@ -104,14 +104,6 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 	margin-top: 10px;
 }
 
-.nav_ul li {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
-}
-.nav_ul li:last-child {
-  border-bottom: 0px;
-}
-
 .footer {
   position: fixed;
   bottom: 0;
