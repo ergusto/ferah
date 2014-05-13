@@ -63,6 +63,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 LOGIN_URL = '/login/'
 
+LOGIN_REDIRECT_URL = '/login/'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases

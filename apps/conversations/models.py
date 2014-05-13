@@ -104,7 +104,7 @@ class Message(models.Model):
 	user = models.ForeignKey('auth.User', related_name='sent_messages')
 	conversation = models.ForeignKey('conversations.Conversation', related_name='messages')
 	
-	text = models.CharField(max_length=10000)
+	text = models.TextField(max_length=10000)
 	date = models.DateTimeField(null=True, blank=True, editable=False)
 
 	def save(self, *args, **kwargs):

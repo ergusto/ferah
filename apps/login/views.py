@@ -18,6 +18,7 @@ from braces.views import AnonymousRequiredMixin
 class LoginView(AnonymousRequiredMixin, FormView):
     form_class = AuthenticationForm
     template_name = 'login/login.html'
+    authenticated_redirect_url = u"/"
 
     def dispatch(self, *args, **kwargs):
         return super(LoginView, self).dispatch(*args, **kwargs)
