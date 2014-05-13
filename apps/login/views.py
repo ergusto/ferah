@@ -26,7 +26,7 @@ class LoginView(AnonymousRequiredMixin, FormView):
         login(self.request, form.get_user())
         if self.request.is_ajax():
         	context = {
-        		'redirect_url': reverse('index'),
+        		'redirect_url': reverse('home'),
         	}
         	return HttpResponse(json.dumps(context), mimetype='application/json')
         return HttpResponseRedirect(reverse('home'))
