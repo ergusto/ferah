@@ -86,7 +86,7 @@ $(document).ready(function(){
 				var context = response;
 				var source = $('#tag_template').html();
 				var template = Handlebars.compile(source);
-				$('.tags_ul').append(template(context));
+				$('.tags_list').append(template(context));
 				form.find('#id_title').val('');
 				console.log(response);
 			},

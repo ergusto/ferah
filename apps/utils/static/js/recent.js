@@ -13,7 +13,7 @@ $(document).ready(function(){
 				var context = response;
 				var source = $('#message_list_template').html();
 				var template = Handlebars.compile(source);
-				$('.message-list').append(template(context));
+				$('#js-recent-messages-list').append(template(context));
 				console.log(response);
 			},
 			error: function(response, textStatus, jqXHR) {
