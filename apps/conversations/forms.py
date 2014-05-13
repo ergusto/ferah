@@ -45,7 +45,7 @@ class MessageForm(ModelForm):
 		model = Message
 		fields = ['text']
 		widgets = {
-          'text': forms.Textarea(attrs={'rows':6}),
+          'text': forms.Textarea(attrs={'rows':5}),
         }
 
 	def clean_text(self):
