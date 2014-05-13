@@ -93,13 +93,14 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 
 @media (min-width: 768px) { 
   #right-aside {
-  float: right;
-    max-width: 200px;
+    float: right;
   }
 }
 @media (min-width: 962px) {
   #right-aside {
     margin-top: 30px;
+    max-width: 200px;
+    position: absolute;
   }
 }
 .footer {
