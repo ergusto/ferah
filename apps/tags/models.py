@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 # Create your models here.
 
 class Tag(models.Model):
-	title = models.CharField(max_length=80)
+	title = models.CharField(max_length=30)
 	slug = models.SlugField(editable=False, null=True, blank=True)
 
 	def __unicode__(self):

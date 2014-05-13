@@ -31,7 +31,7 @@ class TagForm(forms.ModelForm):
 
 	def clean_title(self):
 		title = self.cleaned_data['title']
-		if len(title) >= 50:
+		if len(title) > 30:
 			raise forms.ValidationError("Tag title must be 50 characters or fewer.")
 		slug = slugify(title)
 		if len(slug) == 0:
