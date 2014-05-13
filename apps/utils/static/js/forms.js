@@ -42,3 +42,15 @@ function clear_form_errors(form) {
 	div.empty();
 	$('.error', $(form)).remove();
 }
+
+(function($) {
+	var django_forms = django_forms || {};
+	django_forms.forms = {};
+
+	django_forms.forms.opts = {
+		create_params: {
+			on_form_submit: function($form) { },
+		},
+	};
+	
+})(jQuery);

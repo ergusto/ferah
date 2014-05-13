@@ -1,5 +1,8 @@
-from django.http import HttpResponseRedirect
-from django.views.generic import FormView, DetailView, UpdateView
+import csv
+from datetime import date
+
+from django.http import HttpResponse, HttpResponseRedirect
+from django.views.generic import View, FormView, DetailView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.core.urlresolvers import reverse_lazy
@@ -154,3 +157,28 @@ class RecentMessgaesListView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 		serializer_context = {'request': request}
 		serializer = PaginatedMessageSerializer(queryset, context=serializer_context)
 		return JSONResponse(serializer.data, status=200)
+
+class ConversationExportView(LoginRequiredMixin, View):
+
+	def get(self, request, *args, **kwargs):
+		conversations = Conversation.objects.all()
+		response = HttpResponse(mimetype='text/csv')
+		response['Content-Disposition'] = 'attchment; filename=conversations-%s.csv' % date.today()
+
+		writer = csv.writer(response)
+
+		for conversation in conversations:
+			try:
+				writer.writerow(['User', 'Title', 'Created', 'Tags', 'Slug'])
+				writer.writerow([conversation.user, conversation.title, conversation.created, conversation.tags.all(), conversation.slug])
+				writer.writerow(['Messages:', '', '', '', ''])
+				writer.writerow(['User', 'date', 'text', '', ''])
+			except:
+				pass
+			for message in conversation.messages.all():
+				try:
+					writer.writerow([message.user, message.date, message.text, '', ''])
+				except:
+					pass
+			writer.writerow(['', '', '', '', ''])
+		return response

@@ -1,9 +1,10 @@
 from django.conf.urls import *
-from views import ConversationFormView, ConversationDetailView, ConversationMessageFormView, ConversationDeleteView, ConversationEditView
+from views import ConversationFormView, ConversationDetailView, ConversationMessageFormView, ConversationDeleteView, ConversationEditView, ConversationExportView
 from apps.tags.views import AddTagToConversationFormView, RemoveTagFromConversationView
 
 urlpatterns = patterns('',
 	url(r'^create/$', ConversationFormView.as_view(), name='conversation_create'),
+	url(r'^export/$', ConversationExportView.as_view(), name='conversations_export'),
     url(r'^(?P<slug>[-\w]+)/$', ConversationDetailView.as_view(), name='conversation_detail'),
     url(r'^(?P<slug>[-\w]+)/delete/$', ConversationDeleteView.as_view(), name='conversation_delete'),
     url(r'^(?P<slug>[-\w]+)/edit/$', ConversationEditView.as_view(), name='conversation_edit'),
