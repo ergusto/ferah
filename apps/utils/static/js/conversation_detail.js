@@ -63,7 +63,7 @@ $(document).ready(function(){
 			data: {'title': title},
 			dataType: 'json',
 			success: function(response) {
-				anchor.closest('.tag_li').remove();
+				anchor.closest('.tag-list__item').remove();
 			},
 			error: function(response, textStatus, jqXHR) {
 				console.log(response);

@@ -1,3 +1,36 @@
+/*------------------------------------*\
+    $-CONTENTS - Copy and paste headings
+                 into your text editor's 
+                 search box!
+\*------------------------------------*/
+
+/*
+ *
+ * $-CONTENTS............You’re reading it!
+ *
+ *
+ * $-BUTTONS..............................
+ *  $-BUTTON-MODIFIERS
+ *
+ * $-PAGE-DEFINITION-LISTS................
+ *
+ * $-TAGS-LISTS...........................
+ *
+ * $-TAGS.................................
+ *
+ * $-FLAG-OBJECT..........................
+ *
+ */
+
+
+.load-more {
+    margin-bottom: 10px;
+}
+
+
+/*
+    $-BUTTONS
+*/
 .btn {
     padding: 0.3em 0.8em;
     text-decoration: none;
@@ -6,7 +39,6 @@
     cursor: pointer;
     text-shadow: 0 1px rgba(255, 255, 255, 0.19);
     border: 1px solid #dbdbdb;
-    /* box-shadow: 0 4px 4px 0 rgba(0, 0, 0, .05), 0 -2px 0 0 rgba(0, 0, 0,0.01) inset; */
     border-radius: 2px;
     background: #fefefe;
     background: -moz-linear-gradient(top, #fefefe 0%, #f8f8f8 100%);
@@ -17,6 +49,26 @@
     background: linear-gradient(to bottom, #fefefe 0%,#f8f8f8 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f8f8f8',GradientType=0 );
 }
+    .btn:hover {
+        border-color: #bcbcbc;
+        text-decoration: none; 
+        box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
+    }
+    .btn:focus,
+    .btn:active {
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ececec), to(#f4f4f4));
+        background-image: -moz-linear-gradient(#ececec, #f4f4f4);
+        background-image: -o-linear-gradient(#ececec, #f4f4f4);
+        background-image: linear-gradient(#ececec, #f4f4f4);
+    }
+    /* overrides extra padding on button elements in Firefox */
+    .btn::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+/*
+    $-BUTTON-MODIFIERS
+*/
 .btn-small {
     padding: 0.2 0.4;
     font-size: 85%;
@@ -31,46 +83,50 @@
 .btn-block {
     display: block;
 }
-.btn:hover {
-    border-color: #bcbcbc;
-    text-decoration: none; 
-    box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
-}
-.btn:focus,
-.btn:active {
-    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ececec), to(#f4f4f4));
-    background-image: -moz-linear-gradient(#ececec, #f4f4f4);
-    background-image: -o-linear-gradient(#ececec, #f4f4f4);
-    background-image: linear-gradient(#ececec, #f4f4f4);
-}
-/* overrides extra padding on button elements in Firefox */
-.btn::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-}
 
 
-.tag_ul h3 {
+
+
+/*
+    $-DEFINITION-LISTS
+*/
+.def-list .def-list__title {
     margin-top: 16px;
     display: block;
     border-bottom: 1px solid #ddd;
     margin-bottom: 8px;
     padding-left: 10px;
 }
-.tag_ul h3:first-child {
+.def-list .def-list__title:first-child {
     margin-top: 0px;
 }
-.tag_ul li {
+.def-list .def-list__item {
     padding-left: 10px;
 }
 
-.tag_li {
+
+
+
+/*
+    $-TAG-LISTS
+*/
+.tag-list__item {
     margin-bottom: 4px;
     display: inline-block;
 }
-.tag_li:last-child {
+.tag-list__item:last-child {
     margin-bottom: 0px;
 }
+.tag-list__item:first-child {
+    margin-top: 10px;
+}
+
+
+
+
+/*
+    $-TAGS
+*/
 .tag {
     padding: 0.3em 0.8em;
     font-size: 80%;
@@ -92,10 +148,10 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#f8f8f8',GradientType=0 );
     margin-right: 4px;
 }
-.tag:hover {
-    border-color: #bcbcbc;
-    box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
-}
+    .tag:hover {
+        border-color: #bcbcbc;
+        box-shadow: 0px 1px 1px rgba(227, 227, 227, 0.2);
+    }
 .tag a {
     text-decoration: none;
 }
@@ -103,17 +159,17 @@
     margin-left: 4px;
     color: rgba(94, 97, 100, 0.8);
 }
-.load-more {
-    margin-bottom: 10px;
-}
 
 
 
+
+/*
+    $-FLAG-OBJECT
+*/
 .flag {
     display: table;
     width: 100%;
 }
-
 .flag__aside, .flag__body {
     display: table-cell;
     vertical-align: middle;
@@ -136,41 +192,46 @@
 
 
 
-
-
-.conversations_ul .conversation {
+/*
+    $-SIMPLE-LIST
+*/
+.simple_list li {
     padding: 10px 14px;
     border-bottom: 1px solid #ddd;
 }
-.conversations_ul .conversation:last-child {
+.simple_list li:last-child {
     border-bottom: 0px;
 }
-.conversation a {
+.simple_list li a {
     text-decoration: none;
 }
-.conversations_ul .load-more {
+.simple_list .load-more {
     margin: 10px;
 }
 
-.messages_ul {
+
+
+
+/*
+    $-BOX-ITEM-LIST
+*/
+.box-item-list {
     margin-top: 20px;
 }
-
-.messages_ul .message {
+.box-item {
     padding: 10px;
 }
-
-.message__header {
+.box-item__header {
     margin-bottom: 8px;
     border-bottom: 1px solid #ddd;
     padding: 2px 8px 4px;
 }
-.message__header .user {
+.box-item__header .user {
     float: left;
 }
-.message__header .date {
+.box-item__header .date {
     float: right;
 }
-.message__body {
+.box-item__body {
     padding: 8px 12px;
 }

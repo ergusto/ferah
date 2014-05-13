@@ -14,14 +14,14 @@
 
 		</div>
 		
-		<ul class="message-list">
+		<ul class="box-item-list">
 			{% for message in object_list %}
 
-				<li class="box recent_message">
-					<header>
+				<li class="box box-item">
+					<header class="box-item__header">
 						<small><a href="#">{{ message.user }}</a> wrote in <a href="{{ message.conversation.get_absolute_url }}">{{ message.conversation }}</a> on {{ message.date }}:</small>
 					</header>
-					<div class="message__body">
+					<div class="box-item__body">
 						{{ message.text }}
 					</div>
 				</li>

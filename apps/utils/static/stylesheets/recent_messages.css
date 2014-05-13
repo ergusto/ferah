@@ -1,7 +1,4 @@
-.message-list li {
-	border-bottom: 1px solid #ddd;
-	padding: 10px 14px;
-}
+
 .message-list li header {
 	padding: 4px 10px 8px;
 	line-height: 130%;

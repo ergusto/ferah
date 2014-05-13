@@ -14,12 +14,12 @@
 
 		<div class="box__body">
 
-			<ul class="tag_ul">
+			<ul class="def-list">
 				{% for tag in object_list %}
 					{% ifchanged tag.first_letter %}
-						<h3>{{ tag.first_letter|capfirst }}</h3>
+						<h3 class="def-list__title">{{ tag.first_letter|capfirst }}</h3>
 					{% endifchanged %}
-						<li><a href="{{ tag.get_absolute_url }}">{{ tag }}</a> ({{ tag.number_of_conversations }})</li>
+						<li class="def-list__item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a> ({{ tag.number_of_conversations }})</li>
 				{% endfor %}
 			</ul>
 
