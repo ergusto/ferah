@@ -206,7 +206,8 @@
     text-decoration: none;
 }
 .simple_list .load-more {
-    margin: 10px;
+    margin: 0px;
+    padding: 10px;
 }
 
 

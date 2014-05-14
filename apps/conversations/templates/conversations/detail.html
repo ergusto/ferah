@@ -139,4 +139,20 @@
 
 {% block scripts %}
 	<script src="{{ STATIC_URL }}js/conversation_detail.js"></script>
+
+	<script type="text/javascript">
+
+
+		$('#js-message-form').jangoForm({
+			handlebarsTemplate: $('#message_item_template'),
+			preppendTo: $('#js-messages-list'),
+		});
+
+		$('#conversation_tag_form').jangoForm({
+			handlebarsTemplate: $('#tag_template'),
+			appendTo: $('.tags_list'),
+		});
+
+	</script>
+
 {% endblock scripts %}

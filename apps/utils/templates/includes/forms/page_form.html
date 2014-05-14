@@ -13,7 +13,7 @@
 	</div>
 {% endfor %}
 
-<button class="btn btn-large pull-left" type="submit">Submit</button>
+<button class="btn btn-large" type="submit">Submit</button>
 
 {% if object and object.user == user and object.get_absolute_url and request.get_full_path == object.get_absolute_url %}
 	<a class="btn pull-right" href="{{ object.get_edit_url }}">Edit</a>
@@ -21,10 +21,11 @@
 	<a class="btn pull-right" href="{{ object.get_delete_url }}">Delete</a>
 {% endif %}
 
+
+<div id="form_errors">
 {% if form.non_field_errors %}
 	{% for error in form.non_field_errors %}
 	<span class="form-error">{{ error }}</span>
 	{% endfor %}
 {% endif %}
-
-<div id="page_form_error"></div>
+</div>

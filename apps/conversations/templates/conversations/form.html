@@ -45,5 +45,11 @@
 {% endblock content %}
 
 {% block scripts %}
-	<script src="{{ STATIC_URL }}js/conversation_form.js"></script>
+
+	<script type="text/javascript">
+		$('#js-conversation-form').jangoForm({
+			redirect: true,
+		});
+	</script>
+
 {% endblock scripts %}

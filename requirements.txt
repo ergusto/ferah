@@ -6,6 +6,7 @@ django-braces==1.4.0
 django-toolbelt==0.0.1
 djangorestframework==2.3.13
 gunicorn==18.0
+markdown2==2.2.1
 psycopg2==2.5.2
 pystache==0.5.3
 six==1.6.1

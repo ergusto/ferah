@@ -13,6 +13,8 @@ from django.views.decorators.debug import sensitive_post_parameters
 
 from braces.views import AnonymousRequiredMixin
 
+from apps.utils.http import JSONResponse
+
 # Create your views here.
 
 class LoginView(AnonymousRequiredMixin, FormView):
@@ -29,13 +31,13 @@ class LoginView(AnonymousRequiredMixin, FormView):
         	context = {
         		'redirect_url': reverse('home'),
         	}
-        	return HttpResponse(json.dumps(context), mimetype='application/json')
+        	return JSONResponse(context, status=200)
         return HttpResponseRedirect(reverse('home'))
 
     def form_invalid(self, form):
         self.set_test_cookie()
         if self.request.is_ajax():
-        	return HttpResponseBadRequest(json.dumps(form.errors), mimetype='application/json')
+        	return JSONResponse(form.errors, status=400)
         return super(LoginView, self).form_invalid(form)
  
     def set_test_cookie(self):

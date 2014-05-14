@@ -24,35 +24,6 @@ $(document).ready(function(){
 		});
 	});
 
-	$('body').on('submit', '#js-message-form', function(event){
-		event.preventDefault();
-		var form = $(this);
-		clear_form_errors(form);
-		$.ajax({
-			type: form.attr('method'),
-			url: form.attr('action'),
-			data: form.serialize(),
-			success: function(response) {
-				var context = response;
-				var source = $('#message_item_template').html();
-				var template = Handlebars.compile(source);
-				$('#js-messages-list').prepend(template(context));
-				$(form).trigger("reset");
-			},
-			error: function(response, textStatus, jqXHR){
-				var errors = $.parseJSON(response.responseText);
-				console.log(response);
-				$.each(errors, function(index, value) {
-					if (index === "__all__") {
-						apply_form_error(form, value);
-					} else {
-						apply_form_field_error(index, value);
-					}
-				});
-			}
-		});
-	});
-
 	$(document).on('click', '.js-tag-remove', function(event){
 		event.preventDefault();
 		var anchor = $(this);
@@ -68,38 +39,6 @@ $(document).ready(function(){
 			error: function(response, textStatus, jqXHR) {
 				console.log(response);
 				console.log(response);
-			}
-		});
-	});
-
-	$(document).on('submit', '#conversation_tag_form', function(event) {
-		event.preventDefault();
-		var form = $(this);
-		clear_form_errors(form);
-		$.ajax({
-			url: form.attr('action'),
-			type: form.attr('method'),
-			dataType: "json",
-   			contentType: 'application/x-www-form-urlencoded;charset=utf-8',
-			data: form.serialize(),
-			success: function(response) {
-				var context = response;
-				var source = $('#tag_template').html();
-				var template = Handlebars.compile(source);
-				$('.tags_list').append(template(context));
-				form.find('#id_title').val('');
-				console.log(response);
-			},
-			error: function(response, textStatus, jqXHR) {
-				var errors = $.parseJSON(response.responseText);
-				console.log(response);
-				$.each(errors, function(index, value) {
-					if (index === "__all__") {
-						apply_form_error(form, value);
-					} else {
-						apply_form_field_error(index, value);
-					}
-				});
 			}
 		});
 	});
