@@ -7,16 +7,33 @@ from apps.conversations.models import Conversation
 
 from models import Tag
 
-class SimpleTagForm(forms.ModelForm):
+class ConversationAddTagForm(forms.ModelForm):
 
 	class Meta:
 		model = Tag
 		fields = ('title',)
 
 	def __init__(self, *args, **kwargs):
-		super(SimpleTagForm, self).__init__(*args, **kwargs)
+		self.conversation = kwargs.pop('conversation', None)
+		super(ConversationAddTagForm, self).__init__(*args, **kwargs)
 		self.fields['title'].label = 'Tag text'
 		self.fields['title'].help_text = 'Enter tags separated by a comma.'
+
+	def clean_title(self):
+		title = self.cleaned_data['title']
+		if len(title) > 30:
+			raise forms.ValidationError("Tag title must be 50 characters or fewer.")
+		slug = slugify(title)
+		if len(slug) == 0:
+			raise forms.ValidationError("Please enter a valid tag title.")
+		if self.conversation:
+			try:
+				tag = Tag.objects.get(slug=slug)
+			except ObjectDoesNotExist:
+				return title
+			if tag in self.conversation.tags.all():
+				raise forms.ValidationError("That tag is already associated with this conversation.")
+		return title
 
 class TagForm(forms.ModelForm):
 
