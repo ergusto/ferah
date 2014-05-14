@@ -15,7 +15,7 @@ from apps.utils.http import JSONResponse
 from apps.conversations.models import Conversation
 
 from models import Tag
-from forms import TagForm, ConversationAddTagForm
+from forms import TagForm
 from utils.serializers import TagSerializer, PaginatedTagSerializer
 
 class TagListView(LoginRequiredMixin, ListView):
@@ -63,7 +63,7 @@ class TagDeleteView(LoginRequiredMixin, DeleteView):
 		return Tag.objects.get(slug=self.kwargs['slug'])
 
 class AddTagToConversationFormView(LoginRequiredMixin, FormView):
-	form_class = ConversationAddTagForm
+	form_class = TagForm
 	template_name = 'tags/conversation_tag_form.html'
 
 	def get_object(self, **kwargs):

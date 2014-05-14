@@ -31,7 +31,7 @@
 					{% if is_paginated and page_obj.has_next %}
 
 						<li class="load-more">
-							<a href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="js-conversations-load btn btn-block">Load more</a>
+							<a id="js-conversations-load" href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="btn btn-block">Load more</a>
 						</li>
 
 					{% endif %}
@@ -76,7 +76,7 @@
 {{/each}}
 {{#if next}}
 <li class="load-more">
-	<a href="{{ next }}" class="js-conversations-load btn btn-large btn-block">Load more</a>
+	<a id="js-conversations-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
 </li>
 {{/if}}
 </script>
@@ -86,5 +86,15 @@
 {% endblock script_templates %}
 
 {% block scripts %}
-	<script src="{{ STATIC_URL }}js/tag_detail.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#js-conversations-list').jangoEndless({
+			handlebarsTemplate: $("#conversation_list_template"),
+			appendTo: $("#js-conversations-list"),
+			eventElementID: "#js-conversations-load",
+		});
+	});
+
+</script>
 {% endblock scripts %}

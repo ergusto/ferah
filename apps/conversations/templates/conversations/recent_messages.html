@@ -14,7 +14,7 @@
 
 		</div>
 		
-		<ul id="js-recent-messages-list" class="box-item-list">
+		<ul id="js-messages-list" class="box-item-list">
 			{% for message in object_list %}
 
 				<li class="box box-item">
@@ -34,7 +34,7 @@
 			{% if is_paginated and page_obj.has_next %}
 
 				<li class="load-more">
-					<a href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="js-messages-load btn btn-large btn-block">Load more</a>
+					<a id="js-messages-load" href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="btn btn-large btn-block">Load more</a>
 				</li>
 
 			{% endif %}
@@ -67,7 +67,7 @@
 {{/each}}
 {{#if next}}
 <li class="load-more">
-	<a href="{{ next }}" class="js-messages-load btn btn-large btn-block">Load more</a>
+	<a id="js-messages-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
 </li>
 {{/if}}
 </script>
@@ -77,5 +77,15 @@
 {% endblock script_templates %}
 
 {% block scripts %}
-	<script src="{{ STATIC_URL }}js/recent.js"></script>
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#js-messages-list').jangoEndless({
+			handlebarsTemplate: $("#message_list_template"),
+			appendTo: $("#js-messages-list"),
+			eventElementID: "#js-messages-load",
+		});
+	});
+
+</script>
 {% endblock scripts %}

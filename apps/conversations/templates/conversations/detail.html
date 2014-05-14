@@ -81,7 +81,7 @@
 			{% if is_paginated and page_obj.has_next %}
 
 				<li class="load-more">
-					<a href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="js-messages-load btn btn-large btn-block">Load more</a>
+					<a id="js-messages-load" href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="btn btn-large btn-block">Load more</a>
 				</li>
 
 			{% endif %}
@@ -112,7 +112,7 @@
 {{/each}}
 {{#if next}}
 <li class="load-more">
-	<a href="{{ next }}" class="js-messages-load btn btn-large btn-block">Load more</a>
+	<a id="js-messages-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
 </li>
 {{/if}}
 </script>
@@ -150,6 +150,12 @@
 		$('#conversation_tag_form').jangoForm({
 			handlebarsTemplate: $('#tag_template'),
 			appendTo: $('.tags_list'),
+		});
+		
+		$('#js-messages-list').jangoEndless({
+			handlebarsTemplate: $("#message_list_template"),
+			appendTo: $("#js-messages-list"),
+			eventElementID: "#js-messages-load",
 		});
 
 	</script>
