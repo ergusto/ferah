@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'south',
+    'storages',
 
     'apps.conversations',
     'apps.home',

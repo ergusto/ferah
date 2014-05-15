@@ -111,14 +111,14 @@
 /*
     $-TAG-LISTS
 */
-.tag-list__item {
+.tag_list__item {
     margin-bottom: 4px;
     display: inline-block;
 }
-.tag-list__item:last-child {
+.tag_list__item:last-child {
     margin-bottom: 0px;
 }
-.tag-list__item:first-child {
+.tag_list__item:first-child {
     margin-top: 10px;
 }
 

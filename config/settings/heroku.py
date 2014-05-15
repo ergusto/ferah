@@ -14,4 +14,4 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 STATIC_ROOT = 'static'
-STATIC_URL = '/static/'
+STATIC_URL = 'https://s3.amazonaws.com/django-blog/'

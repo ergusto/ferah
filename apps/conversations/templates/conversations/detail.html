@@ -47,7 +47,7 @@
 			<ul class="tags_list">
 
 				{% for tag in object.tags.all %}
-					<li class="tag-list__item"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag }} <a class="js-tag-remove" href="{{ object.get_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
+					<li class="tag_list__item"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag }} <a class="js-tag-remove" href="{{ object.get_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
 				{% endfor %}
 
 			</ul>
@@ -130,7 +130,7 @@
 </script>
 
 <script id="tag_template" type="text/x-handlebars-template">
-<li class="tag-list__item"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag.title }} <a class="js-tag-remove" href="{{ object_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
+<li class="tag_list__item"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag.title }} <a class="js-tag-remove" href="{{ object_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
 </script>
 
 {% endverbatim %}
@@ -157,6 +157,8 @@
 			appendTo: $("#js-messages-list"),
 			eventElementID: "#js-messages-load",
 		});
+		
+		$('#conversation_tag_form').jangoTags();
 
 	</script>
 
