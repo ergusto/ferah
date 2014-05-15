@@ -12,6 +12,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+
 # Static asset configuration
 STATIC_ROOT = 'static'
 STATIC_URL = 'https://ferah.s3.amazonaws.com/'
