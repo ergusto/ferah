@@ -37,6 +37,7 @@
     display: inline-block;
     text-align: center;
     cursor: pointer;
+    margin-right: 4px;
     text-shadow: 0 1px rgba(255, 255, 255, 0.19);
     border: 1px solid #dbdbdb;
     border-radius: 2px;

@@ -30,9 +30,9 @@
 {% endblock content %}
 
 {% block scripts %}
-<script type="text/javascript">
-	$('#login_form').jangoForm({
-		redirect: true,
-	});
-</script>
+	<script type="text/javascript">
+		$('#login_form').jangoForm({
+			redirectOnSuccess: true,
+		});
+	</script>
 {% endblock scripts %}
