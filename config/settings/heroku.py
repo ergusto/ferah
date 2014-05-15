@@ -15,3 +15,5 @@ ALLOWED_HOSTS = ['*']
 # Static asset configuration
 STATIC_ROOT = 'static'
 STATIC_URL = 'https://ferah.s3.amazonaws.com/'
+
+AWS_STORAGE_BUCKET_NAME = 'ferah'
