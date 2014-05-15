@@ -14,4 +14,4 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 STATIC_ROOT = 'static'
-STATIC_URL = 'https://s3.amazonaws.com/ferah/'
+STATIC_URL = 'https://ferah.s3.amazonaws.com/'
