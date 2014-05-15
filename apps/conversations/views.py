@@ -14,7 +14,26 @@ from apps.utils.http import JSONResponse
 
 from forms import ConversationForm, MessageForm
 from models import Conversation, Message
-from utils.serializers import PaginatedMessageSerializer, MessageSerializer, ConversationSerializer
+from utils.serializers import PaginatedMessageSerializer, MessageSerializer, ConversationSerializer, PaginatedConversationSerializer
+
+class ConversationListView(LoginRequiredMixin, ListView):
+	model = Conversation
+	paginate_by = 50
+	template_name = 'conversations/list.html'
+
+	def get_ajax(self, request, *args, **kwargs):
+		self.object_list = self.get_queryset()
+		paginator = Paginator(self.object_list, 10)
+		page = request.GET.get('page', '')
+		try:
+			queryset = paginator.page(page)
+		except PageNotAnInteger:
+			queryset = paginator.page(1)
+		except EmptyPage:
+			queryset = paginator.page(paginator.num_pages)
+		serializer_context = {'request': request}
+		serializer = PaginatedConversationSerializer(queryset, context=serializer_context)
+		return JSONResponse(serializer.data, status=200)
 
 class ConversationFormView(LoginRequiredMixin, FormView):
 	form_class = ConversationForm
@@ -102,8 +121,6 @@ class ConversationEditView(LoginRequiredMixin, AjaxResponseMixin, UpdateView):
 		if not object.user == request.user:
 			return HttpResponseRedirect(reverse_lazy('home'))
 		return super(ConversationEditView, self).dispatch(request, *args, **kwargs)
-
-
 
 class ConversationMessageFormView(LoginRequiredMixin, FormView):
 	form_class = MessageForm

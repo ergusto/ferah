@@ -64,10 +64,6 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 	line-height:1.42857143;
 }
 
-#menu-aside {
-  margin-top: 60px;
-}
-
 
 #user-dts {
 	float: right;
@@ -88,6 +84,9 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 .auth-a:hover {
 	opacity: 0.6;
 }
+i.fa {
+  margin-right: 2px;
+}
 
 
 
@@ -99,7 +98,6 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 @media (min-width: 962px) {
   #right-aside {
     margin-top: 30px;
-    position: absolute;
   }
 }
 .footer {
