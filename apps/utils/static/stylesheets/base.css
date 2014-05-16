@@ -2,37 +2,37 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 300;
-  src: local('Open Sans Light'), local('OpenSans-Light'), url('/static/stylesheets/fonts/open_sans/OpenSans-Light.ttf') format('truetype');
+  src: local('Open Sans Light'), local('OpenSans-Light'), url('/stylesheets/fonts/open_sans/OpenSans-Light.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans'), local('OpenSans'), url('/static/stylesheets/fonts/open_sans/OpenSans-Regular.ttf') format('truetype');
+  src: local('Open Sans'), local('OpenSans'), url('/stylesheets/fonts/open_sans/OpenSans-Regular.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
-  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('/static/stylesheets/fonts/open_sans/OpenSans-Semibold.ttf') format('truetype');
+  src: local('Open Sans Semibold'), local('OpenSans-Semibold'), url('/stylesheets/fonts/open_sans/OpenSans-Semibold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 700;
-  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('/static/stylesheets/fonts/open_sans/OpenSans-Bold.ttf') format('truetype');
+  src: local('Open Sans Bold'), local('OpenSans-Bold'), url('/stylesheets/fonts/open_sans/OpenSans-Bold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 800;
-  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url('/static/stylesheets/fonts/open_sans/OpenSans-ExtraBold.ttf') format('truetype');
+  src: local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url('/stylesheets/fonts/open_sans/OpenSans-ExtraBold.ttf') format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: italic;
   font-weight: 400;
-  src: local('Open Sans Italic'), local('OpenSans-Italic'), url('/static/stylesheets/fonts/open_sans/OpenSans-Italic.ttf') format('truetype');
+  src: local('Open Sans Italic'), local('OpenSans-Italic'), url('/stylesheets/fonts/open_sans/OpenSans-Italic.ttf') format('truetype');
 }
 
 html, body {
