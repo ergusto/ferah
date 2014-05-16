@@ -14,3 +14,5 @@ pystache==0.5.3
 six==1.6.1
 static==1.0.2
 wsgiref==0.1.2
+django-herokuify
+pylibmc
