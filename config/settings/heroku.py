@@ -1,5 +1,7 @@
 from base import *
 
+DEBUG = False
+
 WSGI_APPLICATION = 'config.heroku_wsgi.application'
 
 # Parse database configuration from $DATABASE_URL
