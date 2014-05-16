@@ -43,7 +43,7 @@ CACHES = herokuify.get_cache_config()       # Cache config for Memcache/MemCachi
 
 ########## SECRET CONFIGURATION
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#secret-key
-SECRET_KEY = get_env_setting('SECRET_KEY')
+SECRET_KEY = get_env_setting('DJANGO_SECRET_KEY')
 ########## END SECRET CONFIGURATION
 
 #Storage on S3 settings are stored as os.environs to keep settings.py clean 
