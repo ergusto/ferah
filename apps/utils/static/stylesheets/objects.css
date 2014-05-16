@@ -37,7 +37,6 @@
     display: inline-block;
     text-align: center;
     cursor: pointer;
-    margin-right: 4px;
     text-shadow: 0 1px rgba(255, 255, 255, 0.19);
     border: 1px solid #dbdbdb;
     border-radius: 2px;
@@ -66,6 +65,12 @@
     .btn::-moz-focus-inner {
         padding: 0;
         border: 0;
+    }
+    .btn-group .btn {
+        margin-right: 4px;
+    }
+    .btn-group .btn:last-child {
+        margin-right: 0;
     }
 /*
     $-BUTTON-MODIFIERS
