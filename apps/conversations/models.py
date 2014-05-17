@@ -73,7 +73,10 @@ class Conversation(models.Model):
 
 	def add_tag(self, tag_title):
 		slug = slugify(tag_title)
-		tag, created = Tag.objects.get_or_create(title=tag_title)
+		try:
+			tag = Tag.objects.get(slug=slug)
+		except ObjectDoesNotExist:
+			tag = Tag.objects.create(title=tag_title)
 		self.tags.add(tag)
 		return tag
 
