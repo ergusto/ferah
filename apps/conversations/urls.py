@@ -4,8 +4,8 @@ from apps.tags.views import AddTagToConversationFormView, RemoveTagFromConversat
 
 urlpatterns = patterns('',
     url(r'^$', ConversationListView.as_view(), name='conversation_list'),
-	url(r'^create/$', ConversationFormView.as_view(), name='conversation_create'),
-	url(r'^export/$', ConversationExportView.as_view(), name='conversations_export'),
+    url(r'^create/$', ConversationFormView.as_view(), name='conversation_create'),
+    url(r'^export/$', ConversationExportView.as_view(), name='conversations_export'),
     url(r'^(?P<slug>[-\w]+)/$', ConversationDetailView.as_view(), name='conversation_detail'),
     url(r'^(?P<slug>[-\w]+)/delete/$', ConversationDeleteView.as_view(), name='conversation_delete'),
     url(r'^(?P<slug>[-\w]+)/edit/$', ConversationEditView.as_view(), name='conversation_edit'),
