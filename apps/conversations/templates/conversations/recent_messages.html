@@ -22,7 +22,7 @@
 						<small><a href="#">{{ message.user }}</a> wrote in <a href="{{ message.conversation.get_absolute_url }}">{{ message.conversation }}</a></small>
 					</header>
 					<div class="box-item__body">
-						{{ message.text }}
+						{{ message.text|urlize }}
 					</div>
 					<footer class="box-item__footer">
 						<small>{{ message.date }}</small>

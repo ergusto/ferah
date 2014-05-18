@@ -66,7 +66,7 @@
 			
 			{% for message in object_list %}
 
-				<li class="box-item box">
+				<li data-message-id="{{ message.id }}" class="box-item box">
 					<header class="box-item__header clearfix">
 						<p class="user">{{ message.user }}</p>
 						<p class="date">{{ message.date }}</p>
