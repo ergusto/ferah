@@ -1,7 +1,15 @@
+{% load widget_type %}
+
 {% for field in page_form %}
 	<div class="form-group">
+		{% if field.field.widget|widget_type == 'Select' %}
+			<div class="select-style">
+				{{ field }}
+			</div>
+		{% else %}
 		<label>{{ field.label }}:</label>
-		{{ field }}
+			{{ field }}
+		{% endif %}
 		{% if field.errors %}
 			{% for error in field.errors %}
 				<span class="error">{{ error }}</span>

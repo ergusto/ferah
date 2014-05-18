@@ -12,13 +12,13 @@
 
 		</header>
 
-			<ul id="js-conversations-list" class="simple_list">
+			<ul id="js-conversations-list" class="simple_list conversation_list">
 
 				{% if object_list %}
 
 					{% for conversation in object_list %}
 
-						<li>
+						<li class="{{ conversation.get_label_display }}">
 
 							<a href="{{ conversation.get_absolute_url }}">{{ conversation }}</a>
 
@@ -58,7 +58,7 @@
 
 <script id="conversation_item_template" type="text/x-handlebars-template">
 {{#each results}}
-	<li>
+	<li class="{{ get_label_display }}">
 
 		<a href="{{ get_absolute_url }}">{{ title }}</a>
 

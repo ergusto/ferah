@@ -8,7 +8,7 @@ class ConversationForm(ModelForm):
 
 	class Meta:
 		model = Conversation
-		fields = ['title']
+		fields = ['title', 'label']
 
 	def clean_title(self):
 		title = self.cleaned_data['title']

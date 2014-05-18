@@ -220,6 +220,20 @@
 
 
 /*
+    $-CONVERSATION-LIST
+*/
+.conversation_list li {
+    border-left: 3px solid transparent;
+}
+.conversation_list li.blue {
+    border-left: 3px solid #A6BBFF;
+}
+.conversation_list li.purple {
+    border-left: 3px solid #9C43FF;
+}
+
+
+/*
     $-BOX-ITEM-LIST
 */
 .box-item-list {

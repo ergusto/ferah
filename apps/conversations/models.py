@@ -11,11 +11,19 @@ from apps.tags.models import Tag
 # Create your models here.
 
 class Conversation(models.Model):
+	BLUE = 'BL'
+	PURPLE = 'PU'
+	LABEL_CHOICES = (
+		(BLUE, 'blue'),
+		(PURPLE, 'purple'),
+	)
+
 	user = models.ForeignKey('auth.User', related_name='owned_conversations')
 	title = models.CharField(max_length=140, unique=True)
 	created = models.DateTimeField(null=True, blank=True, editable=False)
 	tags = models.ManyToManyField('tags.Tag', related_name='conversations', null=True, blank=True)
 	slug = models.SlugField(editable=False, unique=True, max_length=140, null=True, blank=True)
+	label = models.CharField(max_length=2, choices=LABEL_CHOICES, null=True, blank=True)
 
 	def __unicode__(self):
 		return unicode(self.title)
