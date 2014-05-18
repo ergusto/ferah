@@ -14,8 +14,8 @@ class Conversation(models.Model):
 	BLUE = 'BL'
 	PURPLE = 'PU'
 	LABEL_CHOICES = (
-		(BLUE, 'blue'),
-		(PURPLE, 'purple'),
+		(BLUE, 'Fergus'),
+		(PURPLE, 'Farah'),
 	)
 
 	user = models.ForeignKey('auth.User', related_name='owned_conversations')
