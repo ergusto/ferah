@@ -18,7 +18,7 @@
 
 					{% for conversation in object_list %}
 
-						<li class="{{ conversation.get_label_display }}">
+						<li class="{{ conversation.label }}">
 
 							<a href="{{ conversation.get_absolute_url }}">{{ conversation }}</a>
 
