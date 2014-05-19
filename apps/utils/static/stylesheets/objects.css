@@ -202,7 +202,6 @@
     $-SIMPLE-LIST
 */
 .simple_list li {
-    padding: 10px 14px;
     border-bottom: 1px solid #ddd;
 }
 .simple_list li:last-child {
@@ -210,6 +209,8 @@
 }
 .simple_list li a {
     text-decoration: none;
+    display: block;
+    padding: 10px 14px;
 }
 .simple_list .load-more {
     margin: 0px;
@@ -222,13 +223,13 @@
 /*
     $-CONVERSATION-LIST
 */
-.conversation_list li {
+.conversation_list .conversation_title {
     border-left: 3px solid transparent;
 }
-.conversation_list li.blue {
+.conversation_list li.blue .conversation_title {
     border-left: 3px solid #A6BBFF;
 }
-.conversation_list li.purple {
+.conversation_list li.purple .conversation_title {
     border-left: 3px solid #EF97FF;
 }
 
