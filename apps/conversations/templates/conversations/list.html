@@ -16,7 +16,7 @@
 
 			{% for conversation in object_list %}
 
-				<li><a href="{{ conversation.get_absolute_url }}">{{ conversation }}</a></li>
+				<li><a class="item_title" href="{{ conversation.get_absolute_url }}">{{ conversation }}</a></li>
 
 			{% endfor %}
 

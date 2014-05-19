@@ -21,6 +21,9 @@ class ConversationListView(LoginRequiredMixin, ListView):
 	paginate_by = 50
 	template_name = 'conversations/list.html'
 
+	def get_queryset(self):
+		return Conversation.objects.all().order_by('title')
+
 	def get_ajax(self, request, *args, **kwargs):
 		self.object_list = self.get_queryset()
 		paginator = Paginator(self.object_list, 10)
