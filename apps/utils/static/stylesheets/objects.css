@@ -207,7 +207,7 @@
 .simple_list li:last-child {
     border-bottom: 0px;
 }
-.simple_list li a {
+.simple_list li .item_title {
     text-decoration: none;
     display: block;
     padding: 10px 14px;
@@ -223,13 +223,13 @@
 /*
     $-CONVERSATION-LIST
 */
-.conversation_list .conversation_title {
+.conversation_list .item_title {
     border-left: 3px solid transparent;
 }
-.conversation_list li.blue .conversation_title {
+.conversation_list li.blue .item_title {
     border-left: 3px solid #A6BBFF;
 }
-.conversation_list li.purple .conversation_title {
+.conversation_list li.purple .item_title {
     border-left: 3px solid #EF97FF;
 }
 
