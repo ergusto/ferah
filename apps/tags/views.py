@@ -124,3 +124,11 @@ class RemoveTagFromConversationView(LoginRequiredMixin, FormView):
 		if self.request.is_ajax():
 			return JSONResponse(form.errors, status=400)
 		return super(RemoveTagFromConversationView, self).form_invalid(form)
+
+class AjaxTagAutocomplete(LoginRequiredMixin, View):
+
+	def get(self, request, *args, **kwargs):
+		q = request.GET.get('q', '')
+		tags = Tag.objects.filter(title__startswith=q).distinct()[:3]
+		serializer = TagSerializer(tags)
+		return JSONResponse({'tags': serializer.data})
