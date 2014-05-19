@@ -19,11 +19,14 @@ class Conversation(models.Model):
 	)
 
 	user = models.ForeignKey('auth.User', related_name='owned_conversations')
-	title = models.CharField(max_length=140, unique=True)
-	created = models.DateTimeField(null=True, blank=True, editable=False)
 	tags = models.ManyToManyField('tags.Tag', related_name='conversations', null=True, blank=True)
+	
+	title = models.CharField(max_length=140, unique=True)
 	slug = models.SlugField(editable=False, unique=True, max_length=140, null=True, blank=True)
 	label = models.CharField(max_length=6, choices=LABEL_CHOICES, null=True, blank=True)
+	
+	created = models.DateTimeField(null=True, blank=True, editable=False)
+	last_activity = models.DateTimeField(null=True, blank=True)
 
 	def __unicode__(self):
 		return unicode(self.title)
@@ -118,6 +121,8 @@ class Message(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.date = timezone.now()
+		self.conversation.last_activity = timezone.now()
+		self.conversation.save()
 		super(Message, self).save(*args, **kwargs)
 
 	def get_edit_url(self):
