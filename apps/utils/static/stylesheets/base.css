@@ -40,8 +40,8 @@ html, body {
 	padding: 0;
 }
 body {
-	background: rgba(249, 249, 249, 0.5);
-	background: #f4f4f4;
+	/*background: rgba(249, 249, 249, 0.5);*/
+  background: #f4f4f4;
 	min-height: 100%;
 	font-family: 'Open Sans';
   padding-bottom: 38px;

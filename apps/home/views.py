@@ -13,7 +13,7 @@ class HomeView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 	paginate_by = 10
 
 	def get_queryset(self):
-		return Conversation.objects.all().order_by('-created')
+		return Conversation.objects.all().order_by('-last_activity')
 
 	def get_ajax(self, request, *args, **kwargs):
 		self.object_list = self.get_queryset()
