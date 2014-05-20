@@ -34,6 +34,7 @@ class Conversation(models.Model):
 	def save(self, *args, **kwargs):
 		if not self.id:
 			self.created = timezone.localtime(timezone.now())
+			self.last_activity = timezone.localtime(timezone.now())
 		self.slug = slugify(self.title)
 		super(Conversation, self).save(*args, **kwargs)
 
