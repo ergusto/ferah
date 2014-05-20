@@ -22,11 +22,10 @@ class PaginatedMessageSerializer(PaginationSerializer):
 class ConversationSerializer(serializers.ModelSerializer):
 	get_absolute_url = serializers.CharField(source='get_absolute_url', read_only=True)
 	created = serializers.DateTimeField(format='%B %d, %Y, %I:%M %p')
-	get_label_display = serializers.CharField(source='get_label_display', read_only=True)
 
 	class Meta:
 		model = Conversation
-		fields = ('title', 'created', 'get_absolute_url', 'get_label_display')
+		fields = ('title', 'created', 'get_absolute_url', 'label')
 
 class PaginatedConversationSerializer(PaginationSerializer):
 
