@@ -33,7 +33,7 @@ class Conversation(models.Model):
 
 	def save(self, *args, **kwargs):
 		if not self.id:
-			self.created = timezone.now()
+			self.created = timezone.localtime(timezone.now())
 		self.slug = slugify(self.title)
 		super(Conversation, self).save(*args, **kwargs)
 
@@ -120,8 +120,8 @@ class Message(models.Model):
 
 	def save(self, *args, **kwargs):
 		if not self.id:
-			self.date = timezone.now()
-		self.conversation.last_activity = timezone.now()
+			self.date = timezone.localtime(timezone.now())
+		self.conversation.last_activity = timezone.localtime(timezone.now())
 		self.conversation.save()
 		super(Message, self).save(*args, **kwargs)
 
