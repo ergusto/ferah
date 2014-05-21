@@ -116,4 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 REST_FRAMEWORK = {
     'PAGINATE_BY': 10,
     'DATETIME_FORMAT': '%B %d, %Y, %I:%M %p',
+     'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
 }
