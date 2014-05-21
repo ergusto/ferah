@@ -5,9 +5,16 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib import admin
 admin.autodiscover()
 
+from rest_framework.routers import DefaultRouter
+
 from apps.conversations.views import RecentMessgaesListView
+from apps.conversations.api.views import ConversationViewSet, MessageViewSet
 from apps.home.views import HomeView
 from apps.login.views import LoginView
+
+router = DefaultRouter()
+router.register(r'conversations', ConversationViewSet)
+router.register(r'messages', MessageViewSet)
 
 urlpatterns = patterns('',
     # Examples:
@@ -15,6 +22,9 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    
+    url(r'^api/', include(router.urls)),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 
 
     url(r'^$', HomeView.as_view(), name='home'),

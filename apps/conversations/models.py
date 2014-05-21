@@ -125,6 +125,3 @@ class Message(models.Model):
 		self.conversation.last_activity = timezone.localtime(timezone.now())
 		self.conversation.save()
 		super(Message, self).save(*args, **kwargs)
-
-	def get_edit_url(self):
-		return ''

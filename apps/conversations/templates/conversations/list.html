@@ -26,6 +26,23 @@
 
 </div>
 
-
-
 {% endblock content %}
+
+{% block script_templates %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+
+var ferah = (function($) {
+	
+	var my = {},
+		privateVariable =1;
+
+	function privateMethod() {
+		console.log('fuckmysefl');
+	}
+
+})(jQuery));
+
+{% endblock scripts %}

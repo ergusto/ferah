@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     
     'south',
     'storages',
+    'rest_framework',
 
     'apps.conversations',
     'apps.home',
@@ -100,7 +101,7 @@ USE_TZ = True
 
 
 # Date
-DATETIME_FORMAT = '%B %d, %Y, %I:%M, %p'
+DATETIME_FORMAT = '%B %d, %Y, %I:%M %p'
 
 
 # Static files (CSS, JavaScript, Images)
@@ -111,3 +112,8 @@ STATIC_URL = '/static/'
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
 )
+
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 10,
+    'DATETIME_FORMAT': '%B %d, %Y, %I:%M %p',
+}
