@@ -80,7 +80,7 @@
     font-size: 85%;
 }
 .btn-large {
-    padding: 0.5em 1em;
+    padding: 0.5em 1em !important;
     font-size: 100%;
 }
 .btn-large-thin {
