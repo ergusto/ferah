@@ -11,6 +11,7 @@ from apps.conversations.views import RecentMessgaesListView
 from apps.conversations.api.views import ConversationViewSet, MessageViewSet
 from apps.home.views import HomeView
 from apps.login.views import LoginView
+from apps.utils.views import UserMessagesView
 
 router = DefaultRouter()
 router.register(r'conversations', ConversationViewSet)
@@ -31,6 +32,8 @@ urlpatterns = patterns('',
 
     url(r'^login/$', LoginView.as_view(), name='login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/login/'}, name='logout'),
+    
+    url(r'^me/$', UserMessagesView.as_view(), name='user_detail'),
 
     url(r'^recent/$', RecentMessgaesListView.as_view(), name='recent_messages'),
     

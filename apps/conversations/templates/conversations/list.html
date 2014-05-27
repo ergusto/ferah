@@ -12,13 +12,7 @@
 
 		</div>
 
-		<ul class="simple_list">
-
-			{% for conversation in object_list %}
-
-				<li><a class="item_title" href="{{ conversation.get_absolute_url }}">{{ conversation }}</a></li>
-
-			{% endfor %}
+		<ul id="ui-conversations" class="simple_list">
 
 		</ul>
 
@@ -33,16 +27,11 @@
 {% endblock script_templates %}
 
 {% block scripts %}
+	<script type="text/javascript">
 
-var ferah = (function($) {
-	
-	var my = {},
-		privateVariable =1;
+		window.ferah = window.ferah || {};
 
-	function privateMethod() {
-		console.log('fuckmysefl');
-	}
+		ferah.components.conversation_list.init();
 
-})(jQuery));
-
+	</script>
 {% endblock scripts %}

@@ -8,8 +8,7 @@ from permissions import IsOwnerOrReadOnly
 class ConversationViewSet(ModelViewSet):
 	queryset = Conversation.objects.all()
 	serializer_class = ConversationSerializer
-	permission_classes = (permissions.IsAuthenticated, permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly,)
+	permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly,)
 
 	def pre_save(self, obj):
 		obj.user = self.request.user
@@ -17,5 +16,4 @@ class ConversationViewSet(ModelViewSet):
 class MessageViewSet(ModelViewSet):
 	queryset = Message.objects.all()
 	serializer_class = MessageSerializer
-	permission_classes = (permissions.IsAuthenticated, permissions.IsAuthenticatedOrReadOnly,
-                          IsOwnerOrReadOnly,)
+	permission_classes = (permissions.IsAuthenticated, IsOwnerOrReadOnly,)

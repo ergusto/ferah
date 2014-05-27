@@ -5,10 +5,11 @@ from ..models import Conversation, Message
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.Field(source='user.username')
 	conversation = serializers.HyperlinkedRelatedField(view_name='conversation-detail')
+	get_edit_url = serializers.Field(source='get_edit_url')
 
 	class Meta:
 		model = Message
-		fields = ('user', 'conversation', 'text', 'date')
+		fields = ('id', 'user', 'conversation', 'text', 'date', 'get_edit_url')
 
 class ConversationSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.Field(source='user.username')
@@ -17,4 +18,4 @@ class ConversationSerializer(serializers.HyperlinkedModelSerializer):
 
 	class Meta:
 		model = Conversation
-		fields = ('user', 'title', 'slug', 'label', 'created', 'last_activity', 'get_absolute_url', 'messages')
+		fields = ('id', 'user', 'title', 'slug', 'label', 'created', 'last_activity', 'get_absolute_url', 'messages')

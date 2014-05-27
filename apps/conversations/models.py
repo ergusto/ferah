@@ -113,7 +113,7 @@ def slugify_if_title_changed(sender, instance, **kwargs):
 			instance.slug = slugify(instance.title)
 
 class Message(models.Model):
-	user = models.ForeignKey('auth.User', related_name='sent_messages')
+	user = models.ForeignKey('auth.User', related_name='messages')
 	conversation = models.ForeignKey('conversations.Conversation', related_name='messages')
 	
 	text = models.TextField(max_length=10000)
@@ -125,3 +125,13 @@ class Message(models.Model):
 		self.conversation.last_activity = timezone.localtime(timezone.now())
 		self.conversation.save()
 		super(Message, self).save(*args, **kwargs)
+
+	def get_delete_url(self):
+		return reverse('message_delete', kwargs={
+			'pk': self.id,
+		})
+
+	def get_edit_url(self):
+		return reverse('message_edit', kwargs={
+			'pk': self.id,
+		})

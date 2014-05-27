@@ -1,5 +1,5 @@
 from django.conf.urls import *
-from views import ConversationFormView, ConversationDetailView, ConversationMessageFormView, ConversationDeleteView, ConversationEditView, ConversationExportView, ConversationListView
+from views import ConversationFormView, ConversationDetailView, ConversationMessageFormView, ConversationDeleteView, ConversationEditView, ConversationExportView, ConversationListView, MessageDeleteView, MessageEditView
 from apps.tags.views import AddTagToConversationFormView, RemoveTagFromConversationView
 
 urlpatterns = patterns('',
@@ -12,4 +12,6 @@ urlpatterns = patterns('',
     url(r'^(?P<slug>[-\w]+)/message/add/$', ConversationMessageFormView.as_view(), name='conversation_add_message'),
     url(r'^(?P<slug>[-\w]+)/add_tag/$', AddTagToConversationFormView.as_view(), name='conversation_add_tag'),
     url(r'^(?P<slug>[-\w]+)/remove_tag/$', RemoveTagFromConversationView.as_view(), name='conversation_remove_tag'),
+    url(r'^messages/(?P<pk>\d+)/delete/$', MessageDeleteView.as_view(), name='message_delete'),
+    url(r'^messages/(?P<pk>\d+)/edit/$', MessageEditView.as_view(), name='message_edit'),
 )

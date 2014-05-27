@@ -207,7 +207,7 @@
 .simple_list li:last-child {
     border-bottom: 0px;
 }
-.simple_list li .item_title {
+.simple_list li a {
     text-decoration: none;
     display: block;
     padding: 10px 14px;

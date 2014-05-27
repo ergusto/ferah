@@ -157,8 +157,46 @@ class ConversationMessageFormView(LoginRequiredMixin, FormView):
 		context['object'] = self.get_object()
 		return context
 
+class MessageEditView(LoginRequiredMixin, UpdateView):
+	model = Message
+	template_name = 'messages/form.html'
+	form_class = MessageForm
+
+	def get_object(self, **kwargs):
+		return Message.objects.get(id=self.kwargs['pk'])
+
+	def form_valid(self, form):
+		self.object = form.save()
+		if self.request.is_ajax():
+			serializer = MessageSerializer(self.object)
+			return JSONResponse(serializer.data, status=200)
+		return HttpResponseRedirect(self.object.get_absolute_url())
+
+	def form_invalid(self, form):
+		if self.request.is_ajax():
+			return JSONResponse(form.errors, status=400)
+		return super(MessageEditView, self).form_invalid(form)
+
+	def dispatch(self, request, *args, **kwargs):
+		object = self.get_object()
+		if not object.user == request.user:
+			return HttpResponseRedirect(reverse_lazy('home'))
+		return super(MessageEditView, self).dispatch(request, *args, **kwargs)
+
+class MessageDeleteView(LoginRequiredMixin, DeleteView):
+	model = Message
+	success_url = None
+	template_name = 'messages/delete.html'
+
+	def dispatch(self, request, *args, **kwargs):
+		self.object = self.get_object()
+		if not self.object.user == request.user:
+			return HttpResponseRedirect(reverse_lazy('home'))
+		self.success_url = self.object.conversation.get_absolute_url()
+		return super(MessageDeleteView, self).dispatch(request, *args, **kwargs)
+
 class RecentMessgaesListView(LoginRequiredMixin, AjaxResponseMixin, ListView):
-	template_name = 'conversations/recent_messages.html'
+	template_name = 'messages/recent_messages.html'
 	paginate_by = 10
 
 	def get_queryset(self):
