@@ -22,7 +22,7 @@ class UserMessagesView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 	paginate_by = 10
 
 	def get_queryset(self):
-		return self.request.user.messages.all()
+		return self.request.user.messages.all().order_by('-date')
 
 	def get_ajax(self, request, *args, **kwargs):
 		self.object_list = self.get_queryset()
