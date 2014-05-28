@@ -1,0 +1,35 @@
+body.modal-open {
+    overflow: hidden;
+}
+.modal-wrapper {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.1);
+}
+.modal {
+	margin: 30px auto;
+	width: 600px;
+	background: purple;
+	height: 100px;
+}
+.modal-header {
+	background: white;
+}
+.modal-close {
+	float: right;
+	font-weight: bold;
+	margin: 4px 8px;
+	cursor: pointer;
+}
+
+
+
+		ff.addClass(wrapper, 'modal-wrapper');
+		ff.addClass(modalBackdrop, 'modal-backdrop');
+		ff.addClass(modalWrapper, 'modal');
+		ff.addClass(modalHeader, 'modal-header');
+		ff.addClass(modalBody, 'modal-body');
+		ff.addClass(modalFooter, 'modal-footer');

@@ -2,6 +2,8 @@ window.ff = window.ff || {};
 
 (function() {
 
+	'use strict';
+
 	// Dom ready
 	ff.ready = function(callback) {
 		document.addEventListener('DOMContentLoaded', callback);
@@ -64,20 +66,26 @@ window.ff = window.ff || {};
 		Array.prototype.forEach.call(elements, callback);
 	};
 
+	ff.hasClass = function(element, className) {
+		if (element.classList) {
+			return element.classList.contains(className);
+		} else {
+			return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
+		}
+	};
+
+	ff.removeClass = function(element, className) {
+		if (ff.hasClass(element, className)) {
+			element.className = element.className.replace(new RegExp("(^|\\s)" + className + "(\\s|$)"), " ").replace(/\s$/, "");
+		}
+	};
+
 	// Add class
 	ff.addClass = function(element, className) {
 		if (element.classList) {
 			element.classList.add(className);
 		} else {
 			element.classList += ' ' + className;
-		}
-	};
-
-	ff.hasClass = function(element, className) {
-		if (element.classList) {
-			return element.classList.contains(className);
-		} else {
-			return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
 		}
 	};
 

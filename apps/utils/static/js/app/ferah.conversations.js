@@ -4,10 +4,7 @@ ff.components = ff.components || {};
 ff.components.conversation_list = (function() {
 
 	var conversation_list = {},
-		items = new Array(), 
 		next = '', 
-		previous = '', 
-		templates = {},
 		element = ff.qs('#ui-conversations');
 
 	function init() {
@@ -16,6 +13,7 @@ ff.components.conversation_list = (function() {
 	}
 
 	function render(response) {
+		
 		var wrapper = document.createElement('div');
 
 		response.results.forEach(function(result, i) {
@@ -27,13 +25,15 @@ ff.components.conversation_list = (function() {
 			if (result.label) {
 				ff.addClass(li, result.label);
 			}
-			
-			anchor.setAttribute('href', result.get_absolute_url);
 			ff.addClass(anchor, 'item_title');
+
+			anchor.setAttribute('href', result.get_absolute_url);
 			anchor.appendChild(title);
 			li.appendChild(anchor);
 			wrapper.appendChild(li);
+
 		});
+
 		if (response.next) {
 			var li = document.createElement('li');
 			var anchor = document.createElement('a');
@@ -53,6 +53,7 @@ ff.components.conversation_list = (function() {
 			next = response.next;
 		}
 		element.innerHTML += wrapper.innerHTML;
+
 	}
 
 	function loadConversations() {
