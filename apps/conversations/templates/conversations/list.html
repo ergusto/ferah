@@ -29,9 +29,11 @@
 {% block scripts %}
 	<script type="text/javascript">
 
-		window.ferah = window.ferah || {};
+		window.ff = window.ff || {};
 
-		ferah.components.conversation_list.init();
+		ff.ready(function() {
+			ff.components.conversation_list.init();
+		});
 
 	</script>
 {% endblock scripts %}

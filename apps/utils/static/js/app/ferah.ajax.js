@@ -1,6 +1,6 @@
-window.ferah = window.ferah || {};
+window.ff = window.ff || {};
 
-ferah.ajax = (function($) {
+ff.ajax = (function($) {
 
 	var ajax = {};
 
