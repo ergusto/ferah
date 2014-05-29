@@ -10,7 +10,7 @@ body.modal-open {
 	background: rgba(0, 0, 0, 0.1);
 }
 .modal {
-	margin: 30px auto;
+	margin: 100px auto;
 	width: 600px;
 	background: purple;
 	height: 100px;

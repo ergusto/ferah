@@ -40,7 +40,7 @@ class ConversationListView(LoginRequiredMixin, ListView):
 
 class ConversationFormView(LoginRequiredMixin, FormView):
 	form_class = ConversationForm
-	template_name = 'conversations/form.html'
+	template_name = 'conversations/create.html'
 
 	def form_valid(self, form):
 		self.object = form.save(commit=False)
@@ -102,7 +102,7 @@ class ConversationDetailView(LoginRequiredMixin, AjaxResponseMixin, ListView):
 
 class ConversationEditView(LoginRequiredMixin, AjaxResponseMixin, UpdateView):
 	form_class = ConversationForm
-	template_name = 'conversations/form.html'
+	template_name = 'conversations/edit.html'
 
 	def get_object(self, **kwargs):
 		return Conversation.objects.get(slug=self.kwargs['slug'])
