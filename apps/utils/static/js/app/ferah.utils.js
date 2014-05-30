@@ -106,4 +106,25 @@ window.ff = window.ff || {};
 		}
 	};
 
+	ff.create = function(tagName, classList, attributeObject) {
+		var element = document.createElement(tagName);
+		if (classList) {
+			for (var i = 0; i < classList.length; i++) {
+				ff.addClass(element, classList[i]);
+			}
+		}
+		if (attributeObject) {
+			for (var property in attributeObject) {
+				if (attributeObject.hasOwnProperty(property)) {
+					element.setAttribute(property, attributeObject[property])
+				}
+			}
+		}
+		return element;
+	};
+
+	ff.text = function(text) {
+		return document.createTextNode(text);
+	};
+
 }());

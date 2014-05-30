@@ -10,13 +10,16 @@ body.modal-open {
 	background: rgba(0, 0, 0, 0.1);
 }
 .modal {
-	margin: 100px auto;
-	width: 600px;
-	background: purple;
+	margin-top: 100px;
+	padding: 0;
 	height: 100px;
+	background: white;
+	border: 2px solid #ddd;
 }
 .modal-header {
-	background: white;
+    padding: 10px 14px;
+	border-bottom: 1px solid #ddd;
+    background: rgb(248, 248, 249);
 }
 .modal-close {
 	float: right;
@@ -24,12 +27,8 @@ body.modal-open {
 	margin: 4px 8px;
 	cursor: pointer;
 }
-
-
-
-		ff.addClass(wrapper, 'modal-wrapper');
-		ff.addClass(modalBackdrop, 'modal-backdrop');
-		ff.addClass(modalWrapper, 'modal');
-		ff.addClass(modalHeader, 'modal-header');
-		ff.addClass(modalBody, 'modal-body');
-		ff.addClass(modalFooter, 'modal-footer');
+.modal-footer {
+    padding: 6px 10px;
+    background: rgba(248, 248, 249, 0.1);
+    border-top: 1px solid #ddd;
+}

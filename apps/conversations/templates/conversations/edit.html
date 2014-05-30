@@ -54,10 +54,13 @@
 		window.ff = window.ff || {};
 
 		ff.ready(function() {
+
+			var element = ff.create('div', ['fuck', 'bugger'], { 'id': 'hello' });
+
 			ff.on(ff.qs('.js-delete'), 'click', function(event) {
 				event.preventDefault();
 				var modal = new ff.Modal();
-				modal.render();
+				modal.render('fuck');
 			});
 		});
 

@@ -10,33 +10,34 @@ window.ff = window.ff || {};
 		options = options || {};
 		var self = this;
 
-		var wrapper = document.createElement('div'),
-			modalBackdrop = document.createElement('div'),
-			modalWrapper = document.createElement('div'),
-			modalHeader = document.createElement('header'),
-			modalHeaderClose = document.createElement('span'),
-			modalHeaderCloseText = document.createTextNode('x'),
-			headerTitle = document.createElement('h3'),
-			headerText = document.createTextNode('Hello Modal'),
-			modalBody = document.createElement('div'),
-			modalFooter = document.createElement('footer');
+		var wrapper = ff.create('div', ['modal-wrapper']),
+			modalMainClasses = ['modal', 'col-xs-10', 'col-xs-offset-1', 'col-sm-6', 'col-sm-offset-3', 'col-md-4', 'col-md-offset-4'],
+			modalMain = ff.create('div', modalMainClasses),
+			modalHeader = ff.create('header', ['modal-header']),
+			modalHeaderClose = ff.create('span', ['modal-close']),
+			headerTitle = ff.create('h3'),
+			modalBody = ff.create('div', ['modal-body']),
+			modalFooter = ff.create('footer', ['modal-footer']),
+			
+			modalBodyText = ff.text('Hello body'),
+			headerText = ff.text('Hello Modal'),
+			modalHeaderCloseText = ff.text('x');
+
+		if (title) {
+			headerText = ff.text(title);
+		}
 
 		this.modalCount++;
-		ff.addClass(wrapper, 'modal-wrapper');
-		ff.addClass(modalWrapper, 'modal');
-		ff.addClass(modalHeader, 'modal-header');
-		ff.addClass(modalHeaderClose, 'modal-close');
-		ff.addClass(modalBody, 'modal-body');
-		ff.addClass(modalFooter, 'modal-footer');
 
-		wrapper.appendChild(modalWrapper);
+		wrapper.appendChild(modalMain);
 		headerTitle.appendChild(headerText);
 		modalHeaderClose.appendChild(modalHeaderCloseText);
 		modalHeader.appendChild(modalHeaderClose);
 		modalHeader.appendChild(headerTitle);
-		modalWrapper.appendChild(modalHeader);
-		modalWrapper.appendChild(modalBody);
-		modalWrapper.appendChild(modalFooter);
+		modalMain.appendChild(modalHeader);
+		modalBody.appendChild(modalBodyText);
+		modalMain.appendChild(modalBody);
+		modalMain.appendChild(modalFooter);
 
 		ff.addClass(document.body, 'modal-open');
 		document.body.appendChild(wrapper);
