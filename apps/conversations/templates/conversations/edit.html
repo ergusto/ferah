@@ -56,6 +56,7 @@
 		ff.ready(function() {
 
 			var element = ff.create('div', ['fuck', 'bugger'], { 'id': 'hello' });
+			console.log(element);
 
 			ff.on(ff.qs('.js-delete'), 'click', function(event) {
 				event.preventDefault();

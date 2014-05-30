@@ -18,16 +18,14 @@ ff.components.conversation_list = (function() {
 
 		response.results.forEach(function(result, i) {
 			
-			var li = document.createElement('li');
-			var anchor = document.createElement('a');
-			var title = document.createTextNode(result.title);
+			var li = ff.create('li');
+			var anchor = ff.create('a', ['item_title'], { 'href': result.get_absolute_url });
+			var title = ff.text(result.title);
 			
 			if (result.label) {
 				ff.addClass(li, result.label);
 			}
-			ff.addClass(anchor, 'item_title');
 
-			anchor.setAttribute('href', result.get_absolute_url);
 			anchor.appendChild(title);
 			li.appendChild(anchor);
 			wrapper.appendChild(li);
@@ -35,16 +33,9 @@ ff.components.conversation_list = (function() {
 		});
 
 		if (response.next) {
-			var li = document.createElement('li');
-			var anchor = document.createElement('a');
-			var text = document.createTextNode('Load more');
-
-			ff.addClass(li, 'load-more');
-			ff.addClass(anchor, 'btn');
-			ff.addClass(anchor, 'btn-large');
-			ff.addClass(anchor, 'btn-block');
-			anchor.setAttribute('href', response.next);
-			anchor.setAttribute('id', 'js-conversations-load');
+			var li = ff.create('li', ['load-more']);
+			var anchor = ff.create('a', ['btn', 'btn-large', 'btn-block'], { 'href': response.next, 'id': 'js-conversations-load' });
+			var text = ff.text('Load more');
 
 			anchor.appendChild(text);
 			li.appendChild(anchor);
