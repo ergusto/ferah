@@ -1,7 +1,7 @@
 window.ff = window.ff || {};
-ff.components = ff.components || {};
+ff.pages = ff.pages || {};
 
-ff.components.conversation_list = (function() {
+ff.pages.conversation_list = (function() {
 
 	var conversation_list = {},
 		next = '', 
@@ -20,10 +20,10 @@ ff.components.conversation_list = (function() {
 			
 			var li = ff.create('li');
 			var anchor = ff.create('a', ['item_title'], { 'href': result.get_absolute_url });
-			var title = ff.text(result.title);
+			var title = ff.utils.utils.text(result.title);
 			
 			if (result.label) {
-				ff.addClass(li, result.label);
+				ff.utils.utils.addClass(li, result.label);
 			}
 
 			anchor.appendChild(title);
@@ -35,7 +35,7 @@ ff.components.conversation_list = (function() {
 		if (response.next) {
 			var li = ff.create('li', ['load-more']);
 			var anchor = ff.create('a', ['btn', 'btn-large', 'btn-block'], { 'href': response.next, 'id': 'js-conversations-load' });
-			var text = ff.text('Load more');
+			var text = ff.utils.text('Load more');
 
 			anchor.appendChild(text);
 			li.appendChild(anchor);

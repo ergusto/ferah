@@ -1,4 +1,5 @@
 window.ff = window.ff || {};
+ff.utils = ff.utils || {};
 
 (function() {
 
@@ -8,25 +9,14 @@ window.ff = window.ff || {};
 	ff.ready = function(callback) {
 		document.addEventListener('DOMContentLoaded', callback);
 	};
-	
-	// Get element(s) by CSS selector:
+	// Get element by CSS selector:
 	ff.qs = function(selector, scope) {
 		return (scope || document).querySelector(selector);
 	};
-	ff.qsa = function(selector, scope) {
-		return (scope || document).querySelectorAll(selector);
-	};
-
 	// addEventListener wrapper:
 	ff.on = function(target, type, callback, useCapture) {
 		target.addEventListener(type, callback, !!useCapture);
 	};
-
-	// removeEventListener wrapper:
-	ff.off = function(target, type, callback) {
-		target.removeEventListener(type, callback);
-	};
-
 	// Register events on elements that may or may not exist.
 	// ff.live('div a', 'click', funciton(event) {});
 	ff.live = (function() {
@@ -36,7 +26,7 @@ window.ff = window.ff || {};
 			var targetElement = event.target;
 
 			eventRegistry[event.type].forEach(function(entry) {
-				var potentialElements = ff.qsa(entry.selector);
+				var potentialElements = ff.utils.qsa(entry.selector);
 				var hasMatch = Array.prototype.indexOf.call(potentialElements, targetElement) >= 0;
 
 				if (hasMatch) {
@@ -57,16 +47,47 @@ window.ff = window.ff || {};
 			});
 		};
 	}());
+	// Create dom elements. Provide a list of class names
+	// and/or an object containing keys/values for attributes.
+	ff.create = function(tagName, classList, attributeObject) {
+		var element = document.createElement(tagName);
+		var classListType = typeof classList;
+		if (classList) {
+			for (var i = 0; i < classList.length; i++) {
+				ff.utils.addClass(element, classList[i]);
+			}
+		}
+		if (attributeObject) {
+			for (var property in attributeObject) {
+				if (attributeObject.hasOwnProperty(property)) {
+					element.setAttribute(property, attributeObject[property]);
+				}
+			}
+		}
+		return element;
+	};
+
+
+
+	// Get elements by CSS selector:
+	ff.utils.qsa = function(selector, scope) {
+		return (scope || document).querySelectorAll(selector);
+	};
+
+	// removeEventListener wrapper:
+	ff.utils.off = function(target, type, callback) {
+		target.removeEventListener(type, callback);
+	};
 
 	// Each implementation. Callback gets element and i
 	// params
 
-	ff.each = function(selector, callback) {
-		var elements = ff.qsa(selector);
+	ff.utils.each = function(selector, callback) {
+		var elements = ff.utils.qsa(selector);
 		Array.prototype.forEach.call(elements, callback);
 	};
 
-	ff.hasClass = function(element, className) {
+	ff.utils.hasClass = function(element, className) {
 		if (element.classList) {
 			return element.classList.contains(className);
 		} else {
@@ -74,14 +95,14 @@ window.ff = window.ff || {};
 		}
 	};
 
-	ff.removeClass = function(element, className) {
-		if (ff.hasClass(element, className)) {
+	ff.utils.removeClass = function(element, className) {
+		if (ff.utils.hasClass(element, className)) {
 			element.className = element.className.replace(new RegExp("(^|\\s)" + className + "(\\s|$)"), " ").replace(/\s$/, "");
 		}
 	};
 
 	// Add class
-	ff.addClass = function(element, className) {
+	ff.utils.addClass = function(element, className) {
 		if (element.classList) {
 			element.classList.add(className);
 		} else {
@@ -89,7 +110,7 @@ window.ff = window.ff || {};
 		}
 	};
 
-	ff.toggleClass = function(element, className) {
+	ff.utils.toggleClass = function(element, className) {
 		if (element.classList) {
 			element.classList.toggle(className);
 		} else {
@@ -106,24 +127,7 @@ window.ff = window.ff || {};
 		}
 	};
 
-	ff.create = function(tagName, classList, attributeObject) {
-		var element = document.createElement(tagName);
-		if (classList) {
-			for (var i = 0; i < classList.length; i++) {
-				ff.addClass(element, classList[i]);
-			}
-		}
-		if (attributeObject) {
-			for (var property in attributeObject) {
-				if (attributeObject.hasOwnProperty(property)) {
-					element.setAttribute(property, attributeObject[property])
-				}
-			}
-		}
-		return element;
-	};
-
-	ff.text = function(text) {
+	ff.utils.text = function(text) {
 		return document.createTextNode(text);
 	};
 

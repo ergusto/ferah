@@ -19,12 +19,12 @@ window.ff = window.ff || {};
 			modalBody = ff.create('div', ['modal-body']),
 			modalFooter = ff.create('footer', ['modal-footer']),
 			
-			modalBodyText = ff.text('Hello body'),
-			headerText = ff.text('Hello Modal'),
-			modalHeaderCloseText = ff.text('x');
+			modalBodyText = ff.utils.text('Hello body'),
+			headerText = ff.utils.text('Hello Modal'),
+			modalHeaderCloseText = ff.utils.text('x');
 
 		if (title) {
-			headerText = ff.text(title);
+			headerText = ff.utils.text(title);
 		}
 
 		this.modalCount++;
@@ -39,12 +39,12 @@ window.ff = window.ff || {};
 		modalMain.appendChild(modalBody);
 		modalMain.appendChild(modalFooter);
 
-		ff.addClass(document.body, 'modal-open');
+		ff.utils.addClass(document.body, 'modal-open');
 		document.body.appendChild(wrapper);
 
 		var closeHandler = function(event) {
 			self.modalCount--;
-			ff.removeClass(document.body, 'modal-open');
+			ff.utils.removeClass(document.body, 'modal-open');
 			document.body.removeChild(wrapper);
 		};
 
