@@ -1,7 +1,7 @@
 window.ff = window.ff || {};
 ff.utils = ff.utils || {};
 
-(function() {
+(function($) {
 
 	'use strict';
 
@@ -13,6 +13,11 @@ ff.utils = ff.utils || {};
 	ff.qs = function(selector, scope) {
 		return (scope || document).querySelector(selector);
 	};
+	// Get element by ID
+	ff.id = function(id, scope) {
+		return (scope || document).getElementById(id);
+	};
+
 	// addEventListener wrapper:
 	ff.on = function(target, type, callback, useCapture) {
 		target.addEventListener(type, callback, !!useCapture);
@@ -51,7 +56,6 @@ ff.utils = ff.utils || {};
 	// and/or an object containing keys/values for attributes.
 	ff.create = function(tagName, classList, attributeObject) {
 		var element = document.createElement(tagName);
-		var classListType = typeof classList;
 		if (classList) {
 			for (var i = 0; i < classList.length; i++) {
 				ff.utils.addClass(element, classList[i]);
@@ -73,20 +77,20 @@ ff.utils = ff.utils || {};
 	ff.utils.qsa = function(selector, scope) {
 		return (scope || document).querySelectorAll(selector);
 	};
-
+	// Allow for looping on nodes by chaining:
+	// ff.utils.qsa('.foo').forEach(function() {});
+	NodeList.prototype.forEach = Array.prototype.forEach;
 	// removeEventListener wrapper:
 	ff.utils.off = function(target, type, callback) {
 		target.removeEventListener(type, callback);
 	};
-
 	// Each implementation. Callback gets element and i
 	// params
-
 	ff.utils.each = function(selector, callback) {
 		var elements = ff.utils.qsa(selector);
 		Array.prototype.forEach.call(elements, callback);
 	};
-
+	// Returns true or false if element has provided class
 	ff.utils.hasClass = function(element, className) {
 		if (element.classList) {
 			return element.classList.contains(className);
@@ -94,14 +98,13 @@ ff.utils = ff.utils || {};
 			return new RegExp('(^| )' + className + '( |$)', 'gi').test(element.className);
 		}
 	};
-
+	// Removes class from element
 	ff.utils.removeClass = function(element, className) {
 		if (ff.utils.hasClass(element, className)) {
 			element.className = element.className.replace(new RegExp("(^|\\s)" + className + "(\\s|$)"), " ").replace(/\s$/, "");
 		}
 	};
-
-	// Add class
+	// Add a class to provided element
 	ff.utils.addClass = function(element, className) {
 		if (element.classList) {
 			element.classList.add(className);
@@ -109,7 +112,7 @@ ff.utils = ff.utils || {};
 			element.classList += ' ' + className;
 		}
 	};
-
+	// Toggle class on element
 	ff.utils.toggleClass = function(element, className) {
 		if (element.classList) {
 			element.classList.toggle(className);
@@ -126,9 +129,43 @@ ff.utils = ff.utils || {};
 			element.className = classes.join(' ');
 		}
 	};
-
+	// Create text node
 	ff.utils.text = function(text) {
 		return document.createTextNode(text);
 	};
+	// Get element's parent node with given tag name
+	ff.utils.parent = function(element, tagName) {
+		if (!element.parentNode) {
+			return;
+		}
+		if (element.parentNode.tagName.toLowerCase() === tagName.toLowerCase()) {
+			return element.parentNode;
+		}
+		return ff.utils.parent(element.parentNode, tagName);
+	};
+	// Removes element
+	ff.utils.remove = function(element) {
+		if (!element.parentNode) {
+			return;
+		}
+		element.parentNode.removeChild(element);
+	};
+	// Generate cookie
+	ff.utils.csrfcookie = function() {
+	    var cookieValue = null,
+	    	name = 'csrftoken';
+	    if (document.cookie && document.cookie != '') {
+	        var cookies = document.cookie.split(';');
+	        for (var i = 0; i < cookies.length; i++) {
+	            var cookie = jQuery.trim(cookies[i]);
+	            // Does this cookie string begin with the name we want?
+	            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+	                break;
+	            }
+	        }
+	    }
+	    return cookieValue;
+	};
 
-}());
+}(jQuery));

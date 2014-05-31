@@ -1,7 +1,7 @@
 window.ff = window.ff || {};
-ff.pages = ff.pages || {};
+ff.components = ff.components || {};
 
-ff.pages.conversation_list = (function() {
+ff.components.conversation_list = (function() {
 
 	var conversation_list = {},
 		next = '', 
@@ -14,16 +14,16 @@ ff.pages.conversation_list = (function() {
 
 	function render(response) {
 		
-		var wrapper = document.createElement('div');
+		var wrapper = ff.create('div');
 
 		response.results.forEach(function(result, i) {
 			
 			var li = ff.create('li');
 			var anchor = ff.create('a', ['item_title'], { 'href': result.get_absolute_url });
-			var title = ff.utils.utils.text(result.title);
+			var title = ff.utils.text(result.title);
 			
 			if (result.label) {
-				ff.utils.utils.addClass(li, result.label);
+				ff.utils.addClass(li, result.label);
 			}
 
 			anchor.appendChild(title);
@@ -49,9 +49,9 @@ ff.pages.conversation_list = (function() {
 
 	function loadConversations() {
 		if (next.length) {
-			var request = ff.ajax.getJSON(next);
+			var request = ff.utils.ajax.getJSON(next);
 		} else {
-			var request = ff.ajax.getJSON('/api/conversations/');
+			var request = ff.utils.ajax.getJSON('/api/conversations/');
 		}
 		request.done(function(response) {
 			render(response);
@@ -61,7 +61,7 @@ ff.pages.conversation_list = (function() {
 	function primeEventListeners() {
 		ff.live('#js-conversations-load', 'click', function(event){
 			event.preventDefault();
-			$(this).parent().remove();
+			ff.utils.remove(this.parentNode);
 			loadConversations();
 		});
 	}

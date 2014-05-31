@@ -12,7 +12,7 @@
 
 		</header>
 
-		<form action="" method="post">
+		<form action="{{ object.get_delete_url }}" method="post">
 			{% csrf_token %}
 			<div class="box__body">
 		    	<p>Are you sure you want to delete "{{ object }}"?</p>

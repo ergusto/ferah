@@ -1,6 +1,7 @@
 window.ff = window.ff || {};
+ff.utils = ff.utils || {};
 
-ff.ajax = (function($) {
+ff.utils.ajax = (function($) {
 
 	var ajax = {};
 
