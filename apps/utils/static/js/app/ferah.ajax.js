@@ -23,7 +23,16 @@ ff.utils.ajax = (function($) {
 		});
 	}
 
+	function getHTML(url) {
+		return $.ajax({
+			type: 'GET',
+			dataType: 'html',
+			url: url,
+		});
+	}
+
 	ajax.getJSON = getJSON;
+	ajax.getHTML = getHTML;
 
 	return ajax;
 

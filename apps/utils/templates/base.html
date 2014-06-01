@@ -20,7 +20,7 @@
 					<div id="user-dts" class="box">
 
 						<a class="auth-a" href="{% url 'home' %}"><i class="fa fa-home"></i></a>
-						<a class="auth-a" href="{% url 'conversation_create' %}"><i class="fa fa-plus"></i></a>
+						<a class="js-convo-create auth-a" href="{% url 'conversation_create' %}"><i class="fa fa-plus"></i></a>
 						<a class="auth-a" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i></a>
 
 					</div>
@@ -69,6 +69,27 @@
 	{% block script_templates %}{% endblock script_templates %}
 
 	{% include 'includes/scripts.html' %}{% block scripts %}{% endblock scripts %}
+
+	<script type="text/javascript">
+		window.ff = window.ff || {};
+
+		ff.ready(function() {
+			ff.on(ff.qs('.js-convo-create'), 'click', function(event) {
+				event.preventDefault();
+
+				var request = ff.utils.ajax.getHTML('/conversations/create/');
+				request.done(function(response) {
+					
+					var dummy = ff.create('div');
+					dummy.innerHTML = response;
+					var html = ff.templates.utils.empty_box('Create Conversation', dummy);
+					var modal = new ff.objects.Modal();
+					modal.render(html);
+				});
+			});
+		});
+
+	</script>
        
 </body>
 

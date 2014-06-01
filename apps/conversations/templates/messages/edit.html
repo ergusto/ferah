@@ -34,6 +34,17 @@
 		$('#js-conversation-form').jangoForm({
 			redirectOnSuccess: true,
 		});
+
+		window.ff = window.ff || {};
+
+		ff.ready(function() {
+			ff.on(ff.qs('.js-delete'), 'click', function(event) {
+				event.preventDefault();
+				var modal = new ff.objects.Modal();
+				var url = this.getAttribute("href");
+				modal.render(ff.templates.utils.confirm_delete_object_form(url));
+			});
+		});
 	</script>
 
 {% endblock scripts %}

@@ -1,9 +1,20 @@
 window.ff = window.ff || {};
 ff.utils = ff.utils || {};
 
-(function($) {
+(function() {
 
 	'use strict';
+
+	// Add trim method onto string prototype if
+	// no native version
+	if (!String.prototype.trim) {
+		String.prototype.trim = function () {
+			return this.replace(/^\s+|\s+$/g, '');
+		};
+	};
+	// Allow for looping on nodes by chaining:
+	// ff.utils.qsa('.foo').forEach(function() {});
+	NodeList.prototype.forEach = Array.prototype.forEach;
 
 	// Dom ready
 	ff.ready = function(callback) {
@@ -77,9 +88,6 @@ ff.utils = ff.utils || {};
 	ff.utils.qsa = function(selector, scope) {
 		return (scope || document).querySelectorAll(selector);
 	};
-	// Allow for looping on nodes by chaining:
-	// ff.utils.qsa('.foo').forEach(function() {});
-	NodeList.prototype.forEach = Array.prototype.forEach;
 	// removeEventListener wrapper:
 	ff.utils.off = function(target, type, callback) {
 		target.removeEventListener(type, callback);
@@ -150,22 +158,21 @@ ff.utils = ff.utils || {};
 		}
 		element.parentNode.removeChild(element);
 	};
-	// Generate cookie
+	// Generate cokie
 	ff.utils.csrfcookie = function() {
-	    var cookieValue = null,
-	    	name = 'csrftoken';
-	    if (document.cookie && document.cookie != '') {
-	        var cookies = document.cookie.split(';');
-	        for (var i = 0; i < cookies.length; i++) {
-	            var cookie = jQuery.trim(cookies[i]);
-	            // Does this cookie string begin with the name we want?
-	            if (cookie.substring(0, name.length + 1) == (name + '=')) {
-	                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-	                break;
-	            }
-	        }
-	    }
-	    return cookieValue;
+		var cookieValue = null,
+			name = 'csrftoken';
+		if (document.cookie && document.cookie !== '') {
+			var cookies = document.cookie.split(';');
+			for (var i = 0; i < cookies.length; i++) {
+				var cookie = cookies[i].trim();
+				if (cookie.substring(0, name.length + 1) == (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
 	};
 
-}(jQuery));
+}());

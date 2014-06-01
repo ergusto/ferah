@@ -20,15 +20,7 @@
 
 		</header>
 
-		{% if not object %}
-
 		<form id="js-conversation-form" class="clearfix page_form" action="{% url 'conversation_create' %}" method="post">
-
-		{% else %}
-
-		<form id="js-conversation-form" class="clearfix page_form" action="{{ object.get_edit_url }}" method="post">
-
-		{% endif %}
 
 			{% csrf_token %}
 

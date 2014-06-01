@@ -5,31 +5,16 @@ ff.objects = ff.objects || {};
 
 	'use strict';
 
-	var Modal = function() {
-		this.modalCount = 0;
-	};
+	var Modal = function() {};
 
-	Modal.prototype.render = function(title, html, options) {
-		options = options || {};
-		var self = this;
+	Modal.prototype.render = function(html) {
 
 		var wrapper = ff.create('div', ['modal-wrapper']),
 			modalMainClasses = ['modal', 'col-xs-10', 'col-xs-offset-1', 'col-sm-6', 'col-sm-offset-3', 'col-md-4', 'col-md-offset-4'],
-			modalMain = ff.create('div', modalMainClasses),
-			modalHeader = ff.create('header', ['box__header']),
-			headerTitle = ff.create('h3'),
-			headerText = ff.utils.text(title),
-			modalBody = ff.create('div', ['modal-body']);
+			modalMain = ff.create('div', modalMainClasses);
 
-		if (html) {
-			modalBody.appendChild(html);
-		}
-
+		modalMain.appendChild(html);
 		wrapper.appendChild(modalMain);
-		headerTitle.appendChild(headerText);
-		modalHeader.appendChild(headerTitle);
-		modalMain.appendChild(modalHeader);
-		modalMain.appendChild(modalBody);
 
 		ff.utils.addClass(document.body, 'modal-open');
 		document.body.appendChild(wrapper);

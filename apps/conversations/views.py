@@ -2,6 +2,8 @@ import csv
 from datetime import date
 
 from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.views.generic import View, FormView, DetailView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
@@ -38,9 +40,15 @@ class ConversationListView(LoginRequiredMixin, ListView):
 		serializer = PaginatedConversationSerializer(queryset, context=serializer_context)
 		return JSONResponse(serializer.data, status=200)
 
-class ConversationFormView(LoginRequiredMixin, FormView):
+class ConversationFormView(LoginRequiredMixin, AjaxResponseMixin, FormView):
 	form_class = ConversationForm
 	template_name = 'conversations/create.html'
+
+	def get_ajax(self, request, *args, **kwargs):
+		form_class = self.get_form_class()
+		form = self.get_form(form_class)
+		context = self.get_context_data(form=form)
+		return render_to_response('conversations/ajax/create.html', context, context_instance=RequestContext(request))
 
 	def form_valid(self, form):
 		self.object = form.save(commit=False)
@@ -159,7 +167,7 @@ class ConversationMessageFormView(LoginRequiredMixin, FormView):
 
 class MessageEditView(LoginRequiredMixin, UpdateView):
 	model = Message
-	template_name = 'messages/form.html'
+	template_name = 'messages/edit.html'
 	form_class = MessageForm
 
 	def get_object(self, **kwargs):
