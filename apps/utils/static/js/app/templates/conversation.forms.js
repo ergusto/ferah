@@ -15,11 +15,11 @@ ff.templates.forms = ff.templates.forms || {};
 			formGroup1 = ff.create('div', ['form-group']),
 			titleLabel = ff.create('label'),
 			titleLabelText = ff.utils.text('Title:'),
-			titleInput = ff.create('input', [], { 'id': 'id_title', 'maxlength': '140', 'name': 'title', 'type': 'text' }),
+			titleInput = ff.create('input', [], { 'id': 'id_conversation_create_title', 'maxlength': '140', 'name': 'title', 'type': 'text' }),
 
 			formGroup2 = ff.create('div', ['form-group']),
 			selectWrapper = ff.create('div', ['select-style']),
-			select = ff.create('select', { 'id': 'id_label', 'name': 'label' }),
+			select = ff.create('select', { 'id': 'id_conversation_create_label', 'name': 'label' }),
 			defaultOption = ff.create('option', { 'selected': 'selected' }),
 			defaultOptionText = ff.utils.text('---------'),
 			firstOption = ff.create('option', { 'value': 'blue' }),

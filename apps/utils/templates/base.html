@@ -77,10 +77,15 @@
 			ff.on(ff.qs('.js-convo-create'), 'click', function(event) {
 				event.preventDefault();
 
-				var form = ff.templates.forms.create_conversation_form();
-				var box = ff.templates.utils.empty_box('Create Conversation', form);
+				var html = ff.templates.forms.create_conversation_form();
+				var box = ff.templates.utils.empty_box('Create Conversation', html);
 				var modal = new ff.objects.Modal();
-				modal.render(box);
+				modal.render(box, function() {
+					$('#js-conversation-form').jangoForm({
+						redirectOnSuccess: true,
+						idNamingConvention: '#id_conversation_create_',
+					});
+				});
 			});
 		});
 
