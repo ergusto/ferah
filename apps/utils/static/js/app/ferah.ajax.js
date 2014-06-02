@@ -13,7 +13,7 @@ ff.utils.ajax = (function($) {
 		});
 	}
 
-	function postJSON(object, url) {
+	function postJSON(url, object) {
 		var data = JSON.stringify(object);
 		return $.ajax({
 			type: 'POST',
