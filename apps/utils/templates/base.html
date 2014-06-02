@@ -77,15 +77,10 @@
 			ff.on(ff.qs('.js-convo-create'), 'click', function(event) {
 				event.preventDefault();
 
-				var request = ff.utils.ajax.getHTML('/conversations/create/');
-				request.done(function(response) {
-					
-					var dummy = ff.create('div');
-					dummy.innerHTML = response;
-					var html = ff.templates.utils.empty_box('Create Conversation', dummy);
-					var modal = new ff.objects.Modal();
-					modal.render(html);
-				});
+				var form = ff.templates.forms.create_conversation_form();
+				var box = ff.templates.utils.empty_box('Create Conversation', form);
+				var modal = new ff.objects.Modal();
+				modal.render(box);
 			});
 		});
 

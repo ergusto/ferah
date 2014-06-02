@@ -7,7 +7,7 @@ ff.objects = ff.objects || {};
 
 	var Modal = function() {};
 
-	Modal.prototype.render = function(html) {
+	Modal.prototype.render = function(html, callback) {
 
 		var wrapper = ff.create('div', ['modal-wrapper']),
 			modalMainClasses = ['modal', 'col-xs-10', 'col-xs-offset-1', 'col-sm-6', 'col-sm-offset-3', 'col-md-4', 'col-md-offset-4'],
@@ -33,6 +33,10 @@ ff.objects = ff.objects || {};
 
 		ff.on(wrapper, 'click', closeHandler, false);
 		ff.live('.modal-cancel', 'click', closeHandler, false);
+
+		if (callback && typeof callback === 'function') {
+			callback();
+		}
 
 	};
 

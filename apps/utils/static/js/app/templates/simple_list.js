@@ -3,10 +3,10 @@ ff.templates = ff.templates || {};
 
 (function() {
 
-	ff.templates.simple_list = function(response) {
+	ff.templates.simple_list = function(items, next) {
 		var wrapper = ff.create('div');
 
-		response.results.forEach(function(result, i) {
+		items.forEach(function(result, i) {
 			
 			var li = ff.create('li');
 			var anchor = ff.create('a', ['item_title'], { 'href': result.get_absolute_url });
@@ -22,16 +22,16 @@ ff.templates = ff.templates || {};
 
 		});
 
-		if (response.next) {
+		if (next) {
+
 			var li = ff.create('li', ['load-more']);
-			var anchor = ff.create('a', ['btn', 'btn-large', 'btn-block'], { 'href': response.next, 'id': 'js-conversations-load' });
+			var anchor = ff.create('a', ['btn', 'btn-large', 'btn-block'], { 'href': next, 'id': 'js-conversations-load' });
 			var text = ff.utils.text('Load more');
 
 			anchor.appendChild(text);
 			li.appendChild(anchor);
 			wrapper.appendChild(li);
-
-			next = response.next;
+			
 		}
 		return wrapper
 	}

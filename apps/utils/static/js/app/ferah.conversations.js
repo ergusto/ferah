@@ -14,7 +14,7 @@ ff.components.conversation_list = (function() {
 
 	function render(response) {
 		
-		var wrapper = ff.templates.simple_list(response);
+		var wrapper = ff.templates.simple_list(response.results, response.next);
 		element.innerHTML += wrapper.innerHTML;
 
 	}

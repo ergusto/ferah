@@ -66,6 +66,12 @@ ff.utils = ff.utils || {};
 	// Create dom elements. Provide a list of class names
 	// and/or an object containing keys/values for attributes.
 	ff.create = function(tagName, classList, attributeObject) {
+		// If first arg is not an array, switch variables
+		if (!Object.prototype.toString.call(classList) === '[object Array]') {
+			var tmp = classList;
+			classList = attributeObject;
+			attributeObject = tmp;
+		}
 		var element = document.createElement(tagName);
 		if (classList) {
 			for (var i = 0; i < classList.length; i++) {
