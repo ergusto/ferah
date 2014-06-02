@@ -1,5 +1,6 @@
 body.modal-open {
     overflow: hidden;
+    position: relative;
 }
 .modal-wrapper {
 	position: absolute;
