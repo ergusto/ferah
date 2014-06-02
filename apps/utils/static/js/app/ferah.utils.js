@@ -67,7 +67,7 @@ ff.utils = ff.utils || {};
 	// and/or an object containing keys/values for attributes.
 	ff.create = function(tagName, classList, attributeObject) {
 		// If first arg is not an array, switch variables
-		if (!Object.prototype.toString.call(classList) === '[object Array]') {
+		if (Object.prototype.toString.call(classList) === '[object Object]') {
 			var tmp = classList;
 			classList = attributeObject;
 			attributeObject = tmp;

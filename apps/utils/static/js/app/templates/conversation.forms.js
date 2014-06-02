@@ -10,17 +10,17 @@ ff.templates.forms = ff.templates.forms || {};
 
 		var form = ff.create('form', ['clearfix', 'page_form'], { 'id': 'js-conversation-form', 'action': '/conversations/create/', 'method': 'post' }),
 			csrftoken = ff.utils.csrfcookie(),
-			csrfinput = ff.create('input', [], { 'type': 'hidden', 'name': 'csrfmiddlewaretoken', 'value': csrftoken }),
+			csrfinput = ff.create('input', { 'type': 'hidden', 'name': 'csrfmiddlewaretoken', 'value': csrftoken }),
 			
 			formGroup1 = ff.create('div', ['form-group']),
 			titleLabel = ff.create('label'),
 			titleLabelText = ff.utils.text('Title:'),
-			titleInput = ff.create('input', [], { 'id': 'id_conversation_create_title', 'maxlength': '140', 'name': 'title', 'type': 'text' }),
+			titleInput = ff.create('input', { 'id': 'id_conversation_create_title', 'maxlength': '140', 'name': 'title', 'type': 'text' }),
 
 			formGroup2 = ff.create('div', ['form-group']),
 			selectWrapper = ff.create('div', ['select-style']),
 			select = ff.create('select', { 'id': 'id_conversation_create_label', 'name': 'label' }),
-			defaultOption = ff.create('option', { 'selected': 'selected' }),
+			defaultOption = ff.create('option', { 'value': '', 'selected': 'selected' }),
 			defaultOptionText = ff.utils.text('---------'),
 			firstOption = ff.create('option', { 'value': 'blue' }),
 			firstOptionText = ff.utils.text('Fergus'),
