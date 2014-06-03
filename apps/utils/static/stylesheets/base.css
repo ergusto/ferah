@@ -34,7 +34,9 @@
   font-weight: 400;
   src: local('Open Sans Italic'), local('OpenSans-Italic'), url('fonts/open_sans/OpenSans-Italic.ttf') format('truetype');
 }
-
+html {
+  height: 100%;
+}
 html, body {
 	margin: 0; 
 	padding: 0;
@@ -45,7 +47,6 @@ body {
 	/*background: rgba(249, 249, 249, 0.5);*/
   background: #f4f4f4;
 	min-height: 100%;
-  height: 100%;
 	font-family: 'Open Sans';
   padding-bottom: 38px;
   word-wrap: break-word;

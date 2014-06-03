@@ -38,7 +38,7 @@
 				{% csrf_token %}
 
 				<div class="form-group">
-					<input id="id_title" maxlength="80" name="title" type="text">
+					<input id="id_tag_title" maxlength="80" name="title" type="text">
 					<ul id="input_select">
 				</div>
 				<button class="btn" type="submit">Add tag</button>
@@ -151,6 +151,7 @@
 		$('#conversation_tag_form').jangoForm({
 			handlebarsTemplate: $('#tag_template'),
 			appendTo: $('.tags_list'),
+			idNamingConvention: '#id_tag_',
 		});
 		
 		$('#js-messages-list').jangoEndless({

@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'apps.login',
     'apps.tags',
     'apps.utils',
+    'apps.notifications',
 )
 
 MIDDLEWARE_CLASSES = (

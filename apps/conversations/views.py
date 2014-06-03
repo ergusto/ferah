@@ -178,7 +178,7 @@ class MessageEditView(LoginRequiredMixin, UpdateView):
 		if self.request.is_ajax():
 			serializer = MessageSerializer(self.object)
 			return JSONResponse(serializer.data, status=200)
-		return HttpResponseRedirect(self.object.get_absolute_url())
+		return HttpResponseRedirect(self.object.conversation.get_absolute_url())
 
 	def form_invalid(self, form):
 		if self.request.is_ajax():

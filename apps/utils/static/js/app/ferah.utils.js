@@ -114,8 +114,12 @@ ff.utils = ff.utils || {};
 	};
 	// Removes class from element
 	ff.utils.removeClass = function(element, className) {
-		if (ff.utils.hasClass(element, className)) {
-			element.className = element.className.replace(new RegExp("(^|\\s)" + className + "(\\s|$)"), " ").replace(/\s$/, "");
+		if (element.classList) {
+			element.classList.remove(className);
+		} else {
+			if (ff.utils.hasClass(element, className)) {
+				element.className = element.className.replace(new RegExp("(^|\\s)" + className + "(\\s|$)"), " ").replace(/\s$/, "");
+			}
 		}
 	};
 	// Add a class to provided element

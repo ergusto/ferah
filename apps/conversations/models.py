@@ -1,12 +1,15 @@
 from django.db import models
-from django.db.models.signals import pre_save
+from django.db.models.signals import pre_save, post_save
+from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from django.template.defaultfilters import slugify
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.contenttypes.models import ContentType
 
 from apps.tags.models import Tag
+from apps.notifications.models import Notification
 
 # Create your models here.
 
@@ -102,6 +105,23 @@ class Conversation(models.Model):
 			self.tags.remove(tag)
 			self.save()
 
+
+
+@receiver(post_save, sender=Conversation)
+def create_conversation_signal(sender, instance, created, **kwargs):
+	content_type = ContentType.objects.get_for_model(instance)
+	for user in User.objects.all():
+		if user == instance.user:
+			pass
+		else:
+			notification = Notification()
+			notification.user = user
+			notification.content_type = content_type
+			notification.object_id = instance.id
+			if created:
+				notification.type = notification.CREATED
+			notification.save()
+
 @receiver(pre_save, sender=Conversation)
 def slugify_if_title_changed(sender, instance, **kwargs):
 	try:
@@ -111,6 +131,7 @@ def slugify_if_title_changed(sender, instance, **kwargs):
 	else:
 		if not obj.title == instance.title:
 			instance.slug = slugify(instance.title)
+
 
 class Message(models.Model):
 	user = models.ForeignKey('auth.User', related_name='messages')
@@ -135,3 +156,18 @@ class Message(models.Model):
 		return reverse('message_edit', kwargs={
 			'pk': self.id,
 		})
+
+@receiver(post_save, sender=Message)
+def create_message_signal(sender, instance, created, **kwargs):
+	content_type = ContentType.objects.get_for_model(instance)
+	for user in User.objects.all():
+		if user == instance.user:
+			pass
+		else:
+			notification = Notification()
+			notification.user = user
+			notification.content_type = content_type
+			notification.object_id = instance.id
+			if created:
+				notification.type = notification.CREATED
+			notification.save()

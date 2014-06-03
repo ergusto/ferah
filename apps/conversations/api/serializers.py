@@ -6,6 +6,7 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 	user = serializers.Field(source='user.username')
 	conversation = serializers.HyperlinkedRelatedField(view_name='conversation-detail')
 	get_edit_url = serializers.Field(source='get_edit_url')
+	date = serializers.DateTimeField(format='%B %d, %Y, %I:%M %p')
 
 	class Meta:
 		model = Message
@@ -19,6 +20,7 @@ class ConversationSerializer(serializers.HyperlinkedModelSerializer):
 	get_delete_url = serializers.Field(source='get_delete_url')
 	get_add_tag_url = serializers.Field(source='get_add_tag_url')
 	get_remove_tag_url = serializers.Field(source='get_remove_tag_url')
+	created = serializers.DateTimeField(format='%B %d, %Y, %I:%M %p')
 
 	class Meta:
 		model = Conversation
