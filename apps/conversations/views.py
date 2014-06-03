@@ -135,7 +135,7 @@ class ConversationEditView(LoginRequiredMixin, AjaxResponseMixin, UpdateView):
 
 class ConversationMessageFormView(LoginRequiredMixin, FormView):
 	form_class = MessageForm
-	template_name = 'conversations/message_form.html'
+	template_name = 'messages/edit.html'
 
 	def get_object(self, **kwargs):
 		return Conversation.objects.get(slug=self.kwargs['slug'])

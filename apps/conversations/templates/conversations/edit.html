@@ -56,9 +56,11 @@
 		ff.ready(function() {
 			ff.on(ff.qs('.js-delete'), 'click', function(event) {
 				event.preventDefault();
-				var modal = new ff.objects.Modal();
 				var url = this.getAttribute("href");
-				modal.render(ff.templates.utils.confirm_delete_object_form(url));
+				var html = ff.templates.utils.confirm_delete_object_form(url);
+				var box = ff.templates.utils.empty_box('Delete', html);
+				var modal = new ff.objects.Modal();
+				modal.render(box);
 			});
 		});
 

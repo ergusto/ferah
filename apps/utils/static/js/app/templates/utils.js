@@ -7,7 +7,7 @@ ff.templates.utils = ff.templates.utils || {};
 	'use strict';
 
 	ff.templates.utils.empty_box = function(title, html) {
-		var box = ff.create('div'),
+		var box = ff.create('div', ['box']),
 				boxHeader = ff.create('header', ['box__header']),
 		 		boxHeaderTitle = ff.create('h3'),
 		 		boxHeaderTitleText = ff.utils.text(title),
@@ -27,9 +27,6 @@ ff.templates.utils = ff.templates.utils || {};
 		var csrftoken = ff.utils.csrfcookie(),
 			csrfinput = ff.create('input', { 'type': 'hidden', 'name': 'csrfmiddlewaretoken', 'value': csrftoken }),
 	 		form = ff.create('form', { 'action': url, 'method': 'post' }),
-	 		boxHeader = ff.create('header', ['box__header']),
-	 		boxHeaderTitle = ff.create('h3'),
-	 		boxHeaderTitleText = ff.utils.text('Delete'),
 			boxBody = ff.create('div', ['box__body']),
 			bodyParagraph = ff.create('p'),
 			bodyParagraphText = ff.utils.text('Are you sure you want to delete this object?'),
@@ -38,10 +35,6 @@ ff.templates.utils = ff.templates.utils || {};
 			submit = ff.create('input', ['btn'], { 'type': 'submit', 'value': 'Confirm' }),
 			cancel = ff.create('a', ['btn', 'modal-cancel'], { 'href': '#' }),
 			cancelText = ff.utils.text('Cancel');
-
-		boxHeaderTitle.appendChild(boxHeaderTitleText);
-		boxHeader.appendChild(boxHeaderTitle);
-		form.appendChild(boxHeader);
 
 		bodyParagraph.appendChild(bodyParagraphText);
 		boxBody.appendChild(bodyParagraph);

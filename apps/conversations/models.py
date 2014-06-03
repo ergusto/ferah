@@ -1,5 +1,5 @@
 from django.db import models
-from django.db.models.signals import pre_save, post_save
+from django.db.models.signals import pre_save, post_save, pre_delete
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.utils import timezone
@@ -105,23 +105,6 @@ class Conversation(models.Model):
 			self.tags.remove(tag)
 			self.save()
 
-
-
-@receiver(post_save, sender=Conversation)
-def create_conversation_signal(sender, instance, created, **kwargs):
-	content_type = ContentType.objects.get_for_model(instance)
-	for user in User.objects.all():
-		if user == instance.user:
-			pass
-		else:
-			notification = Notification()
-			notification.user = user
-			notification.content_type = content_type
-			notification.object_id = instance.id
-			if created:
-				notification.type = notification.CREATED
-			notification.save()
-
 @receiver(pre_save, sender=Conversation)
 def slugify_if_title_changed(sender, instance, **kwargs):
 	try:
@@ -139,6 +122,9 @@ class Message(models.Model):
 	
 	text = models.TextField(max_length=10000)
 	date = models.DateTimeField(null=True, blank=True, editable=False)
+
+	def __unicode__(self):
+		return unicode('message in %s' % self.conversation)
 
 	def save(self, *args, **kwargs):
 		if not self.id:
@@ -169,5 +155,11 @@ def create_message_signal(sender, instance, created, **kwargs):
 			notification.content_type = content_type
 			notification.object_id = instance.id
 			if created:
-				notification.type = notification.CREATED
+				notification.type = notification.POSTED
 			notification.save()
+
+@receiver(pre_delete, sender=Message)
+def delete_message_notifications(sender, instance, **kwargs):
+	content_type = ContentType.objects.get_for_model(instance)
+	notifications = Notification.objects.filter(content_type=content_type, object_id=instance.id)
+	notifications.delete()
