@@ -9,9 +9,7 @@ from rest_framework.routers import DefaultRouter
 
 from apps.conversations.views import RecentMessgaesListView
 from apps.conversations.api.views import ConversationViewSet, MessageViewSet
-from apps.home.views import HomeView
-from apps.login.views import LoginView
-from apps.utils.views import UserMessagesView
+from apps.utils.views import HomeView, UserMessagesView, LoginView
 
 router = DefaultRouter()
 router.register(r'conversations', ConversationViewSet)

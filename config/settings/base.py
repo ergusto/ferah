@@ -44,8 +44,6 @@ INSTALLED_APPS = (
     'rest_framework',
 
     'apps.conversations',
-    'apps.home',
-    'apps.login',
     'apps.tags',
     'apps.utils',
 )
