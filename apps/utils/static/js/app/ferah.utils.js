@@ -24,10 +24,6 @@ ff.utils = ff.utils || {};
 	ff.qs = function(selector, scope) {
 		return (scope || document).querySelector(selector);
 	};
-	// Get element by ID
-	ff.id = function(id, scope) {
-		return (scope || document).getElementById(id);
-	};
 
 	// addEventListener wrapper:
 	ff.on = function(target, type, callback, useCapture) {
@@ -63,10 +59,10 @@ ff.utils = ff.utils || {};
 			});
 		};
 	}());
-	// Create dom elements. Provide a list of class names
+	// Create dom element. Provide a list of class names
 	// and/or an object containing keys/values for attributes.
 	ff.create = function(tagName, classList, attributeObject) {
-		// If first arg is not an array, switch variables
+		// If second arg is not an array, swap value with third
 		if (Object.prototype.toString.call(classList) === '[object Object]') {
 			var tmp = classList;
 			classList = attributeObject;
