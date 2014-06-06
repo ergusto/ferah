@@ -70,6 +70,8 @@
 
 	{% include 'includes/scripts.html' %}{% block scripts %}{% endblock scripts %}
 
+	{% if user.is_authenticated %}
+
 	<script type="text/javascript">
 		window.ff = window.ff || {};
 
@@ -90,6 +92,8 @@
 		});
 
 	</script>
+
+	{% endif %}
        
 </body>
 

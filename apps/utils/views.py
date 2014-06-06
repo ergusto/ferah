@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth import REDIRECT_FIELD_NAME, authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.views.decorators.debug import sensitive_post_parameters
+from django.core.urlresolvers import reverse
 
 from braces.views import LoginRequiredMixin, AjaxResponseMixin, AnonymousRequiredMixin
 
