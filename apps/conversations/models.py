@@ -9,7 +9,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.contenttypes.models import ContentType
 
 from apps.tags.models import Tag
-from apps.notifications.models import Notification
 
 # Create your models here.
 
@@ -142,24 +141,3 @@ class Message(models.Model):
 		return reverse('message_edit', kwargs={
 			'pk': self.id,
 		})
-
-@receiver(post_save, sender=Message)
-def create_message_signal(sender, instance, created, **kwargs):
-	content_type = ContentType.objects.get_for_model(instance)
-	for user in User.objects.all():
-		if user == instance.user:
-			pass
-		else:
-			notification = Notification()
-			notification.user = user
-			notification.content_type = content_type
-			notification.object_id = instance.id
-			if created:
-				notification.type = notification.POSTED
-			notification.save()
-
-@receiver(pre_delete, sender=Message)
-def delete_message_notifications(sender, instance, **kwargs):
-	content_type = ContentType.objects.get_for_model(instance)
-	notifications = Notification.objects.filter(content_type=content_type, object_id=instance.id)
-	notifications.delete()
