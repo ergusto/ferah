@@ -10,6 +10,7 @@ from django.views.decorators.debug import sensitive_post_parameters
 from braces.views import LoginRequiredMixin, AjaxResponseMixin, AnonymousRequiredMixin
 
 from apps.conversations.models import Message
+from apps.conversations.models import Conversation
 from apps.conversations.utils.serializers import PaginatedMessageSerializer, MessageSerializer, ConversationSerializer, PaginatedConversationSerializer
 
 from apps.utils.http import JSONResponse
