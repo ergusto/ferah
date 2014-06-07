@@ -50,7 +50,7 @@
 
 			<footer class="box__footer clearfix">
 
-				<a class="pull-right btn btn-small" href="{{ object.get_delete_url }}">Delete tag</a>
+				<a class="js-delete pull-right btn btn-small" href="{{ object.get_delete_url }}">Delete tag</a>
 
 			</footer>
 
@@ -93,6 +93,19 @@
 			handlebarsTemplate: $("#conversation_list_template"),
 			appendTo: $("#js-conversations-list"),
 			eventElementID: "#js-conversations-load",
+		});
+	});
+
+	window.ff = window.ff || {};
+
+	ff.ready(function() {
+		ff.on(ff.qs('.js-delete'), 'click', function(event) {
+			event.preventDefault();
+			var url = this.getAttribute("href");
+			var html = ff.templates.utils.confirm_delete_object_form(url);
+			var box = ff.templates.utils.empty_box('Delete', html);
+			var modal = new ff.objects.Modal();
+			modal.render(box);
 		});
 	});
 
