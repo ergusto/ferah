@@ -83,7 +83,7 @@
 				var box = ff.templates.utils.empty_box('Create Conversation', form);
 				var modal = new ff.objects.Modal();
 				modal.render(box, function() {
-					$('#js-conversation-form').jangoForm({
+					$('#js-conversation-modal-form').jangoForm({
 						redirectOnSuccess: true,
 						idNamingConvention: '#id_conversation_create_',
 					});

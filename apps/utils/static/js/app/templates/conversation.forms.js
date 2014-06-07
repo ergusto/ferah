@@ -8,7 +8,7 @@ ff.templates.forms = ff.templates.forms || {};
 
 	ff.templates.forms.create_conversation_form = function() {
 
-		var form = ff.create('form', ['clearfix', 'page_form'], { 'id': 'js-conversation-form', 'action': '/conversations/create/', 'method': 'post' }),
+		var form = ff.create('form', ['clearfix', 'page_form'], { 'id': 'js-conversation-modal-form', 'action': '/conversations/create/', 'method': 'post' }),
 			csrftoken = ff.utils.csrfcookie(),
 			csrfinput = ff.create('input', { 'type': 'hidden', 'name': 'csrfmiddlewaretoken', 'value': csrftoken }),
 			
