@@ -1,0 +1,101 @@
+{% spaceless %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<title>ferah</title>
+<link rel="shortcut icon" href="{{ STATIC_URL }}favicon.ico">
+{% include 'includes/stylesheets.html' %}{% block stylesheets %}{% endblock stylesheets %}
+
+</head>
+
+<body>
+	
+	{% if user.is_authenticated %}
+		<header class="container">
+
+			<div class="row">
+
+				<div class="col-xs-12">
+
+					<div id="user-dts" class="box">
+
+						<a class="auth-a" href="{% url 'home' %}"><i class="fa fa-home"></i></a>
+						<a class="js-convo-create auth-a" href="{% url 'conversation_create' %}"><i class="fa fa-plus"></i></a>
+						<a class="auth-a" href="{% url 'logout' %}"><i class="fa fa-sign-out"></i></a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</header>
+
+	{% endif %}
+
+    <main class="container">
+
+		{% block sidebar %}{% endblock sidebar %}
+
+    	<div class="row">
+
+    		{% block content %}{% endblock content %}
+
+    	</div>
+
+    </main>
+
+	{% if user.is_authenticated %}
+
+	    <footer class="container-fluid footer">
+
+	    	<div class="row">
+
+	    		<div class="col-xs-12">
+
+			    	<p class="pull-left"><a href="{% url 'utils' %}">{{ user }}</a></p>
+		    		<a class="pull-right" href="{% url 'recent_messages' %}"><i class="fa fa-clock-o"></i> <span>recent</span></a>
+
+		    	</div>
+
+	    	</div>
+
+	    </footer>
+
+	{% endif %}
+	
+	{% block script_templates %}{% endblock script_templates %}
+
+	{% include 'includes/scripts.html' %}{% block scripts %}{% endblock scripts %}
+
+	{% if user.is_authenticated %}
+
+	<script type="text/javascript">
+		window.ff = window.ff || {};
+
+		ff.ready(function() {
+			ff.on(ff.qs('.js-convo-create'), 'click', function(event) {
+				event.preventDefault();
+
+				var form = ff.templates.forms.create_conversation_form();
+				var box = ff.templates.utils.empty_box('Create Conversation', form);
+				var modal = new ff.objects.Modal();
+				modal.render(box, function() {
+					$('#js-conversation-modal-form').jangoForm({
+						redirectOnSuccess: true,
+						idNamingConvention: '#id_conversation_create_',
+					});
+				});
+			});
+		});
+
+	</script>
+
+	{% endif %}
+       
+</body>
+
+</html>
+{% endspaceless %}

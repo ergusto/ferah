@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-12 col-xs-offset-0 col-sm-6 col-sm-offset-1 col-md-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+			<h3>{{ object.title }}</h3>
+		</header>
+
+		<form id="js-message-form" class="clearfix page_form" action="{{ object.get_add_message_url }}" method="post" autocomplete="off">
+
+			{% csrf_token %}
+
+			{% with message_form as page_form %}
+				{% include 'includes/forms/page_form.html' %}
+			{% endwith %}
+			
+		</form>
+
+	</div>
+
+</div>
+
+<div class="col-xs-12 col-xs-offset-0 col-sm-4 col-md-3 col-sm-offset-0 col-md-offset-0">
+	<aside id="right-aside" class="box">
+
+		<header class="box__header">
+			<h3>Tags</h3>
+		</header>
+
+		<div class="box__body">
+
+			<form id="conversation_tag_form" action="{{ object.get_add_tag_url }}" method="post" autocomplete="off">
+
+				{% csrf_token %}
+
+				<div class="form-group">
+					<input id="id_tag_title" maxlength="80" name="title" type="text">
+					<ul id="input_select">
+				</div>
+				<button class="btn" type="submit">Add tag</button>
+
+			</form>
+
+			<ul class="tags_list">
+
+				{% for tag in object.tags.all %}
+					<li class="tag_list__item"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag }} <a class="js-tag-remove" href="{{ object.get_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
+				{% endfor %}
+
+			</ul>
+
+		</div>
+
+	</aside>
+
+</div>
+
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+	<ul id="js-messages-list" class="messages_ul">
+	
+		{% if object_list %}
+			
+			{% for message in object_list %}
+
+				<li data-message-id="{{ message.id }}" class="box-item box">
+					<header class="box-item__header clearfix">
+						<p class="user">{{ message.user }}</p>
+						<p class="date">{{ message.date }}</p>
+					</header>
+					<div class="box-item__body">
+						<p>{{ message.text|urlize }}</p>
+					</div>
+				</li>
+
+			{% endfor %}
+
+			{% if is_paginated and page_obj.has_next %}
+
+				<li class="load-more">
+					<a id="js-messages-load" href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="btn btn-large btn-block">Load more</a>
+				</li>
+
+			{% endif %}
+
+		{% endif %}
+
+	</ul>
+
+</div>
+
+{% endblock content %}
+
+{% block script_templates %}
+
+{% verbatim %}
+
+<script id="message_list_template" type="text/x-handlebars-template">
+{{#each results}}
+	<li class="box-item box">
+		<header class="box-item__header clearfix">
+			<p class="user">{{ user }}</p>
+			<p class="date">{{ date }}</p>
+		</header>
+		<div class="box-item__body">
+			<p>{{ text }}</p>
+		</div>
+	</li>
+{{/each}}
+{{#if next}}
+<li class="load-more">
+	<a id="js-messages-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
+</li>
+{{/if}}
+</script>
+
+<script id="message_item_template" type="text/x-handlebars-template">
+	<li class="box-item box">
+		<header class="box-item__header clearfix">
+			<p class="user">{{ user }}</p>
+			<p class="date">{{ date }}</p>
+		</header>
+		<div class="box-item__body">
+			<p>{{ text }}</p>
+		</div>
+	</li>
+</script>
+
+<script id="tag_template" type="text/x-handlebars-template">
+<li class="tag_list__item"><a href="{{ tag.get_absolute_url }}"><p class="tag">{{ tag.title }} <a class="js-tag-remove" href="{{ object_remove_tag_url }}"><i class="fa fa-times"></i></a></p></a></li>
+</script>
+
+{% endverbatim %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+	<script src="{{ STATIC_URL }}js/conversation_detail.js"></script>
+
+	<script type="text/javascript">
+
+		$('#js-message-form').jangoForm({
+			handlebarsTemplate: $('#message_item_template'),
+			prependTo: $('#js-messages-list'),
+		});
+
+		$('#conversation_tag_form').jangoForm({
+			handlebarsTemplate: $('#tag_template'),
+			appendTo: $('.tags_list'),
+			idNamingConvention: '#id_tag_',
+		});
+		
+		$('#js-messages-list').jangoEndless({
+			handlebarsTemplate: $("#message_list_template"),
+			appendTo: $("#js-messages-list"),
+			eventElementID: "#js-messages-load",
+		});
+
+	</script>
+
+{% endblock scripts %}

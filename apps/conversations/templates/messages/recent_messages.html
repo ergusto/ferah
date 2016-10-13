@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+	<div>
+
+		<div class="box">
+
+			<header class="box__header">
+				<h3>Recent Messages</h3>
+			</header>
+
+		</div>
+		
+		<ul id="js-messages-list" class="box-item-list">
+			{% for message in object_list %}
+
+				<li class="box box-item">
+					<header class="box-item__header">
+						<small><a href="#">{{ message.user }}</a> wrote in <a href="{{ message.conversation.get_absolute_url }}">{{ message.conversation }}</a></small>
+					</header>
+					<div class="box-item__body">
+						{{ message.text|urlize }}
+					</div>
+					<footer class="box-item__footer">
+						<small>{{ message.date }}</small>
+					</footer>
+				</li>
+
+			{% endfor %}
+
+			{% if is_paginated and page_obj.has_next %}
+
+				<li class="load-more">
+					<a id="js-messages-load" href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="btn btn-large btn-block">Load more</a>
+				</li>
+
+			{% endif %}
+
+		</ul>
+
+	</div>
+
+</div>
+
+{% endblock %}
+
+{% block script_templates %}
+
+{% verbatim %}
+
+<script id="message_list_template" type="text/x-handlebars-template">
+{{#each results}}
+	<li class="box box-item">
+		<header class="box-item__header">
+			<small><a href="#">{{ user }}</a> wrote in <a href="{{ conversation_absolute_url }}">{{ conversation_title }}</a></small>
+		</header>
+		<div class="box-item__body">
+			{{ text }}
+		</div>
+		<footer class="box-item__footer">
+			<small>{{ date }}</small>
+		</footer>
+	</li>
+{{/each}}
+{{#if next}}
+<li class="load-more">
+	<a id="js-messages-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
+</li>
+{{/if}}
+</script>
+
+{% endverbatim %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#js-messages-list').jangoEndless({
+			handlebarsTemplate: $("#message_list_template"),
+			appendTo: $("#js-messages-list"),
+			eventElementID: "#js-messages-load",
+		});
+	});
+
+</script>
+{% endblock scripts %}

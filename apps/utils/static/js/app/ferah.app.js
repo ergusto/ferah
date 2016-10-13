@@ -1,0 +1,2 @@
+window.ff = window.ff || {};
+

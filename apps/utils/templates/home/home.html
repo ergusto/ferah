@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>Conversations</h3>
+
+		</header>
+
+			<ul id="js-conversations-list" class="simple_list conversation_list">
+
+				{% if object_list %}
+
+					{% for conversation in object_list %}
+
+						<li class="{{ conversation.label }}">
+
+							<a class="item_title" href="{{ conversation.get_absolute_url }}">{{ conversation }}</a>
+
+						</li>
+
+					{% endfor %}
+
+					{% if is_paginated and page_obj.has_next %}
+
+						<li class="load-more">
+							<a id="js-conversations-load" href="{% url 'home' %}?page={{ page_obj.next_page_number }}" class="btn btn-large btn-block">Load more</a>
+						</li>
+
+					{% endif %}
+
+				{% else %}
+
+					<li class="conversation">
+
+						<p>No conversations. <a class="underline" href="{% url 'conversation_create' %}">Create one.</a></p>
+
+					</li>
+
+				{% endif %}
+
+			</ul>
+
+	</div>
+
+</div>
+
+{% endblock content %}
+
+{% block script_templates %}
+
+{% verbatim %}
+
+<script id="conversation_item_template" type="text/x-handlebars-template">
+{{#each results}}
+	<li class="{{ label }}">
+
+		<a class="item_title" href="{{ get_absolute_url }}">{{ title }}</a>
+
+	</li>
+{{/each}}
+{{#if next}}
+<li class="load-more">
+	<a id="js-conversations-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
+</li>
+{{/if}}
+</script>
+
+{% endverbatim %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#js-conversations-list').jangoEndless({
+			handlebarsTemplate: $("#conversation_item_template"),
+			appendTo: $("#js-conversations-list"),
+			eventElementID: "#js-conversations-load",
+		});
+	});
+
+</script>
+{% endblock scripts %}

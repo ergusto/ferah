@@ -1,0 +1,46 @@
+*, *:before, *:after {
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	vertical-align: baseline;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+}
+
+html {
+	font-family: "Open Sans";
+	font-size: 14px;
+}
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+h5 { font-size: .83em; }
+h6 { font-size: .75em; }
+
+h1, h2, h3, h4, h5, h6 {
+	vertical-align: baseline;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	margin: 0;
+}
+
+p {
+	line-height: 140%;
+}
+a {
+	color: inherit;
+	text-decoration: underline;
+}
+a:hover {
+	text-decoration: none;
+	color: inherit;
+}
+em {
+	font-style: italic;
+}
+strong {
+	font-weight: bold;
+}
+small {
+	font-size: 85%;
+}

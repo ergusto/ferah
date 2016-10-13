@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>Delete {{ object }}</h3>
+
+		</header>
+
+		<form action="" method="post">
+			{% csrf_token %}
+			<div class="box__body">
+		    	<p>Are you sure you want to delete "{{ object }}"?</p>
+		    </div>
+		    <div class="box__footer">
+		    	<div class="btn-group">
+				    <input class="btn" type="submit" value="Confirm" />
+				    <a class="btn" href="{{ object.get_absolute_url }}">Cancel</a>
+				</div>
+			</div>
+		</form>
+
+	</div>
+
+</div>
+
+{% endblock content %}

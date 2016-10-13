@@ -1,0 +1,39 @@
+{% load widget_type %}
+
+{% for field in page_form %}
+	<div class="form-group">
+		{% if field.field.widget|widget_type == 'Select' %}
+			<div class="select-style">
+				{{ field }}
+			</div>
+		{% else %}
+		<label>{{ field.label }}:</label>
+			{{ field }}
+		{% endif %}
+		{% if field.errors %}
+			{% for error in field.errors %}
+				<span class="error">{{ error }}</span>
+			{% endfor %}
+		{% endif %}
+		{% if field.help_text %}
+			<label class="help-text">{{ field.help_text }}</label>
+		{% endif %}
+	</div>
+{% endfor %}
+
+<button class="btn" type="submit">Submit</button>
+
+{% if object and object.user == user and object.get_absolute_url and request.get_full_path == object.get_absolute_url %}
+	<a class="btn pull-right" href="{{ object.get_edit_url }}">Edit</a>
+{% elif object and object.user == user and object.get_delete_url and object.get_edit_url and object.get_edit_url == request.get_full_path %}
+	<a class="js-delete btn pull-right" href="{{ object.get_delete_url }}">Delete</a>
+{% endif %}
+
+
+<div id="form_errors">
+{% if form.non_field_errors %}
+	{% for error in form.non_field_errors %}
+	<span class="form-error">{{ error }}</span>
+	{% endfor %}
+{% endif %}
+</div>

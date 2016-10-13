@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>All Tags</h3>
+
+		</header>
+
+		<div class="box__body">
+
+			<ul class="def-list">
+				{% for tag in object_list %}
+					{% ifchanged tag.first_letter %}
+						<h3 class="def-list__title">{{ tag.first_letter|capfirst }}</h3>
+					{% endifchanged %}
+						<li class="def-list__item"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a> ({{ tag.number_of_conversations }})</li>
+				{% endfor %}
+			</ul>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock content %}

@@ -1,0 +1,42 @@
+.clearfix:before, .clearfix:after {
+	content: ".";
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	font-size: 0;
+	line-height: 0;
+	width: 0;
+	height: 0;
+}
+.clearfix:after {
+	clear: both;
+}
+.clearfix {
+	/* <IE7> */
+	*zoom: 1;
+	/* </IE7> */
+}
+.pull-right {
+	float: right;
+}
+.pull-left {
+	float: left;
+}
+.small {
+	font-size: 85%;
+}
+.hidden {
+	display: none;
+}
+.show {
+	display: block !important;
+}
+.text-centred {
+	text-align: center;
+}
+.muted {
+	opacity: 0.75;
+}
+.underline {
+	text-decoration: underline !important;
+}

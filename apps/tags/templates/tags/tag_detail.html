@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-6 col-md-offset-3">
+
+	<div class="box">
+
+		<header class="box__header">
+
+			<h3>Conversations for '{{ object }}' tag</h3>
+
+		</header>
+
+		<div>
+
+			<ul id="js-conversations-list" class="simple_list">
+
+				{% if object_list %}
+
+					{% for conversation in object_list %}
+
+						<li class="conversation">
+
+							<a class="item_title" href="{{ conversation.get_absolute_url }}">{{ conversation }}</a>
+
+						</li>
+
+					{% endfor %}
+
+					{% if is_paginated and page_obj.has_next %}
+
+						<li class="load-more">
+							<a id="js-conversations-load" href="{{ object.get_absolute_url }}?page={{ page_obj.next_page_number }}" class="btn btn-block">Load more</a>
+						</li>
+
+					{% endif %}
+
+				{% else %}
+
+					<li class="conversation">
+
+						<p class="item_title"><a class="underline" href="{% url 'conversation_create' %}">No conversations. Create one.</a></p>
+
+					</li>
+
+				{% endif %}
+
+			</ul>
+
+			<footer class="box__footer clearfix">
+
+				<a class="js-delete pull-right btn btn-small" href="{{ object.get_delete_url }}">Delete tag</a>
+
+			</footer>
+
+		</div>
+
+	</div>
+
+</div>
+
+{% endblock %}
+
+{% block script_templates %}
+
+{% verbatim %}
+
+<script id="conversation_list_template" type="text/x-handlebars-template">
+{{#each results}}
+	<li class="conversation">
+
+		<a href="{{ get_absolute_url }}">{{ title }}</a>
+
+	</li>
+{{/each}}
+{{#if next}}
+<li class="load-more">
+	<a id="js-conversations-load" href="{{ next }}" class="btn btn-large btn-block">Load more</a>
+</li>
+{{/if}}
+</script>
+
+{% endverbatim %}
+
+{% endblock script_templates %}
+
+{% block scripts %}
+<script type="text/javascript">
+
+	$(document).ready(function() {
+		$('#js-conversations-list').jangoEndless({
+			handlebarsTemplate: $("#conversation_list_template"),
+			appendTo: $("#js-conversations-list"),
+			eventElementID: "#js-conversations-load",
+		});
+	});
+
+	window.ff = window.ff || {};
+
+	ff.ready(function() {
+		ff.on(ff.qs('.js-delete'), 'click', function(event) {
+			event.preventDefault();
+			var url = this.getAttribute("href");
+			var html = ff.templates.utils.confirm_delete_object_form(url);
+			var box = ff.templates.utils.empty_box('Delete', html);
+			var modal = new ff.objects.Modal();
+			modal.render(box);
+		});
+	});
+
+</script>
+{% endblock scripts %}
