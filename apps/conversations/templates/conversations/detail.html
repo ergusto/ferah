@@ -75,6 +75,11 @@
 					<div class="box-item__body">
 						<p>{{ message.text|urlize }}</p>
 					</div>
+					{% if message.user == request.user %}
+						<footer class="box-item__footer clearfix">
+							<small class="pull-right"><a href="{{ message.get_edit_url }}">Edit</a></small>
+						</footer>
+					{% endif %}
 				</li>
 
 			{% endfor %}
@@ -127,6 +132,9 @@
 		<div class="box-item__body">
 			<p>{{ text }}</p>
 		</div>
+		<footer class="box-item__footer clearfix">
+			<small class="pull-right"><a href="{{ get_edit_url }}">Edit</a></small>
+		</footer>
 	</li>
 </script>
 
