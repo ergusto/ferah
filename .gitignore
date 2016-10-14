@@ -2,5 +2,9 @@
 *.pyc
 .*swp
 heroku
+<<<<<<< HEAD
 media
 venv
+=======
+media
+>>>>>>> 04a0f7efab20722385a08d5aea9b2eec13907abb
