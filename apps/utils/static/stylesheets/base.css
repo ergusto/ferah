@@ -68,6 +68,10 @@ a, p, small, h1, h2, h3, h4, h5, h6 {
 	line-height:1.42857143;
 }
 
+a.no-underline {
+  text-decoration: none;
+}
+
 
 #user-dts {
 	float: right;

@@ -77,7 +77,7 @@
 					</div>
 					{% if message.user == request.user %}
 						<footer class="box-item__footer clearfix">
-							<small class="pull-right"><a href="{{ message.get_edit_url }}">Edit</a></small>
+							<small class="pull-right"><a class="no-underline" href="{{ message.get_edit_url }}">Edit</a></small>
 						</footer>
 					{% endif %}
 				</li>
@@ -133,7 +133,7 @@
 			<p>{{ text }}</p>
 		</div>
 		<footer class="box-item__footer clearfix">
-			<small class="pull-right"><a href="{{ get_edit_url }}">Edit</a></small>
+			<small class="pull-right"><a class="no-underline" href="{{ get_edit_url }}">Edit</a></small>
 		</footer>
 	</li>
 </script>

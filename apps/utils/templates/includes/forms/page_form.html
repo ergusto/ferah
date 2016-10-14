@@ -22,6 +22,9 @@
 {% endfor %}
 
 <button class="btn" type="submit">Submit</button>
+{% if object and object.get_conversation_url %}
+	<a class="btn margin-left-sm" href="{{ object.get_conversation_url }}">Cancel</a>
+{% endif %}
 
 {% if object and object.user == user and object.get_absolute_url and request.get_full_path == object.get_absolute_url %}
 	<a class="btn pull-right" href="{{ object.get_edit_url }}">Edit</a>

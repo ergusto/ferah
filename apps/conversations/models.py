@@ -141,3 +141,8 @@ class Message(models.Model):
 		return reverse('message_edit', kwargs={
 			'pk': self.id,
 		})
+
+	def get_conversation_url(self):
+		return reverse('conversation_detail', kwargs={
+			'slug': self.conversation.slug
+		})
